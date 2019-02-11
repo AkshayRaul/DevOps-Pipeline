@@ -1,0 +1,60 @@
+---
+- hosts: all
+  
+  environment:
+    MONGO_IP: 127.0.0.1
+    MONGO_PORT: 3002
+    MONGO_USER: mongoadmin
+    MONGO_PASSWORD: mongoadmin
+  tasks:
+  - name: Update and upgrade apt packages
+    become: true
+    apt:
+      upgrade: yes
+      update_cache: yes
+      cache_valid_time: 86400 #One day
+  - name: git clone checkbox.io
+    become: true
+    git:
+      repo: https://github.com/chrisparnin/checkbox.io.git
+      dest: /opt/checkbox.io
+      version: master
+  - name: create mongodb file
+    become: true
+    file:
+      path: "/etc/apt/sources.list.d/mongodb-org-4.0.list"
+      state: touch
+  - name: Add an apt key by id from a keyserver for downloading mongodb
+    become: true
+    apt_key:
+      keyserver: hkp://keyserver.ubuntu.com:80
+      id: 9DA31620334BD75D9DCB49F368818C72E52529D4
+  - name: install mongodb
+    sudo: yes
+    apt: name=mongodb state=latest update_cache=yes
+  - name: install nginx
+    become: true
+    apt: name=nginx state=latest update_cache=yes
+  - name: Install a list of packages
+    become: true
+    apt:
+      name: "{{ packages }}"
+    vars:
+      packages:
+      - nginx
+      - python3-pip
+
+  - name: Install the latest pymongo package
+    pip: name=pymongo state=latest use_mirrors=no
+ 
+  - name: create mongodb user for checkbox.io
+    mongodb_user:
+      database: admin
+      name: mongoadmin
+      password: mongoadmin 
+      roles: userAdminAnyDatabase,dbAdminAnyDatabase,readWriteAnyDatabase
+      state: present
+  - name: run npm install
+    become: true
+    npm:
+      path: /opt/checkbox.io/server-side/site
