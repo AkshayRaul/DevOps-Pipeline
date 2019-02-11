@@ -1,0 +1,6 @@
+name: ansible-jenkins-srv
+vm:
+  ip: 192.168.20.20
+lang:
+  - nodejs9
+

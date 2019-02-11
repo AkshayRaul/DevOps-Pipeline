@@ -1,0 +1,49 @@
+---
+  - name: Install Java 8
+    become: yes
+    apt: pkg="{{ item }}" update_cache=yes
+    with_items:
+    - openjdk-8-jre-headless
+    - openjdk-8-jdk
+    - ca-certificates-java
+
+  - name: Add Key
+    become: yes
+    apt_key: 
+      url: https://pkg.jenkins.io/debian/jenkins.io.key
+      state: present
+
+  - name: Add Jenkins repository
+    become: yes
+    apt_repository:
+      repo: deb http://pkg.jenkins.io/debian binary/
+      state: present
+  
+  - name: Apt update
+    become: yes
+    apt: update_cache=yes
+  
+  - name: Install jenkins
+    become: yes
+    apt: pkg=jenkins update_cache=yes
+
+  - name: start jenkins
+    systemd:
+      name: jenkins
+      state: started
+
+  - name: Download Jenkins CLI
+    become: yes
+    get_url:
+      url: http://{{jenkins_url}}:{{jenkins_http_port}}/jnlpJars/jenkins-cli.jar
+      dest: /opt/
+      mode: 0440
+      owner: "{{jenkins_process_user}}"
+      group: "{{jenkins_process_user}}"
+      timeout: 10
+    register: result
+   
+  - include_tasks: settings.yml
+
+
+  

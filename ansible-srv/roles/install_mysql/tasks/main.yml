@@ -1,0 +1,39 @@
+---
+  - name: Mysql | Set root password
+    become: yes
+    debconf:
+      name: mysql-server
+      question: 'mysql-server/root_password'
+      value: "{{mysql_root_pass}}"
+      vtype: password
+
+  - name: Mysql | Set root repassword
+    become: yes
+    debconf:
+      name: mysql-server
+      question: 'mysql-server/root_password_again'
+      value: "{{mysql_root_pass}}"
+      vtype: password 
+
+  - name: Install MySQL
+    become: yes
+    action: apt pkg="{{ item }}" state=installed
+    with_items:
+      - mysql-server
+
+  - name: Install MySQL
+    become: yes
+    action: apt pkg="{{ item }}" state=installed
+    with_items:
+      - "{{ packages }}"
+      
+  - name: Start the MySQL service
+    action: service name=mysql state=started
+  
+  - name: Copy .my.cnf file with root password credentials
+    become: yes
+    template: src=templates/.my.cnf dest=/root/.my.cnf owner=root mode=0600
+
+  - name: Ensure anonymous users are not in the database
+    sudo: yes
+    mysql_user: user='' state=absent

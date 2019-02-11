@@ -1,0 +1,11 @@
+name: ansibleConfigJenkins-srv
+vm:
+  ip: 192.168.20.10
+lang: 
+  - nodejs9
+  - java8
+config:
+  - keys:
+    - ansible-jenkins-srv
+tools:
+  - ansible

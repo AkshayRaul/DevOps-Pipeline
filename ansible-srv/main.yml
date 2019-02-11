@@ -1,0 +1,6 @@
+- hosts: all
+  name: Build Jenkins Pipeline
+
+  roles:
+  - install_mysql
+  - install_jenkins
