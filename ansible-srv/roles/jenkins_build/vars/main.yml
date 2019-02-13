@@ -1,4 +1,5 @@
-pipeline {
+jenkins_itrust_pipeline:
+  pipeline {
     agent { any }
     stages {
         stage('build') {
