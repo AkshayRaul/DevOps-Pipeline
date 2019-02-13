@@ -1,0 +1,10 @@
+pipeline {
+    agent { anyc }
+    stages {
+        stage('build') {
+            steps {
+                sh 'npm --version'
+            }
+        }
+    }
+}

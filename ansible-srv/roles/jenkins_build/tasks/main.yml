@@ -1,3 +1,29 @@
 ---
-- 
+# - name: Copy iTrust
+#   become: yes
+#   copy:
+#     src: /ansible-srv/iTrust2-v4/iTrust2
+#     dest: /home/vagrant/iTrust
+#     owner: jenkins
+#     group: jenkins
+    # recurse: yes
+
+- name: Run pipeline
+  become: yes
+  become_user: jenkins
+  jenkins_script:
+    script: |
+        #!/usr/bin/env groovy
+        node{
+            stage ('Build project') {
+                dir("/home/vagrant/iTrust/iTrust2/"){
+                sh 'mvn -f pom-data.xml process-test-classes'
+                sh 'mvn jetty:run -Djetty.port=8081'
+                sh 'mvn clean test checkstyle:checkstyle'
+                }
+            }
+        }
+    user: jenkins
+    password: Jenkins@6
+
   
