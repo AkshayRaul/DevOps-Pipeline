@@ -1,0 +1,11 @@
+pipeline {
+    agent { any }
+    stages {
+        stage('build') {
+             dir("/home/vagrant/iTrust/iTrust2/"){
+                    sh 'mvn -f pom-data.xml process-test-classes'
+                    sh 'mvn clean test checkstyle:checkstyle'
+                }
+        }
+    }
+}

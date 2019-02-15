@@ -3,4 +3,4 @@ admin_user_pass: "Jenkins@6"
 jenkins_plugins:
   - pipeline
   - maven-plugin
-seed_name: "pipeline_checkbox"
+

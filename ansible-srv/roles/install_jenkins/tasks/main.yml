@@ -27,11 +27,16 @@
     become: yes
     apt: pkg=jenkins update_cache=yes
 
+  - name: Install maven
+    become: yes
+    apt: pkg=maven update_cache=yes
+
   - name: start jenkins
     systemd:
       name: jenkins
       state: started
 
+#### ADD WAIT CONDITION HERE 
   - name: Download Jenkins CLI
     become: yes
     get_url:
@@ -42,7 +47,7 @@
       group: "{{jenkins_process_user}}"
       timeout: 10
     register: result
-
+    
   - name: read admin pwd
     become: yes
     shell: cat /var/lib/jenkins/secrets/initialAdminPassword
@@ -86,7 +91,6 @@
      url_username: admin
      url_password: "{{ adminpwd.stdout }}"
     with_items: "{{ jenkins_plugins }}"
-   
   - include_tasks: settings.yml
 
 
