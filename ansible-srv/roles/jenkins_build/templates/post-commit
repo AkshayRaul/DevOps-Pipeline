@@ -1,4 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 
-echo "Hello"
+crumb=$(curl -u jenkins:Jenkins@6 http://127.0.0.1:8080/crumbIssuer/api/json | jq -r '.crumb')
+
+curl -X POST -u jenkins:Jenkins@6 -H "Content-Type: application/xml" -H "Jenkins-Crumb":$crumb  http://localhost:8080/job/checkbox_build/build
 
