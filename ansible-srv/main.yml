@@ -2,5 +2,6 @@
   name: Build Jenkins Pipeline
 
   roles:
-  - install_mysql
+  # - install_mysql
   - install_jenkins
+  - jenkins_build

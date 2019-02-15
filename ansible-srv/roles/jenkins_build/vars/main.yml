@@ -1,0 +1,7 @@
+checkbox_name: "checkbox_build"
+iTrust_name: "iTrust_build"
+jenkins_plugins:
+  - git
+  - job-dsl
+  - workflow-aggregator 
+  - workflow-cps

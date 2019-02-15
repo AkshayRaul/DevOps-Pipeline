@@ -1,3 +1,123 @@
 ---
-- 
+- name: Install pip3
+  become: yes
+  apt: pkg=python3-pip update_cache=yes
+
+- name: Install easy_install
+  become: yes
+  yum:
+    name: python3-setuptools
+
+- name: Install python-jenkins
+  become: yes
+  easy_install:
+    executable: easy_install3
+    name: python-jenkins
+    state: latest
   
+- name: Get Jenkins crumb
+  uri:
+    user: jenkins
+    password: "Jenkins@6"
+    force_basic_auth: yes
+    url: "http://127.0.0.1:8080/crumbIssuer/api/json"
+    return_content: yes
+  register: crumb_token
+  until: crumb_token.content.find('Please wait while Jenkins is getting ready') == -1
+  retries: 10
+  delay: 5
+
+- name: Set crumb token
+  set_fact:
+    crumb: "{{ crumb_token.json.crumb }}"
+
+- debug:
+    var: adminpwd.stdout
+
+- name: Install plugins
+  uri:
+    user: jenkins
+    password: "Jenkins@6"   
+    force_basic_auth: yes
+    url: "http://127.0.0.1:8080/pluginManager/install?plugin.{{ item }}.default=on&Jenkins-Crumb={{ crumb }}"
+    method: POST
+    status_code: [200, 302]
+  with_items: "{{ jenkins_plugins }}"
+
+# - name: Restart Jenkins to activate new plugins
+#   service: name=jenkins state=restarted
+  
+
+- name: Get list of jobs
+  uri: 
+    url: "http://192.168.20.20:8080/api/json?tree=jobs[name]&Jenkins-Crumb={{ crumb }}" 
+    force_basic_auth: yes
+    return_content: yes
+    user: jenkins
+    password: "Jenkins@6"
+    method: GET
+  register: jobs
+
+- name: Check if checkbox job exists
+  set_fact:
+    seed_exists: "{{ checkbox_name in jobs.json.jobs|map(attribute='name')|list }}"
+    
+
+- name: Create checkbox job
+  uri:
+      url: "http://localhost:8080/createItem?name={{checkbox_name}}&mode=org.jenkinsci.plugins.workflow.job.WorkflowJob" 
+      method: POST
+      headers:
+        Content-Type: application/xml
+        Jenkins-Crumb: "{{crumb}}"
+      body: "{{ lookup('file', './templates/config.xml' ) }}"
+      user: jenkins
+      password: "Jenkins@6"
+      force_basic_auth: yes
+  register: jenkins_seed_updated
+  when: not seed_exists
+
+- name: Build Job
+  uri:
+      url: "http://localhost:8080/job/{{ checkbox_name }}/build"
+      method: POST
+      user: jenkins
+      password: "Jenkins@6"
+      force_basic_auth: yes
+      headers:
+        Content-Type: application/xml
+        Jenkins-Crumb: "{{crumb}}"
+      status_code: 201
+  when: jenkins_seed_updated|success
+
+- name: Check if iTrust job exists
+  set_fact:
+    seed_exists: "{{ iTrust_name in jobs.json.jobs|map(attribute='name')|list }}"
+
+- name: Create iTrust job
+  uri:
+    url: "http://localhost:8080/createItem?name={{iTrust_name}}&mode=org.jenkinsci.plugins.workflow.job.WorkflowJob" 
+    method: POST
+    headers:
+      Content-Type: application/xml
+      Jenkins-Crumb: "{{crumb}}"
+    body: "{{ lookup('file', './templates/iTrustConfig.xml' ) }}"
+    user: jenkins
+    password: "Jenkins@6"
+    force_basic_auth: yes
+    register: jenkins_seed_updated
+  when: not seed_exists
+
+- name: Build Job
+  uri:
+    url: "http://localhost:8080/job/{{ iTrust_name }}/build"
+    method: POST
+    user: jenkins
+    password: "Jenkins@6"
+    force_basic_auth: yes
+    headers:
+      Content-Type: application/xml
+      Jenkins-Crumb: "{{crumb}}"
+    status_code: 201
+  when: jenkins_seed_updated|success
+    
