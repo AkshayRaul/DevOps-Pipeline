@@ -1,4 +1,29 @@
 ---
+
+- name: git clone checkbox.io
+  become: true
+  become_user: jenkins
+  git:
+    repo: https://github.com/chrisparnin/checkbox.io.git
+    dest: /opt/checkbox.io
+    version: master
+    clone: no
+  
+# - name: git clone checkbox.io
+#   become: true
+#   git:
+#     repo: https://github.com/chrisparnin/checkbox.io.git
+#     dest: /opt/checkbox.io
+#     version: master
+#     clone: no
+
+# - name: copy iTrust hook
+#   template:
+#     src: templates/post-commit
+#     dest: /ansible-srv/iTrust2-v4/iTrust2/.git/hooks/post-commit
+#     mode: +x
+
+  
 - name: Install pip3
   become: yes
   apt: pkg=python3-pip update_cache=yes
@@ -120,6 +145,17 @@
       Jenkins-Crumb: "{{crumb}}"
     status_code: 201
   when: jenkins_seed_updated|success
+
+- name: Update and upgrade apt packages
+  become: true
+  apt:
+    upgrade: yes
+    update_cache: yes
+    cache_valid_time: 86400 #One day
+  
+
+  
+  
     
 
   

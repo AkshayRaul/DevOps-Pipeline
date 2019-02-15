@@ -1,7 +1,13 @@
 - hosts: all
   name: Build Jenkins Pipeline
 
+  environment:
+    MONGO_IP: 127.0.0.1
+    MONGO_PORT: 3002
+    MONGO_USER: mongoadmin
+    MONGO_PASSWORD: mongoadmin
+
   roles:
-  - install_mysql
+  - install_dbs
   - install_jenkins
   - jenkins_build
