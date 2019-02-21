@@ -1,0 +1,3 @@
+[submodule "checkbox.io"]
+	path = checkbox.io
+	url = https://github.com/ashwinrisbood/checkbox.io
