@@ -91,6 +91,7 @@
      url_username: admin
      url_password: "{{ adminpwd.stdout }}"
     with_items: "{{ jenkins_plugins }}"
+  
   - include_tasks: settings.yml
 
 

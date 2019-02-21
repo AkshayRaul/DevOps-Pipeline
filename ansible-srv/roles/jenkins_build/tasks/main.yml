@@ -113,7 +113,7 @@
         Content-Type: application/xml
         Jenkins-Crumb: "{{crumb}}"
       status_code: 201
-  when: jenkins_seed_updated|success
+  # when: jenkins_seed_updated|success
 
 - name: Check if iTrust job exists
   set_fact:
