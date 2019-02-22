@@ -7,8 +7,8 @@
       Shwetha Kalyanaraman -skalyan
 #### Contributions
     Ashwin Risbood - CM for Checkbox.io, testscripts and jenkins pipeline for checkbox.io
-    Shwetha Kalyanaraman - Jenkins pipeline for Checkbox.io and ITrust, setting up git-hooks.
-    Akshay Raul- Configuring and installing Jenkins, building ITrust
+    Shwetha Kalyanaraman - Jenkins pipeline for Checkbox.io and iTrust, setting up git-hooks.
+    Akshay Raul- Configuring and installing Jenkins, building iTrust
     Cameron Nelson -  Creating bare git repository and triggering builds with git-hooks. 
 
 ##### Build Instructions:
@@ -25,10 +25,10 @@
 ##### Main.yml does the following tasks using the following roles :- 
  - Installs MySQL and MongoDB servers (instslls_dbs)
  - Installs Jenkins, creates a user, and installs Jenkins plugins (install_jenkins)
- - Creates Jenkins pipelines for ITrust and Checkbox and builds both repos (jenkins_build)
+ - Creates Jenkins pipelines for iTrust and Checkbox and builds both repos (jenkins_build)
  
  ##### Report:
- 
+Triggering the builds for both iTrust and Checkbox.io required two kind of git hooks for each repository. Both repositories needed a post-commit hook in order to build in Jenkins. The only challenge in doing this was that the crumb user needed to be retrieved in Jenkins as a header for the build script to execute properly. Both repositories also needed post-receive hooks so that when a build has been pushed, the contents of the repository would be pushed into their respective `www` bare repository.
  
  ##### ScreenCast:
  
