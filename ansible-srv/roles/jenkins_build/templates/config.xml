@@ -17,7 +17,7 @@ pipeline {
   stages {    
     stage('Cloning Git') {
       steps {
-        git 'https://github.com/ashwinrisbood/checkbox.io.git'
+        git 'https://github.com/ashwinrisbood/checkbox.io'
       }
     }
     
@@ -32,7 +32,7 @@ pipeline {
    stage('build') {
         steps {
                 dir("server-side/site/") {
-                         sh 'npm build'
+                    sh 'npm test'
                 }
         }
       }

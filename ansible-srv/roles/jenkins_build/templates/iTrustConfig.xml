@@ -6,12 +6,22 @@
 <properties/>
 <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.63">
 <script>
-node{
-  stage ('Build project') {
-    dir("/home/vagrant/iTrust/iTrust2/"){
-    sh 'mvn -f pom-data.xml process-test-classes'
-    sh 'mvn clean test checkstyle:checkstyle'
+pipeline{
+  agent any
+  stages{
+    stage('Clone repository'){
+     steps {
+        git([url:'vagrant@192.168.20.10:/ansible-srv/iTrustBareGit',branch:'master',credentialsId:''])
+      }
     }
+    stage ('Build project') {
+      steps{
+      dir("iTrust2/"){
+        sh 'mvn -f pom-data.xml process-test-classes'
+        sh 'mvn clean test checkstyle:checkstyle'
+      }
+    }
+  }
   }
 }
 </script>
