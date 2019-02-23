@@ -31,6 +31,10 @@
  
 #### Report:
 
+- We will first clone the Checkbox and Itrust project into our local machine and setup post-commit in the respective git hooks by running setup git.yml
+- Start the Virual Machine 
+-
+
 ###### Automating CheckBox.io setup
 Checkbox.io required setting up of environmental variables and installing mongoDB. The "MONGO_PORT" was a little confusing to set, as it turned out to be the port where checkbox.io is hosted. Creating the automation script was pretty straightforward. Understanding the bigger picture on how the builds are triggered was crucial. Creating Jenkinsfile for this application was no hassle as it is well documented. 
 
