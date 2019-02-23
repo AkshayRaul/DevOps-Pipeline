@@ -29,6 +29,9 @@
  
  ##### Report:
 Triggering the builds for both iTrust and Checkbox.io required two kind of git hooks for each repository. Both repositories needed a post-commit hook in order to build in Jenkins. The only challenge in doing this was that the crumb user needed to be retrieved in Jenkins as a header for the build script to execute properly. Both repositories also needed post-receive hooks so that when a build has been pushed, the contents of the repository would be pushed into their respective `www` bare repository.
+
+- Experience automating CheckBox.io
+  Checkbox.io required setting up of environmental variables and installing mongoDB. The "MONGO_PORT" was a little confusing to set, as it turned out to be the port where checkbox.io is hosted. Creating the automation script was pretty straightforward. Understanding the bigger picture on what goes where was crucial. Creating Jenkinsfile for this application was no hassle as it is well documented.  
  
  ##### ScreenCast:
  
