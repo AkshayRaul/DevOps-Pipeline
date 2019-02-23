@@ -31,9 +31,13 @@
  
 #### Report:
 
-- We will first clone the Checkbox and Itrust project into our local machine and setup post-commit in the respective git hooks by running setup git.yml
-- Start the Virual Machine 
--
+###### Installing Jenkins through Ansible
+Configuring Jenkins with Ansible was a great experience but not without hiccups. When Jenkins is installed for the first time, it asks for admin password `initialAdminPassword` which needs to be setup using groovy that uses Hudson security module to complete the initial setup. Further, setting up CrumbIssuer and then retreiving crumbs from Jenkins REST api was necessary to access Jenkins REST Api. The issues we encountered wer having `Error:Crumb not valid` and `Error:Crumb not found`. There is not much documentation on it, but experimenting with the API endpoints, `Content-Type` header helps with understanding how crumbs work. We have used Jenkinsfile for creating the pipeline. I
+
+###### Automating Itrust setup
+Itrust setup required to have maven installed for building successfully. Initially, it was difficult for us to figure out how to use Jenkinsfile with the REST API as it expects an xml file. We figured this out by creating a dummy job, then accessing the `config.xml` file in the $JENKINS_HOME. For iTrust, as the repository is private, we had to use `credentials` plugin to create a credential that holds the private key. Other issues we faced were that ansible doesn't natively support `multipart/form-data` Content type, which is required to setup credentials. This further led to issues in templating errors.
+Once setup, it playbook runs without any issues, and then creates jobs & triggers build.
+
 
 ###### Automating CheckBox.io setup
 Checkbox.io required setting up of environmental variables and installing mongoDB. The "MONGO_PORT" was a little confusing to set, as it turned out to be the port where checkbox.io is hosted. Creating the automation script was pretty straightforward. Understanding the bigger picture on how the builds are triggered was crucial. Creating Jenkinsfile for this application was no hassle as it is well documented. 
