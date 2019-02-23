@@ -13,13 +13,14 @@
   when: not jenkins_init_file_stat.stat.exists
 
 - name: Ensure jenkins_home {{ jenkins_home }} exists
+  become: yes
   file:
     path: "{{ jenkins_home }}"
     state: directory
     owner: jenkins
     group: jenkins
     mode: u+rwx
-    follow: true
+    recurse: yes
 
 - name: Create custom init scripts directory.
   become: yes

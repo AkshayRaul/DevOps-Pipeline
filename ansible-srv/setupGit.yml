@@ -4,29 +4,28 @@
   - name: copy DB properties
     template:
       src: templates/db.properties
-      dest: ./iTrustBarewww/iTrust2/src/main/java/db.properties
+      dest: ./iTrust2/iTrustBareGit/iTrust2/src/main/java/db.properties
 
   - name: copy email properties hook
     template:
       src: templates/email.properties
-      dest: ./iTrustBarewww/iTrust2/src/main/java/email.properties
+      dest: ./iTrust2/iTrustBareGit/iTrust2/src/main/java/email.properties
 
   - name: copy iTrust hook
     template:
       src: templates/iTrust_post-commit
-      dest: ./iTrustBareGit/hooks/post-commit
-      mode: +x
-
-  - name: copy checkbox.io hook
-    template:
-      src: templates/checkbox_post-commit
-      dest: ./checkbox.io/.git/hooks/post-commit
+      dest: ./iTrust2/iTrustBareGit/.git/hooks/post-commit
       mode: +x
 
   - name: copy iTrust post receive hook
     template:
       src: templates/iTrust_post-receive
       dest: ./iTrustBareGit/hooks/post-receive
+      mode: +x
+  - name: copy checkbox.io hook
+    template:
+      src: templates/checkbox_post-commit
+      dest: ./checkbox.io/.git/hooks/post-commit
       mode: +x
 
   - name: copy checkbox.io post receive hook

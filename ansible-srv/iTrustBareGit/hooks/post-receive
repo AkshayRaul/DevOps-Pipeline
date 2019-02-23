@@ -1,4 +1,4 @@
 #!/bin/sh
 echo "Current location: $GIT_DIR"
-GIT_WORK_TREE=../iTrustBarewww/ git checkout -f
+GIT_WORK_TREE=/ansible-srv/iTrustBarewww/ git checkout -f
 echo "Pushed to Bare!"

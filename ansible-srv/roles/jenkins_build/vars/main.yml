@@ -5,3 +5,5 @@ jenkins_plugins:
   - job-dsl
   - workflow-aggregator 
   - workflow-cps
+  - pipeline-maven
+  - maven-plugin
