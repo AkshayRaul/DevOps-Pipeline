@@ -1,0 +1,11 @@
+---   
+## iTrust Mysql Credentials
+iTrust_user: "root"
+iTrust_password: "jenkins@6"
+## MYSQL
+mysql_root_pass: "jenkins@6"
+driver_name: "mysql"
+packages:
+    - mysql-server
+    - python3-pymysql
+

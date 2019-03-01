@@ -1,0 +1,12 @@
+## iTrust Mysql Credentials
+iTrust_user: "root"
+iTrust_user_password: "jenkins@6"
+## MYSQL
+mysql_root_pass: "jenkins@6"
+driver_name: "mysql"
+
+admin_user_pass: "Jenkins@6"
+jenkins_plugins:
+  - pipeline
+  - maven-plugin
+
