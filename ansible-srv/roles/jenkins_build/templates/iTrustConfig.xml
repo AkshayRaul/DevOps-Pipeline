@@ -6,6 +6,7 @@
 <properties/>
 <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.63">
 <script>
+
 pipeline{
   agent any
   stages{
@@ -17,13 +18,19 @@ pipeline{
     stage ('Build project') {
       steps{
         dir('iTrust2'){
-        sh 'mvn -f pom-data.xml process-test-classes'
-        sh 'mvn clean test checkstyle:checkstyle'
+          sh 'mvn -f pom-data.xml process-test-classes'
+        }       
         }
-        
+    }
+    stage('Test Build'){
+      steps{
+        dir('iTrust2'){
+          sh 'mvn clean test checkstyle:checkstyle'
+        }
+      }
     }
   }
-  }
+  
 }
 </script>
 <sandbox>true</sandbox>

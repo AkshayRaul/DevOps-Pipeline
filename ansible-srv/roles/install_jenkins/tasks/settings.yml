@@ -29,6 +29,7 @@
     state: directory
     owner: "{{ jenkins_process_user }}"
     group: "{{ jenkins_process_group }}"
+    recurse: yes
     mode: 0775
 
 - name: Trigger handlers immediately in case Jenkins was installed

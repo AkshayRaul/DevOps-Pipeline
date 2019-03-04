@@ -1,0 +1,9 @@
+
+
+1. Cloning iTrust and Checkbox.io
+2. Setup post-commit scripts and post-receive- ansible-playbook setupGit.yml
+3. Walk through the code
+3. Start vm- baker baker
+4. Run the playbook
+5. Check Jenkins Dashboard
+

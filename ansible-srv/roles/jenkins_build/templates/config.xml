@@ -13,6 +13,9 @@ pipeline {
        MONGO_USER='mongoadmin'
        MONGO_PASSWORD='mongoadmin'
        MONGO_PORT='3002'
+       MAIL_SMTP='smpt.gmail.com'
+       MAIL_PASSWORD=''
+       MAIL_USER='araul'
     }
   stages {    
     stage('Cloning Git') {
