@@ -22,7 +22,7 @@ var fuzzer =
       var array = val.split('');
 
       // mutate '==' to '!=' 
-      if (fuzzer.random.bool(1)) {
+      if (fuzzer.random.bool(0.5)) {
         for (var i = 1; i < array.length; i++) {
           if (array[i] === '=' && array[i - 1] === '=') {
             if (fuzzer.random.bool(.5)) {
@@ -40,7 +40,7 @@ var fuzzer =
       var array = val.split('');
 
       // mutate 0 to 1 & vice-versa
-      if (fuzzer.random.bool(1)) {
+      if (fuzzer.random.bool(0.5)) {
         for (var i = 1; i < array.length; i++) {
           if (array[i] === '0') {
             if (fuzzer.random.bool(.5)) {
@@ -56,7 +56,6 @@ var fuzzer =
       }
       return array.join('');
     }
-
   }
 };
 
