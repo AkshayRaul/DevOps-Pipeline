@@ -38,7 +38,7 @@ var fuzzer =
 if( process.env.NODE_ENV != "test")
 {
     fuzzer.seed(0);
-    var patientControllerPath = "../iTrust2-v4/iTrust2/src/main/java/edu/ncsu/csc/itrust2/controllers/api/APIPatientController.java"
+    var patientControllerPath = "../iTrust2/iTrustBareGit/iTrust2/src/main/java/edu/ncsu/csc/itrust2/controllers/api/APIPatientController.java"
     mutationTesting([patientControllerPath],1);
 }
 
