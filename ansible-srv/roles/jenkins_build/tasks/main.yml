@@ -107,7 +107,7 @@
         id:           'mykey',
         secret:       '',
         userName:     'jenkins',
-        key:          new BasicSSHUserPrivateKey.DirectEntryPrivateKeySource('''{{private_key}}''')]
+        key:          new BasicSSHUserPrivateKey.DirectEntryPrivateKeySource(''ADD your private key here''')]
 
       // get Jenkins instance
       Jenkins jenkins = Jenkins.getInstance()
@@ -135,6 +135,7 @@
       jenkins.save()
     user: jenkins
     password: "{{jenkins_password}}"
+    
 - name: Create checkbox job
   uri:
       url: "http://localhost:8080/createItem?name={{checkbox_name}}&mode=org.jenkinsci.plugins.workflow.job.WorkflowJob" 
