@@ -81,11 +81,6 @@
     password: "{{jenkins_password}}"
     method: GET
   register: jobs
-
-
-- name: Check if checkbox job exists
-  set_fact:
-    seed_exists: "{{ checkbox_name in jobs.json.jobs|map(attribute='name')|list }}"
     
 - name: Create Jenkins credentials for git ssh
   jenkins_script:
@@ -135,7 +130,11 @@
       jenkins.save()
     user: jenkins
     password: "{{jenkins_password}}"
-    
+
+- name: Check if checkbox job exists
+  set_fact:
+    seed_exists: "{{ checkbox_name in jobs.json.jobs|map(attribute='name')|list }}"
+
 - name: Create checkbox job
   uri:
       url: "http://localhost:8080/createItem?name={{checkbox_name}}&mode=org.jenkinsci.plugins.workflow.job.WorkflowJob" 
@@ -200,10 +199,3 @@
     upgrade: yes
     update_cache: yes
     cache_valid_time: 86400 #One day
-  
-
-  
-  
-    
-
-  
