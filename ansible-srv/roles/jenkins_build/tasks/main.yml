@@ -102,7 +102,7 @@
         id:           'mykey',
         secret:       '',
         userName:     'jenkins',
-        key:          new BasicSSHUserPrivateKey.DirectEntryPrivateKeySource(''ADD your private key here''')]
+        key:          new BasicSSHUserPrivateKey.DirectEntryPrivateKeySource('''ADD your private key here''')]
 
       // get Jenkins instance
       Jenkins jenkins = Jenkins.getInstance()

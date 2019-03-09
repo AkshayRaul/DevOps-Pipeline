@@ -36,7 +36,25 @@ var fuzzer =
       return array.join('');
     }
   },
+  mutatecomparison:
+  {
+    string: function (val) {
 
+      var array = val.split('');
+
+      // mutate '>' to '<'
+      if (fuzzer.random.bool(.5)) {
+        for (var i = 0; i < array.length; i++) {
+          if (array[i] === '>') {
+            if (fuzzer.random.bool(.5)) {
+              array[i - 1] = '<';
+            }
+          }
+        }
+      }
+      return array.join('');
+    }
+  },
   mutateNumbers:
   {
     string: function (val) {
@@ -76,7 +94,7 @@ var fuzzer =
             var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz!@#$%^&*()-=_+[]{}<>,./?`~ ";
 
             do {
-              if(fuzzer.random.bool(.5)) {
+              if(fuzzer.random.bool(.25)) {
                 var char = chars.charAt(Math.floor(Math.random() * chars.length));
                 array[j] = char;
               }
