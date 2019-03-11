@@ -12,7 +12,7 @@ pipeline{
   stages{
     stage('Clone repository'){
      steps {
-        git([url:'vagrant@192.168.20.10:/ansible-srv/iTrustBareGit',branch:'master',credentialsId:'mykey'])
+        git([url:'vagrant@192.168.20.10:/ansible-srv/iTrust2/iTrustBareGit',branch:'master',credentialsId:'mykey'])
       }
     }
     stage ('Build project') {
