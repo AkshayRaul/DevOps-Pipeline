@@ -21,3 +21,7 @@
       src: templates/checkbox_post-commit
       dest: ./checkbox.io/.git/hooks/post-commit
       mode: +x
+  - name: copy pom.xml
+    template:
+      src: templates/pom-data.xml
+      dest: ./iTrust2/iTrust2-v4/iTrust2/

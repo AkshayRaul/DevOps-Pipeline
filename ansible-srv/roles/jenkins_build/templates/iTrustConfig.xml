@@ -7,31 +7,49 @@
 <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.63">
 <script>
 
+
+
 pipeline{
   agent any
   stages{
     stage('Clone repository'){
      steps {
-        git([url:'vagrant@192.168.20.10:/ansible-srv/iTrust2/iTrustBareGit',branch:'master',credentialsId:'mykey'])
+        git([url:'vagrant@192.168.20.10:/ansible-srv/iTrust2/iTrust2-v4',branch:'master',credentialsId:'mykey'])
       }
     }
     stage ('Build project') {
       steps{
         dir('iTrust2'){
           sh 'mvn -f pom-data.xml process-test-classes'
+          step( [ $class: 'JacocoPublisher',
+                classPattern: 'target/classes',
+                sourcePattern: 'src/main/java',
+                exclusionPattern: 'src/test*'
+              ] )
         }       
         }
     }
     stage('Test Build'){
       steps{
         dir('iTrust2'){
-          sh 'mvn clean test checkstyle:checkstyle'
+          sh 'mvn clean test checkstyle:checkstyle findbugs:findbugs'
+          step([$class: 'CheckStylePublisher',
+                  canRunOnFailed: true,
+                  pattern: '**/target/checkstyle-result.xml',
+                  useStableBuildAsReference: true
+                ])
+          step( [ $class: 'FindBugsPublisher',
+                  canRunOnFailed: true,
+                  pattern: '**/target/findbugsXml.xml',
+                  useStableBuildAsReference: true
+              ] )
         }
       }
     }
   }
   
 }
+
 </script>
 <sandbox>true</sandbox>
 </definition>
