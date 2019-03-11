@@ -4,7 +4,9 @@
   "description": "fuzz-workshop",
   "main": "main.js",
   "scripts": {
-    "test": "cross-env NODE_ENV=test mocha --reporter spec"
+    "test": "cross-env NODE_ENV=test mocha --reporter spec",
+    "preinstall": "cd $(pwd)",
+    "start": "node main.js"
   },
   "author": "",
   "license": "ISC",
