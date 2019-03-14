@@ -134,14 +134,17 @@ var fuzzer =
           }
         }
       }
-      return array.join('');
+      var result= array.join('')
+      console.log(result)
+      return result;
     }
   }
 };
 
 if (process.env.NODE_ENV != "test") {
   fuzzer.seed(0);
-  var patientControllerPath = "../iTrust2/iTrustBareGit/iTrust2/src/main/java/edu/ncsu/csc/itrust2/controllers/api/"+myController[Math.floor(Math.random() * myController.length)];
+  var patientControllerPath = "../iTrust2/iTrust2-v4/iTrust2/src/main/java/edu/ncsu/csc/itrust2/controllers/api/"+myController[Math.floor(Math.random() * myController.length)];
+  console.log(patientControllerPath)
   mutationTesting([patientControllerPath], 1);
 }
 

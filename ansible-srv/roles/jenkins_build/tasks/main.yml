@@ -46,7 +46,7 @@
     user: jenkins
     password: "{{jenkins_password}}"   
     force_basic_auth: yes
-    url: "http://127.0.0.1:8080/pluginManager/install?plugin.{{ item }}.default=on&Jenkins-Crumb={{ crumb }}"
+    url: "http://127.0.0.1:8080/pluginManager/install?plugin.{{ item }}=on&Jenkins-Crumb={{ crumb }}"
     method: POST
     status_code: [200, 302]
   with_items: "{{ jenkins_plugins }}"
@@ -102,7 +102,7 @@
         id:           'mykey',
         secret:       '',
         userName:     'jenkins',
-        key:          new BasicSSHUserPrivateKey.DirectEntryPrivateKeySource('''ADD your private key here''')]
+        key:          new BasicSSHUserPrivateKey.DirectEntryPrivateKeySource('''{{private_key}}''')]
 
       // get Jenkins instance
       Jenkins jenkins = Jenkins.getInstance()

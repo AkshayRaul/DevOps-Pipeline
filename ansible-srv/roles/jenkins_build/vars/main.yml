@@ -59,3 +59,8 @@ jenkins_plugins:
   - workflow-cps
   - pipeline-maven
   - maven-plugin
+  - checkstyle
+  - findbugs
+  - analysis-collector
+  - warnings-ng
+  - analysis-core
