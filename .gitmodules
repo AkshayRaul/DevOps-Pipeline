@@ -1,0 +1,7 @@
+[submodule "checkbox.io"]
+	path = checkbox.io
+	url = https://github.com/ashwinrisbood/checkbox.io
+
+[submodule "iTrust2-v4"]
+	path = iTrust2-v4
+	url = https://github.ncsu.edu/engr-csc326-staff/iTrust2-v4

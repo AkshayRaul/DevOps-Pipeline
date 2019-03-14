@@ -20,7 +20,11 @@
     action: apt pkg="{{ item }}" state=installed
     with_items:
       - mysql-server
+<<<<<<< HEAD
       - python3-jenkins
+=======
+      - python-jenkins
+>>>>>>> 9aa3fd37a2b217f6eb365833b30df48c80a349d4
 
   - name: Install MySQL
     become: yes

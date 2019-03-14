@@ -4,6 +4,7 @@ var Random = require('random-js'),
   ;
 
 myController=[
+<<<<<<< HEAD
   "APIPatientController.java",
   "APIFoodDiaryController.java",
   "APIAppointmentRequestController.java"
@@ -23,8 +24,8 @@ var fuzzer =
 
       var array = val.split('');
 
-      // mutate '==' to '!=' 
-      if (fuzzer.random.bool(.5)) {
+    // mutate '==' to '!='
+      if (fuzzer.random.bool(0.5)) {
         for (var i = 1; i < array.length; i++) {
           if (array[i] === '=' && array[i - 1] === '=') {
             if (fuzzer.random.bool(.5)) {
@@ -36,23 +37,52 @@ var fuzzer =
       return array.join('');
     }
   },
-  mutatecomparison:
+  mutateand:
   {
     string: function (val) {
 
       var array = val.split('');
-
-      // mutate '>' to '<'
-      if (fuzzer.random.bool(.5)) {
-        for (var i = 0; i < array.length; i++) {
-          if (array[i] === '>') {
-            if (fuzzer.random.bool(.5)) {
-              array[i - 1] = '<';
+      // mutate '&&' to '||'
+      if (fuzzer.random.bool(0.5)) {
+        for (var i = 0; i < array.length-1; i++) {
+          if (array[i] === '&' && array[i + 1] === '&'){
+              array[i] = '|';
+              array[i+1] = '|';
+              i++;
             }
+          else if(array[i]==='|' && array[i+1] === '|'){
+             array[i] = '&';
+             array[i+1] = '&';
+             i++;
           }
         }
-      }
+       }
       return array.join('');
+     }
+  },
+  mutatecomparison:
+  {
+    // mutate "<" to ">"
+    string: function (val) {
+      lines = val.split('\n');
+      if (fuzzer.random.bool(0.5)) {
+        var re = /<.*>/g
+        lines.map((line)=>{
+           if(!line.match(re)){
+              keys = line.split('');
+              for (var i = 1; i < keys.length; i++) {
+                 if (keys[i] === '<')
+                    keys[i] = '>';
+                 else if(keys[i] === '>')
+                    keys[i] = '<';
+              }
+             line = keys.join('');
+           }
+           // console.log(line);
+           return line;
+        })
+      }
+      return lines.join('\n');
     }
   },
   mutateNumbers:
@@ -62,7 +92,7 @@ var fuzzer =
       var array = val.split('');
 
       // mutate 0 to 1 & vice-versa
-      if (fuzzer.random.bool(.5)) {
+      if (fuzzer.random.bool(0.5)) {
         for (var i = 1; i < array.length; i++) {
           if (array[i] === '0') {
             if (fuzzer.random.bool(.5)) {
@@ -79,7 +109,6 @@ var fuzzer =
       return array.join('');
     }
   },
-  
   mutateStrings:
   {
     string: function (val) {
@@ -87,7 +116,7 @@ var fuzzer =
       var array = val.split('');
 
       // mutate content of "strings" in code
-      if(fuzzer.random.bool(.5)) {
+      if(fuzzer.random.bool(0.5)) {
         for(var i = 1; i < array.length; i++) {
           if (array[i] === '"') {
             let j = i + 1;
@@ -126,7 +155,8 @@ function mutationTesting(paths, iterations) {
   var markDownA = fs.readFileSync(paths[0], 'utf-8');
   var newString = fuzzer.mutateEquals.string(markDownA);
   newString = fuzzer.mutateNumbers.string(newString);
-  //newString = fuzzer.mutateStrings.string(newString);
+ //  newString = fuzzer.mutateStrings.string(newString);
+  newString = fuzzer.mutatecomparison.string(newString);
   fs.writeFileSync(paths[0], newString, 'utf-8');
 }
 exports.mutationTesting = mutationTesting;
