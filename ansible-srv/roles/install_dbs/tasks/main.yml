@@ -1,0 +1,83 @@
+---
+  - name: Mysql | Set root password
+    become: yes
+    debconf:
+      name: mysql-server
+      question: 'mysql-server/root_password'
+      value: "{{mysql_root_pass}}"
+      vtype: password
+
+  - name: Mysql | Set root repassword
+    become: yes
+    debconf:
+      name: mysql-server
+      question: 'mysql-server/root_password_again'
+      value: "{{mysql_root_pass}}"
+      vtype: password 
+
+  - name: Install MySQL
+    become: yes
+    action: apt pkg="{{ item }}" state=installed
+    with_items:
+      - mysql-server
+      - python3-jenkins
+
+  - name: Install MySQL
+    become: yes
+    action: apt pkg="{{ item }}" state=installed
+    with_items:
+      - "{{ packages }}"
+      
+  - name: Start the MySQL service
+    action: service name=mysql state=started
+  
+  - name: Copy .my.cnf file with root password credentials
+    become: yes
+    template: src=templates/.my.cnf dest=/root/.my.cnf owner=root mode=0600
+
+  - name: Ensure anonymous users are not in the database
+    sudo: yes
+    mysql_user: user='' state=absent
+
+  - name: create mongodb file
+    become: true
+    file:
+      path: "/etc/apt/sources.list.d/mongodb-org-4.0.list"
+      state: touch
+  - name: Add an apt key by id from a keyserver for downloading mongodb
+    become: true
+    apt_key:
+      keyserver: hkp://keyserver.ubuntu.com:80
+      id: 9DA31620334BD75D9DCB49F368818C72E52529D4
+
+  - name: install mongodb
+    sudo: yes
+    apt: name=mongodb state=latest update_cache=yes
+
+  - name: install nginx
+    become: true
+    apt: name=nginx state=latest update_cache=yes
+    
+  - name: Install a list of packages
+    become: true
+    apt:
+      name: "{{ packages }}"
+    vars:
+      packages:
+      - nginx
+      - python3-pip
+
+  - name: Install the latest pymongo package
+    pip: name=pymongo state=latest use_mirrors=no
+ 
+  - name: create mongodb user for checkbox.io
+    mongodb_user:
+      database: admin
+      name: mongoadmin
+      password: mongoadmin 
+      roles: userAdminAnyDatabase,dbAdminAnyDatabase,readWriteAnyDatabase
+      state: present
+  - name: run npm install
+    become: true
+    npm:
+      path: /opt/checkbox.io/server-side/site

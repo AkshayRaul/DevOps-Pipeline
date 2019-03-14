@@ -1,0 +1,44 @@
+checkbox_name: "checkbox_build"
+iTrust_name: "iTrust_build"
+jenkins_password: "Jenkins@6"
+private_key: 
+  -----BEGIN RSA PRIVATE KEY-----
+  MIIEpAIBAAKCAQEA9njfjPet0eiZKP0Ubvj+MUnGe3RhC/KoLxW5EBJpM1s3pnFX
+  ce6t+/eOu92vE2Ax5xUBqfpScZj9WHimRaTg/kLj+hIX2QcuA9GSLLtAoLnUMCF1
+  uU3xOcU96ORvdTCk9ph6R9FQgw+VGBNjc9JpGNZNFfgQaosNN8Pc4+f7JduDf2oZ
+  o+s3120vHPU+KVAJ8dSqH/s7qua3cufgnKEZGyVBgpiJ4WowIksN9hpqKNNHoe7B
+  YUdCPwQRtWqfsrY0YfJUulc1bWtZORcdDmMqlYx2YIeXpyCGRZDtuC4WknOXdtIR
+  /erIBPzKN16QiNsN0+Dzagpj/JCP1roXW7P1dQIDAQABAoIBACax6V7nT6nB27Hc
+  scWOX9H7JCcjqUzH5vGldm14hn2il4URDEp9z2Dch9MkxaTEGHGQEbfO7fyZqUSn
+  hGswrIYemE4dYxMWlnnRACL3rvjM0+xOhH34J6QLPGIA4yLB5VQ1shTuXraEzsJ9
+  4MJBSXC1zFpjnKgtdoDHxjkdpYdWtVnJAqDWI844LyDlv0Xe1HmddjNYfWNAtmL5
+  V5Q/ybl62XHTNAioKwPjHsQi1nUnEXHWepfnpuhCgdi/MsVuyVTNTsEY++5AlJ+i
+  DToSkl0KY0RhQ0TLLTAEmwgHZmBSZ1Vopwbfg9hfuIsYLpvj7v+DYwnEGPi75twb
+  qgP97yECgYEA/CtZQhtgwFpFPVBywhotwTaozOJC2FrKAg9L9wmLwh5o98vu9gQU
+  fReb7t9LR/ZrR7w6bG1QkuKr+OUwL1+tH4arFiLXxal+DP+nf7V+nVKycNybjj3A
+  VffANVFMX8tCz/O3Ifvu99u6v691LX0tPyGpgRXU8yby+mcmkvj3nvkCgYEA+jde
+  fCyi7wILnxFVXwhWv9maMN7oHcCSTgqd3T5nha6etNWGBrfvBh4pmBQoHjD5lodh
+  9xevwQ2iqZbaCYAn1xZhKBberhxwy+7TfX8dazVybz1+6u5acRBwbgq2QwOVAiLk
+  Fs8WsQmx4g3got0J3qI7wx0Rt9+rrSwJTOjlHV0CgYEAmZUhQNUB4UVZhFV5/2QI
+  V/QdbOOlSLZK8GQ2pRfoSetRjRJk0Ot9Ow7lBuByrjqT7lXi02TkvQFXMjkMVt4T
+  x+6yRsIj3pwzTGFst6hnnBPg4EJMb56GhRVmuFJyjKl0YMkT0ZvqWIU4QUTwvirO
+  IvQyk48japBfTkkCwmLmFakCgYEAlUUc1+VlGkLVHgMgM/5sii1NoCQKw10Tqv0I
+  ammFJqoiweyz9SQbs0GhPLmhqUk8TIHdfqQh1IDG7ncxAgPzQIx4T4s9Mw+Cdxa2
+  EqMXsNKEvzonkg255MOS3wMC8n2bklewTK8kcV9AQIRY47AL6EZOcrrPzCriZv/j
+  WH+D130CgYAxX+NKNGLWZNwYXk6a0N3OPuESl0cxvL0IFs1al3QKL8MFX7hfRSE5
+  3INcTNZJhvG6WpIcUnoAAIGnd8BBmcHlZUuYwlM2gAPRuCMh2khYaukIZgowafdA
+  j3oQEMfHAdVlQY98F/ck4hK5nilelUalq9q+nWhnGretxLvYHgj8PA==
+  -----END RSA PRIVATE KEY-----
+
+jenkins_plugins:
+  - git
+  - job-dsl
+  - workflow-aggregator 
+  - workflow-cps
+  - pipeline-maven
+  - maven-plugin
+  - checkstyle
+  - findbugs
+  - analysis-collector
+  - warnings-ng
+  - analysis-core

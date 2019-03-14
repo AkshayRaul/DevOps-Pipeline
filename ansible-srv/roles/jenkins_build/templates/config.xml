@@ -1,0 +1,49 @@
+<flow-definition plugin="workflow-job@2.31">
+<actions/>
+<description/>
+<keepDependencies>false</keepDependencies>
+<properties/>
+<definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.63">
+<script>
+
+pipeline {
+  agent any
+     environment {
+       MONGO_IP='127.0.0.1'
+       MONGO_USER='mongoadmin'
+       MONGO_PASSWORD='mongoadmin'
+       MONGO_PORT='3002'
+       MAIL_SMTP='smpt.gmail.com'
+       MAIL_PASSWORD=''
+       MAIL_USER='araul'
+    }
+  stages {    
+    stage('Cloning Git') {
+      steps {
+        git 'https://github.com/ashwinrisbood/checkbox.io'
+      }
+    }
+    
+    stage('Install dependencies') {
+        
+      steps {
+        dir("server-side/site/") {
+          sh 'npm install'
+      }
+    }
+  }
+   stage('build') {
+        steps {
+                dir("server-side/site/") {
+                    sh 'npm test'
+                }
+        }
+      }
+ }
+}
+</script>
+<sandbox>true</sandbox>
+</definition>
+<triggers/>
+<disabled>false</disabled>
+</flow-definition>
