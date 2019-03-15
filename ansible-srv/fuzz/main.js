@@ -4,8 +4,7 @@ var Random = require('random-js'),
   ;
 
 myController=[
-<<<<<<< HEAD
-  "APIPatientController.java",
+
   "APIFoodDiaryController.java",
   "APIAppointmentRequestController.java"
 ]
@@ -124,7 +123,7 @@ var fuzzer =
 
             do {
               if(fuzzer.random.bool(.25)) {
-                var char = chars.charAt(Math.floor(Math.random() * chars.length));
+                var char = chars.charAt(fuzzer.random.integer(0,chars.length));
                 array[j] = char;
               }
               j++;
@@ -142,22 +141,22 @@ var fuzzer =
 
 if (process.env.NODE_ENV != "test") {
   fuzzer.seed(0);
-  var patientControllerPath = "../iTrust2/iTrust2-v4/iTrust2/src/main/java/edu/ncsu/csc/itrust2/controllers/api/"+myController[Math.floor(Math.random() * myController.length)];
+  var controllerPath = "../iTrust2/iTrust2-v4/iTrust2/src/main/java/edu/ncsu/csc/itrust2/controllers/api/"+myController[fuzzer.random.integer(0, myController.length+1)];
   // console.log(patientControllerPath)
-  mutationTesting([patientControllerPath], 1);
+  mutationTesting(controllerPath, 1);
 }
 
-function mutationTesting(paths, iterations) {
+function mutationTesting(path, iterations) {
   var failedTests = [];
   var reducedTests = [];
   var passedTests = 0;
 
-  var markDownA = fs.readFileSync(paths[0], 'utf-8');
+  var markDownA = fs.readFileSync(path, 'utf-8');
   var newString = fuzzer.mutateEquals.string(markDownA);
   newString = fuzzer.mutateNumbers.string(newString);
  //  newString = fuzzer.mutateStrings.string(newString);
   newString = fuzzer.mutatecomparison.string(newString);
-  fs.writeFileSync(paths[0], newString, 'utf-8');
+  fs.writeFileSync(path, newString, 'utf-8');
 }
 exports.mutationTesting = mutationTesting;
 exports.fuzzer = fuzzer;
