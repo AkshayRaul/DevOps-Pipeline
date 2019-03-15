@@ -156,13 +156,14 @@ if (process.env.NODE_ENV != "test") {
  }
 function commit(i){
      return new Promise(resolve => {
-        simpleGit.add('./*')
-        .commit('commiting mutation '+ i, ()=>{
-           console.log('commiting mutation' + i)
-           setTimeout(()=>{
-             simpleGit.reset(['--hard', 'HEAD~1'], ()=>{console.log("resolved"); resolve('resolved')})
-           }, 60000)
-         })   
+         setTimeout(()=>{
+            simpleGit.add('./*')
+            .commit('commiting mutation '+ i, ()=>{
+                 console.log('commiting mutation' + i)
+             })
+            .reset(['--hard', 'HEAD~1'], ()=>{console.log("resolved"); resolve('resolved')
+             })
+         },60000);
       })
 }
 
