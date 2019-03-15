@@ -2,9 +2,10 @@ var Random = require('random-js'),
   fs = require('fs'),
   stackTrace = require('stacktrace-parser')
   ;
+var simpleGit = require('simple-git')('../iTrust2/iTrustBareGit');
 
 myController=[
-
+  "APIPatientController.java",
   "APIFoodDiaryController.java",
   "APIAppointmentRequestController.java"
 ]
@@ -139,11 +140,30 @@ var fuzzer =
   }
 };
 
+async function callfuzz(){
+  var arr = [1,2,3,4,5,6]
+  for(const i of arr){
+       console.log(fuzzer.random.integer(0, myController.length));
+       var controllerPath = "../iTrust2/iTrustBareGit/iTrust2/src/main/java/edu/ncsu/csc/itrust2/controllers/api/"+myController[0];    //fuzzer.random.integer(0, myController.length+1)];
+       //console.log("running mutation 1 on file"+controllerPath);
+       mutationTesting(controllerPath, 1);
+       var result = await commit(i);
+   }
+}
 if (process.env.NODE_ENV != "test") {
   fuzzer.seed(0);
-  var controllerPath = "../iTrust2/iTrust2-v4/iTrust2/src/main/java/edu/ncsu/csc/itrust2/controllers/api/"+myController[fuzzer.random.integer(0, myController.length+1)];
-  // console.log(patientControllerPath)
-  mutationTesting(controllerPath, 1);
+  callfuzz();  
+ }
+function commit(i){
+     return new Promise(resolve => {
+        simpleGit.add('./*')
+        .commit('commiting mutation '+ i, ()=>{
+           console.log('commiting mutation' + i)
+           setTimeout(()=>{
+             simpleGit.reset(['--hard', 'HEAD~1'], ()=>{console.log("resolved"); resolve('resolved')})
+           }, 60000)
+         })   
+      })
 }
 
 function mutationTesting(path, iterations) {
