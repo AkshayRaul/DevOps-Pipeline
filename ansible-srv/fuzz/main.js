@@ -3,6 +3,7 @@ var Random = require('random-js'),
   stackTrace = require('stacktrace-parser')
   ;
 var simpleGit = require('simple-git')('../iTrust2/iTrust2-v4');
+const execSync = require('child_process').execSync;
 
 myController=[
   "APIPatientController.java",
@@ -23,9 +24,10 @@ var fuzzer =
     string: function (val) {
 
       var array = val.split('');
-
+      var prob=fuzzer.random.bool(0.7)
+      console.log("="+prob)
     // mutate '==' to '!='
-      if (fuzzer.random.bool(0.5)) {
+      if (prob) {
         for (var i = 1; i < array.length; i++) {
           if (array[i] === '=' && array[i - 1] === '=') {
             if (fuzzer.random.bool(.5)) {
@@ -42,8 +44,10 @@ var fuzzer =
     string: function (val) {
 
       var array = val.split('');
+      var prob=fuzzer.random.bool(0.7)
+      console.log("&"+prob)
       // mutate '&&' to '||'
-      if (fuzzer.random.bool(0.5)) {
+      if (prob) {
         for (var i = 0; i < array.length-1; i++) {
           if (array[i] === '&' && array[i + 1] === '&'){
               array[i] = '|';
@@ -65,7 +69,9 @@ var fuzzer =
     // mutate "<" to ">"
     string: function (val) {
       lines = val.split('\n');
-      if (fuzzer.random.bool(0.5)) {
+      var prob=fuzzer.random.bool(0.7)
+      console.log(">"+prob)
+      if (prob) {
         var re = /<.*>/g
         lines.map((line)=>{
            if(!line.match(re)){
@@ -90,19 +96,20 @@ var fuzzer =
     string: function (val) {
 
       var array = val.split('');
-
+      var prob=fuzzer.random.bool(0.7)
+      console.log("123"+prob)
       // mutate 0 to 1 & vice-versa
-      if (fuzzer.random.bool(0.5)) {
+      if (prob) {
         for (var i = 1; i < array.length; i++) {
           if (array[i] === '0') {
-            if (fuzzer.random.bool(.5)) {
+            // if (fuzzer.random.bool(.5)) {
               array[i] = '1';
-            }
+            // }
           }
           else if (array[i] === '1') {
-            if (fuzzer.random.bool(.5)) {
+            // if (fuzzer.random.bool(.5)) {
               array[i] = '0';
-            }
+            // }
           }
         }
       }
@@ -143,57 +150,38 @@ var fuzzer =
 async function callfuzz(){
   var arr = [1,2,3,4,5,6]
   for(const i of arr){
-<<<<<<< HEAD
-       var controllerPath = "../iTrust2/iTrust2-v4/iTrust2/src/main/java/edu/ncsu/csc/itrust2/controllers/api/"+myController[0]//fuzzer.random.integer(0, myController.length)];
-       //console.log("running mutation 1 on file"+controllerPath);
+       //console.log(fuzzer.random.integer(0, myController.length));
+       var controllerPath = "/Project/ansible-srv/iTrust2/iTrust2-v4/iTrust2/src/main/java/edu/ncsu/csc/itrust2/controllers/api/"+myController[0];    //fuzzer.random.integer(0, myController.length+1)];
+       console.log("running mutation "+i +" on file"+myController[0]);
        mutationTesting(controllerPath, 1);
-       var result = await commit(i);
-       console.log(result)
-=======
-       console.log(fuzzer.random.integer(0, myController.length));
-       var controllerPath = "../iTrust2/iTrust2-v4/iTrust2/src/main/java/edu/ncsu/csc/itrust2/controllers/api/"+myController[0];    //fuzzer.random.integer(0, myController.length+1)];
-       //console.log("running mutation 1 on file"+controllerPath);
-       mutationTesting(controllerPath, 1);
-       var result = await add(i);
-       var commit_result = await commit(i);
->>>>>>> ce4949dac278be7d19a0526924763d4d6747580e
+      execSync('sh ./commit.sh').toString();
    }
 }
 
 if (process.env.NODE_ENV != "test") {
-  fuzzer.seed(0);
+  fuzzer.seed(5);
   callfuzz();  
 }
-function add(i){
-  return new Promise(resolve => {
-    setTimeout(()=>{
-      simpleGit.add('./*')
-      .commit('commiting mutation '+ i, ()=>{
-           console.log('commiting mutation' + i)
-           resolve("added changes")
-       })
-     },30000)
-   })
-}
+// function add(i){
+//   return new Promise(resolve => {
+//     setTimeout(()=>{
+//       simpleGit.add('./*')
+//       .commit('commiting mutation '+ i, ()=>{
+//            console.log('commiting mutation' + i)
+//            resolve("added changes")
+//        })
+//      },30000)
+//    })
+// }
 
-function commit(i){
-     return new Promise(resolve => {
-<<<<<<< HEAD
-        simpleGit.add('./*')
-        .commit('commiting mutation '+ i, ()=>{
-           console.log('commiting mutation' + i)
-           setTimeout(()=>{
-             simpleGit.revert('HEAD~1', ()=>{console.log("reverted"); resolve('resolved')})
-           }, 120000)
-         })   
-=======
-         setTimeout(()=>{
-            simpleGit.reset(['--hard', 'HEAD~1'], ()=>{console.log("resolved"); resolve('resolved')
-            })
-         },30000);
->>>>>>> ce4949dac278be7d19a0526924763d4d6747580e
-      })
-}
+// function commit(i){
+//      return new Promise(resolve => {
+//          setTimeout(()=>{
+//             simpleGit.reset(['--hard', 'HEAD~1'], ()=>{console.log("resolved"); resolve('resolved')
+//             })
+//          },30000);
+//       })
+// }
 
 function mutationTesting(path, iterations) {
   var failedTests = [];
@@ -203,7 +191,7 @@ function mutationTesting(path, iterations) {
   var markDownA = fs.readFileSync(path, 'utf-8');
   var newString = fuzzer.mutateEquals.string(markDownA);
   newString = fuzzer.mutateNumbers.string(newString);
- //  newString = fuzzer.mutateStrings.string(newString);
+  //newString = fuzzer.mutateStrings.string(newString);
   newString = fuzzer.mutatecomparison.string(newString);
   fs.writeFileSync(path, newString, 'utf-8');
 }
