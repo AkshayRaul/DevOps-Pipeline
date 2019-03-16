@@ -6,10 +6,10 @@
       Akshay Raul - araul
       Shwetha Kalyanaraman -skalyan
 #### Contributions
-    Ashwin Risbood - Wrote a nodeJs script to add-commit-reset 100 fuzz operations each triggering a build in Jenkins, added fuzzing operations.
+    Ashwin Risbood - Wrote a nodeJs script to add-commit-reset 100 fuzz operations each triggering a build in Jenkins, added fuzzing operators, and worked on checkbox.io analysis extension.
     Shwetha Kalyanaraman - Parsing from the 100 log files and sorting as per total failures and time elapsed for each file to generate a report
     Akshay Raul- Integrated Jacoco for code coverage and analyzed Itrust using static analysis tool- FindBugs
-    Cameron Nelson -  Added Fuzzer Operators. 
+    Cameron Nelson -  Added fuzzing operators and worked on checkbox.io analysis extension. 
 
 #### Build Instructions:
 ```
@@ -41,10 +41,13 @@ We performed four fuzzing operations:
 3. Converting 0 to 1 or 1 to 0
 4. Converting && to || or || to &&
 
-We choose the following files for our Fuzzer:
+We choose the API directory in Controllers for our Fuzzer. These files include, but are not limited to:
 1. APIPatientController.java
 2. APIFoodDiaryController.java
 3. APIAppointmentRequestController.java
+4. APIController.java
+5. APIDiagnosisController.java
+
 ```
 1. cd ansible-srv
 2. cd fuzz
@@ -54,7 +57,8 @@ This will run the fuzzer and contains the scripts to build 100 jobs by committin
 ```
 1. cd ansible-srv
 2. ansible-playbook -i inventory test.yml
-3. cd tests/node priority.js
+3. cd tests
+4. node priority.js
 ```
 The test.yml file fetches 100 log files from the remote server to the host and stores it in a folder called logs.
 Running priority.js will parse through the 100 log files and uses regex to extract important information about the file such as the status of build which could be successful or failure,number of runs, average time to failure, total number of failures.
