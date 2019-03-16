@@ -1,14 +1,12 @@
 var Random = require('random-js'),
-  fs = require('fs'),
-  stackTrace = require('stacktrace-parser')
-  ;
+    fs = require('fs')
+;
 
 myController=[
-<<<<<<< HEAD
   "APIPatientController.java",
   "APIFoodDiaryController.java",
   "APIAppointmentRequestController.java"
-]
+];
 
 var fuzzer =
 {
@@ -24,67 +22,76 @@ var fuzzer =
 
       var array = val.split('');
 
-    // mutate '==' to '!='
-      if (fuzzer.random.bool(0.5)) {
-        for (var i = 1; i < array.length; i++) {
-          if (array[i] === '=' && array[i - 1] === '=') {
-            if (fuzzer.random.bool(.5)) {
-              array[i - 1] = '!';
-            }
+      // mutate '==' to '!='
+      for (var i = 0; i < array.length; i++) {
+        if (array[i] === '=' && array[i - 1] === '=') {
+          if (fuzzer.random.bool(0.25)) {
+            array[i - 1] = '!';
+          }
+        }
+        else if (array[i] === "=" && array[i - 1] === '!') {
+          if (fuzzer.random.bool(0.25)) {
+            array[i - 1] = '=';
           }
         }
       }
       return array.join('');
     }
   },
-  mutateand:
+
+  mutateAndOr:
   {
     string: function (val) {
 
       var array = val.split('');
+
       // mutate '&&' to '||'
-      if (fuzzer.random.bool(0.5)) {
-        for (var i = 0; i < array.length-1; i++) {
-          if (array[i] === '&' && array[i + 1] === '&'){
-              array[i] = '|';
-              array[i+1] = '|';
-              i++;
-            }
-          else if(array[i]==='|' && array[i+1] === '|'){
-             array[i] = '&';
-             array[i+1] = '&';
-             i++;
+      for (var i = 0; i < array.length; i++) {
+        if (array[i] === '&' && array[i - 1] === '&') {
+          if (fuzzer.random.bool(0.25)) {
+            array[i] = '|';
+            array[i - 1] = '|';
           }
         }
-       }
+        else if(array[i]==='|' && array[i - 1] === '|') {
+          if (fuzzer.random.bool(0.25)) {
+            array[i] = '&';
+            array[i - 1] = '&';
+          }
+        }
+      }
       return array.join('');
      }
   },
-  mutatecomparison:
+
+  mutateComparison:
   {
     // mutate "<" to ">"
     string: function (val) {
-      lines = val.split('\n');
-      if (fuzzer.random.bool(0.5)) {
-        var re = /<.*>/g
-        lines.map((line)=>{
-           if(!line.match(re)){
-              keys = line.split('');
-              for (var i = 1; i < keys.length; i++) {
-                 if (keys[i] === '<')
-                    keys[i] = '>';
-                 else if(keys[i] === '>')
-                    keys[i] = '<';
+      var array = val.split('\n');
+      var re = /<.*>/g
+      array.map((line) => {
+        if(!line.match(re)){
+          var keys = line.split('');
+          for (var i = 0; i < keys.length; i++) {
+            if (keys[i] === '<') {
+              if (fuzzer.random.bool(0.25)) {
+                keys[i] = '>';
               }
-             line = keys.join('');
-           }
-           // console.log(line);
-           return line;
-        })
-      }
-      return lines.join('\n');
+            } else if (keys[i] === '>') {
+              if (fuzzer.random.bool(0.25)) {
+                keys[i] = '<';
+              }
+            }
+          }
+          line = keys.join('');
+        }
+        return line;
+        });
+      return array.join('\n');
     }
   },
+
   mutateNumbers:
   {
     string: function (val) {
@@ -92,23 +99,22 @@ var fuzzer =
       var array = val.split('');
 
       // mutate 0 to 1 & vice-versa
-      if (fuzzer.random.bool(0.5)) {
-        for (var i = 1; i < array.length; i++) {
-          if (array[i] === '0') {
-            if (fuzzer.random.bool(.5)) {
-              array[i] = '1';
-            }
+      for (var i = 0; i < array.length; i++) {
+        if (array[i] === '0') {
+          if (fuzzer.random.bool(0.25)) {
+            array[i] = '1';
           }
-          else if (array[i] === '1') {
-            if (fuzzer.random.bool(.5)) {
-              array[i] = '0';
-            }
+        }
+        else if (array[i] === '1') {
+          if (fuzzer.random.bool(0.25)) {
+            array[i] = '0';
           }
         }
       }
       return array.join('');
     }
   },
+
   mutateStrings:
   {
     string: function (val) {
@@ -116,26 +122,21 @@ var fuzzer =
       var array = val.split('');
 
       // mutate content of "strings" in code
-      if(fuzzer.random.bool(0.5)) {
-        for(var i = 1; i < array.length; i++) {
-          if (array[i] === '"') {
-            let j = i + 1;
-            var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz!@#$%^&*()-=_+[]{}<>,./?`~ ";
-
-            do {
-              if(fuzzer.random.bool(.25)) {
-                var char = chars.charAt(Math.floor(Math.random() * chars.length));
-                array[j] = char;
-              }
-              j++;
-            } while(array[j] !== '"');
-            i = j + 1;
-          }
+      for (var i = 0; i < array.length; i++) {
+        if (array[i - 1] === '"') {
+          do {
+            //Add or remove random characters
+            if (fuzzer.random.bool(0.05))
+            {
+              var new_chars = fuzzer.random.string(10);
+              array.splice(i, 1, new_chars[Math.floor(Math.random() * new_chars.length)]);
+            }
+            i++;
+          } while (array[i] !== '"');
+          i++;
         }
       }
-      var result= array.join('')
-      //console.log(result)
-      return result;
+      return array.join('');
     }
   }
 };
@@ -143,23 +144,25 @@ var fuzzer =
 if (process.env.NODE_ENV != "test") {
   fuzzer.seed(0);
   var patientControllerPath = "../iTrust2/iTrust2-v4/iTrust2/src/main/java/edu/ncsu/csc/itrust2/controllers/api/"+myController[Math.floor(Math.random() * myController.length)];
-  // console.log(patientControllerPath)
   mutationTesting([patientControllerPath], 1);
 }
 
 function mutationTesting(paths, iterations) {
-  var failedTests = [];
-  var reducedTests = [];
-  var passedTests = 0;
 
-  var markDownA = fs.readFileSync(paths[0], 'utf-8');
-  var newString = fuzzer.mutateEquals.string(markDownA);
-  newString = fuzzer.mutateNumbers.string(newString);
- //  newString = fuzzer.mutateStrings.string(newString);
-  newString = fuzzer.mutatecomparison.string(newString);
-  fs.writeFileSync(paths[0], newString, 'utf-8');
+  var fileString = fs.readFileSync(paths[0], 'utf-8');
+  var modifiedFileString = "";
+  
+  do
+  {
+    modifiedFileString = fuzzer.mutateEquals.string(fileString);
+    modifiedFileString = fuzzer.mutateAndOr.string(modifiedFileString);
+    modifiedFileString = fuzzer.mutateComparison.string(modifiedFileString);
+    modifiedFileString = fuzzer.mutateNumbers.string(modifiedFileString);
+    modifiedFileString = fuzzer.mutateStrings.string(modifiedFileString);
+  } while (fuzzer.random.bool(0.05));
+
+  fs.writeFileSync(paths[0], modifiedFileString, 'utf-8');
 }
-exports.mutationTesting = mutationTesting;
 exports.fuzzer = fuzzer;
 
 if (!String.prototype.format) {
