@@ -4,7 +4,7 @@ var HashMap = require('hashmap');
 
 if (process.env.NODE_ENV != "test") {
     var map = new HashMap();
-    for (var j = 25; j <= 50; j++) {
+    for (var j = 1; j <= 100; j++) {
         var testReport = '../logs/' + j;
 
 
