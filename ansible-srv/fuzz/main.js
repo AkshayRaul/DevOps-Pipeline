@@ -126,7 +126,7 @@ var fuzzer =
       var array = val.split('');
 
       // mutate content of "strings" in code
-      if(fuzzer.random.bool(0.5)) {
+      if(fuzzer.random.bool(0.25)) {
         fuzzed=true
         for(var i = 1; i < array.length; i++) {
           if (array[i] === '"') {
@@ -199,7 +199,7 @@ function mutationTesting(path, iterations) {
   var markDownA = fs.readFileSync(path, 'utf-8');
   var newString = fuzzer.mutateEquals.string(markDownA);
   newString = fuzzer.mutateNumbers.string(newString);
-  //newString = fuzzer.mutateStrings.string(newString);
+  newString = fuzzer.mutateStrings.string(newString);
   newString = fuzzer.mutatecomparison.string(newString);
   fs.writeFileSync(path, newString, 'utf-8');
 }

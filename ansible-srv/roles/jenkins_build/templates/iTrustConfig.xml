@@ -6,15 +6,12 @@
 <properties/>
 <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.63">
 <script>
-
-
-
 pipeline{
   agent any
   stages{
     stage('Clone repository'){
      steps {
-        git([url:'vagrant@192.168.20.10:/ansible-srv/iTrust2/iTrust2-v4',branch:'master',credentialsId:'mykey'])
+        git([url:'root@134.209.115.128:/Project/ansible-srv/iTrust2/iTrust2-v4',branch:'master',credentialsId:'mykey'])
       }
     }
     stage ('Build project') {
@@ -41,7 +38,10 @@ pipeline{
           step( [ $class: 'FindBugsPublisher',
                   canRunOnFailed: true,
                   pattern: '**/target/findbugsXml.xml',
-                  useStableBuildAsReference: true
+                  useStableBuildAsReference: true,
+                  canComputeNew: false, 
+                  healthy: '50', 
+                  unHealthy: '50'
               ] )
         }
       }
@@ -49,6 +49,7 @@ pipeline{
   }
   
 }
+
 
 </script>
 <sandbox>true</sandbox>

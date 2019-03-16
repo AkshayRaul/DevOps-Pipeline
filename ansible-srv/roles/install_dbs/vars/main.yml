@@ -11,6 +11,6 @@ packages:
 mongo_admin_password: "mongoadmin" 
 mongo_checkbox_user: "mongoadmin"
 database: admin
-      name: mongoadmin
-      password: mongoadmin 
+name: mongoadmin
+password: mongoadmin 
 
