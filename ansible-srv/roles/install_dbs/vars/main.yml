@@ -1,11 +1,16 @@
 ---   
 ## iTrust Mysql Credentials
-iTrust_user: "root"
-iTrust_password: "jenkins@6"
+mysql_user: "root"
+mysql_password: "jenkins@6"
 ## MYSQL
-mysql_root_pass: "jenkins@6"
+mysql_password: "jenkins@6"
 driver_name: "mysql"
 packages:
     - mysql-server
     - python3-pymysql
+mongo_admin_password: "mongoadmin" 
+mongo_checkbox_user: "mongoadmin"
+database: admin
+      name: mongoadmin
+      password: mongoadmin 
 
