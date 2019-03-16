@@ -4,12 +4,27 @@ var Random = require('random-js'),
   ;
 var simpleGit = require('simple-git')('../iTrust2/iTrust2-v4');
 const execSync = require('child_process').execSync;
-fuzzed=false
-myController=[
+fuzzed = false
+myController = [
   "APIPatientController.java",
   "APIFoodDiaryController.java",
-  "APIAppointmentRequestController.java"
-];
+  "APIAppointmentRequestController.java",
+  "APIController.java",
+  "APIDiagnosisController.java",
+  "APIDrugController.java",
+  "APIEmergencyRecordController.java",
+  "APIEnumController.java",
+  "APIHospitalController.java",
+  "APIICDCodeController.java",
+  "APILOINCController.java",
+  "APILabProcedureController.java",
+  "APILogEntryController.java",
+  "APIPasswordController.java",
+  "APIPersonnelController.java",
+  "APIPrescriptionController.java",
+  "APIUserController.java"
+
+]
 
 var fuzzer =
 {
@@ -24,183 +39,162 @@ var fuzzer =
     string: function (val) {
 
       var array = val.split('');
-      var prob=fuzzer.random.bool(0.7)
+      var prob = fuzzer.random.bool(0.7)
       console.log("=" + prob)
       // mutate '==' to '!='
       if (prob) {
-        fuzzed = true;
-        for (var i = 0; i < array.length; i++) {
+        for (var i = 1; i < array.length; i++) {
           if (array[i] === '=' && array[i - 1] === '=') {
-            array[i - 1] = '!';
-          } else if (array[i] === "=" && array[i - 1] === '!') {
-            array[i - 1] = '=';
+            if (fuzzer.random.bool(.5)) {
+              array[i - 1] = '!';
+            }
           }
         }
       }
       return array.join('');
     }
   },
-
-  mutateAndOr:
+  mutateand:
   {
     string: function (val) {
 
       var array = val.split('');
-      var prob=fuzzer.random.bool(0.7)
+      var prob = fuzzer.random.bool(0.7)
       console.log("&" + prob)
       // mutate '&&' to '||'
       if (prob) {
-        fuzzed=true
-        for (var i = 0; i < array.length; i++) {
+        fuzzed = true
+        for (var i = 0; i < array.length - 1; i++) {
           if (array[i] === '&' && array[i + 1] === '&') {
-              array[i] = '|';
-              array[i + 1] = '|';
-              i++;
+            array[i] = '|';
+            array[i + 1] = '|';
+            i++;
           }
-          else if(array[i]==='|' && array[i+1] === '|') {
-             array[i] = '&';
-             array[i + 1] = '&';
-             i++;
+          else if (array[i] === '|' && array[i + 1] === '|') {
+            array[i] = '&';
+            array[i + 1] = '&';
+            i++;
           }
         }
       }
       return array.join('');
     }
   },
-
-  mutateComparison:
+  mutatecomparison:
   {
     // mutate "<" to ">"
     string: function (val) {
       lines = val.split('\n');
-      var prob=fuzzer.random.bool(0.7)
-      console.log(">"+prob)
+      var prob = fuzzer.random.bool(0.7)
+      console.log(">" + prob)
       if (prob) {
-        fuzzed=true
+        fuzzed = true
         var re = /<.*>/g
-        lines.map((line)=>{
-           if(!line.match(re)){
-              keys = line.split('');
-              for (var i = 1; i < keys.length; i++) {
-                 if (keys[i] === '<')
-                    keys[i] = '>';
-                 else if(keys[i] === '>')
-                    keys[i] = '<';
-              }
+        lines.map((line) => {
+          if (!line.match(re)) {
+            keys = line.split('');
+            for (var i = 1; i < keys.length; i++) {
+              if (keys[i] === '<')
+                keys[i] = '>';
+              else if (keys[i] === '>')
+                keys[i] = '<';
+            }
             line = keys.join('');
           }
+          // console.log(line);
           return line;
-        });
-        return array.join('\n');
+        })
       }
+      return lines.join('\n');
     }
   },
-
   mutateNumbers:
   {
     string: function (val) {
 
       var array = val.split('');
-      var prob=fuzzer.random.bool(0.7)
+      var prob = fuzzer.random.bool(0.7)
       console.log("123" + prob)
       // mutate 0 to 1 & vice-versa
       if (prob) {
-        fuzzed=true
+        fuzzed = true
         for (var i = 1; i < array.length; i++) {
           if (array[i] === '0') {
+            // if (fuzzer.random.bool(.5)) {
             array[i] = '1';
+            // }
           }
           else if (array[i] === '1') {
+            // if (fuzzer.random.bool(.5)) {
             array[i] = '0';
+            // }
           }
         }
       }
       return array.join('');
     }
   },
-
   mutateStrings:
   {
     string: function (val) {
 
       var array = val.split('');
-      var prob=fuzzer.random.bool(0.7)
-      console.log("Strings" + prob)
+
       // mutate content of "strings" in code
-      if (prob) {
-        fuzzed = true;
-        for (var i = 0; i < array.length; i++) {
-          if (array[i - 1] === '"') {
+      if (fuzzer.random.bool(0.25)) {
+        fuzzed = true
+        for (var i = 1; i < array.length; i++) {
+          if (array[i] === '"') {
+            let j = i + 1;
+            var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz!@#$%^&*()-=_+[]{}<>,./?`~ ";
+
             do {
-              //Add or remove random characters
-              if (fuzzer.random.bool(0.05))
-              {
-                var new_chars = fuzzer.random.string(10);
-                array.splice(i, 1, new_chars[Math.floor(Math.random() * new_chars.length)]);
+              if (fuzzer.random.bool(.25)) {
+                var char = chars.charAt(fuzzer.random.integer(0, chars.length));
+                array[j] = char;
               }
-              i++;
-            } while (array[i] !== '"');
-            i++;
+              j++;
+            } while (array[j] !== '"');
+            i = j + 1;
           }
         }
-      }    
-      return array.join('');
+      }
+      var result = array.join('')
+      //console.log(result)
+      return result;
     }
   }
 };
 
-function callfuzz(){
-  
-  for(var i=1;i<=100;i++){
-      fuzzed=false
-       //console.log(fuzzer.random.integer(0, myController.length));
-      var controllerPath = "/Project/ansible-srv/iTrust2/iTrust2-v4/iTrust2/src/main/java/edu/ncsu/csc/itrust2/controllers/api/"+myController[0];    //fuzzer.random.integer(0, myController.length+1)];
-      console.log("running mutation "+i +" on file"+myController[0]);
-      mutationTesting(controllerPath, 1);
-      console.log("Fuzz: "+fuzzed)
+function callfuzz() {
 
-      if(fuzzed)
-        execSync('sh ./commit.sh').toString();
-   }
+  for (var i = 1; i <= 100; i++) {
+    fuzzed = false
+    //console.log(fuzzer.random.integer(0, myController.length));
+    var controllerPath = "/Project/ansible-srv/iTrust2/iTrust2-v4/iTrust2/src/main/java/edu/ncsu/csc/itrust2/controllers/api/" + myController[fuzzer.random.integer(0, myController.length + 1)];
+    console.log("running mutation " + i + " on file" + myController[0]);
+    mutationTesting(controllerPath);
+    console.log("Fuzz: " + fuzzed)
+
+    if (fuzzed)
+      execSync('sh ./commit.sh').toString();
+  }
 }
+
+
+function mutationTesting(path) {
+  var markDownA = fs.readFileSync(path, 'utf-8');
+  var newString = fuzzer.mutateEquals.string(markDownA);
+  newString = fuzzer.mutateNumbers.string(newString);
+  newString = fuzzer.mutateStrings.string(newString);
+  newString = fuzzer.mutatecomparison.string(newString);
+  fs.writeFileSync(path, newString, 'utf-8');
+}
+
 
 if (process.env.NODE_ENV != "test") {
   fuzzer.seed(5);
-  callfuzz();  
-}
-// function add(i){
-//   return new Promise(resolve => {
-//     setTimeout(()=>{
-//       simpleGit.add('./*')
-//       .commit('commiting mutation '+ i, ()=>{
-//            console.log('commiting mutation' + i)
-//            resolve("added changes")
-//        })
-//      },30000)
-//    })
-// }
-
-// function commit(i){
-//      return new Promise(resolve => {
-//          setTimeout(()=>{
-//             simpleGit.reset(['--hard', 'HEAD~1'], ()=>{console.log("resolved"); resolve('resolved')
-//             })
-//          },30000);
-//       })
-// }
-
-function mutationTesting(path, iterations) {
-
-  var fileString = fs.readFileSync(path, 'utf-8');
-  var modifiedFileString = "";
-  
-  modifiedFileString = fuzzer.mutateEquals.string(fileString);
-  modifiedFileString = fuzzer.mutateAndOr.string(modifiedFileString);
-  modifiedFileString = fuzzer.mutateComparison.string(modifiedFileString);
-  modifiedFileString = fuzzer.mutateNumbers.string(modifiedFileString);
-  modifiedFileString = fuzzer.mutateStrings.string(modifiedFileString);
-
-  fs.writeFileSync(path, modifiedFileString, 'utf-8');
+  callfuzz();
 }
 exports.mutationTesting = mutationTesting;
 exports.fuzzer = fuzzer;

@@ -73,8 +73,8 @@
   - name: create mongodb user for checkbox.io
     mongodb_user:
       database: admin
-      name: {{ mongo_checkbox_user }}
-      password: {{ mongo_admin_password }} 
+      name: "{{ mongo_checkbox_user }}"
+      password: "{{ mongo_admin_password }}"
       roles: userAdminAnyDatabase,dbAdminAnyDatabase,readWriteAnyDatabase
       state: present
   - name: run npm install
