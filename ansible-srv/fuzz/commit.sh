@@ -10,4 +10,4 @@ sleep 30
 
 git reset --hard HEAD~1
 
-sleep 120
+sleep 10

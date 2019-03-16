@@ -171,7 +171,7 @@ function callfuzz() {
   for (var i = 1; i <= 100; i++) {
     fuzzed = false
     //console.log(fuzzer.random.integer(0, myController.length));
-    var controllerPath = "/Project/ansible-srv/iTrust2/iTrust2-v4/iTrust2/src/main/java/edu/ncsu/csc/itrust2/controllers/api/" + myController[fuzzer.random.integer(0, myController.length + 1)];
+    var controllerPath = "/Project/ansible-srv/iTrust2/iTrust2-v4/iTrust2/src/main/java/edu/ncsu/csc/itrust2/controllers/api/" + myController[fuzzer.random.integer(0, myController.length)];
     console.log("running mutation " + i + " on file" + myController[0]);
     mutationTesting(controllerPath);
     console.log("Fuzz: " + fuzzed)
