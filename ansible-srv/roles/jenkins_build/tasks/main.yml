@@ -1,8 +1,8 @@
 ---
 - name: Copy SSH keys to Jenkins Server
   copy:
-    src: /keys/ansible-jenkins-srv_id_rsa
-    dest: /home/vagrant/.ssh/ansible-jenkins-srv_id_rsa
+    src: /keys/do_rsa1
+    dest: /root/.ssh/do_rsa1
     mode: 0600
 
 # - name: Get private key

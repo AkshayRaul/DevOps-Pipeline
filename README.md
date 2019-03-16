@@ -35,12 +35,39 @@
 #### Report:
 
 ###### Analysis of Fuzzer and Test Prioritization
+We performed four fuzzing operations:
+1. Converting from '<' to '>' or '<' to '>'
+2. Adding random strings
+3. Converting 0 to 1 or 1 to 0
+4. Converting && to || or || to &&
 
+We choose the following files for our Fuzzer:
+1. APIPatientController.java
+2. APIFoodDiaryController.java
+3. APIAppointmentRequestController.java
+```
+1. cd ansible-srv
+2. cd fuzz
+3. node main.js
+```
+This will run the fuzzer and contains the scripts to build 100 jobs by committing 100 times and resets the head after every commit 
+```
+1. cd ansible-srv
+2. ansible-playbook -i inventory test.yml
+3. cd tests/node priority.js
+```
+The test.yml file fetches 100 log files from the remote server to the host and stores it in a folder called logs.
+Running priority.js will parse through the 100 log files and uses regex to extract important information about the file such as the status of build which could be successful or failure,number of runs, average time to failure, total number of failures.
+The output after running that file is a sorted list having the format fileName, Tests, total Runs, average time to failure
+with sorting priority first given to total Failures followed by the average time to failure.
 ###### Types of Problems discovered by Fuzzer
 
 
 
 ###### Some ways fuzzing operations could be extended in the future
+- Fuzzing operations can be optimized w.r.t time by coming up with some predefined random operations that can be performed on similar files.
+- Fuzzing operations to convert primitive data type to non-primitive data type
+- There could be external libraries in the future which on fuzzing would give detailed analysis on the vulnerability such as the root cause, ways to solve such vulnerabilities etc
 
 ###### Reasons the tests were ranked the highest
 
@@ -49,8 +76,7 @@
 
 
 ###### How do these checks help Software Developers?
+Fuzzing technique helps software developers to come across loopholes that would have been ignored many times. Trying to randomly fuzz the code helps to come across many exceptions which help to make the software better. Fuzzing is a very cost effective technique and one can find an invalid input,a corrupted database and various vulnerabilities in the system.
 
-
- 
  ##### ScreenCast:
  [Click here](https://drive.google.com/open?id=1Ivo299PbIZxvdac14e63yZQAuKM0ZWli) to watch the demo

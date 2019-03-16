@@ -4,7 +4,7 @@
     debconf:
       name: mysql-server
       question: 'mysql-server/root_password'
-      value: "{{mysql_root_pass}}"
+      value: "{{mysql_password}}"
       vtype: password
 
   - name: Mysql | Set root repassword
@@ -12,7 +12,7 @@
     debconf:
       name: mysql-server
       question: 'mysql-server/root_password_again'
-      value: "{{mysql_root_pass}}"
+      value: "{{mysql_password}}"
       vtype: password 
 
   - name: Install MySQL
@@ -20,11 +20,7 @@
     action: apt pkg="{{ item }}" state=installed
     with_items:
       - mysql-server
-<<<<<<< HEAD
       - python3-jenkins
-=======
-      - python-jenkins
->>>>>>> 9aa3fd37a2b217f6eb365833b30df48c80a349d4
 
   - name: Install MySQL
     become: yes
@@ -77,8 +73,8 @@
   - name: create mongodb user for checkbox.io
     mongodb_user:
       database: admin
-      name: mongoadmin
-      password: mongoadmin 
+      name: {{ mongo_checkbox_user }}
+      password: {{ mongo_admin_password }} 
       roles: userAdminAnyDatabase,dbAdminAnyDatabase,readWriteAnyDatabase
       state: present
   - name: run npm install
