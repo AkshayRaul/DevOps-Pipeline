@@ -6,7 +6,7 @@
       Akshay Raul - araul
       Shwetha Kalyanaraman -skalyan
 #### Contributions
-    Ashwin Risbood - Wrote a bash script to build 100 jobs in Jenkins and runs the fuzzer before building the job. Script also includes resetting git head after every build.
+    Ashwin Risbood - Wrote a nodeJs script to add-commit-reset 100 fuzz operations each triggering a build in Jenkins, added fuzzing operations.
     Shwetha Kalyanaraman - Parsing from the 100 log files and sorting as per total failures and time elapsed for each file to generate a report
     Akshay Raul- Integrated Jacoco for code coverage and analyzed Itrust using static analysis tool- FindBugs
     Cameron Nelson -  Added Fuzzer Operators. 
@@ -61,8 +61,9 @@ Running priority.js will parse through the 100 log files and uses regex to extra
 The output after running that file is a sorted list having the format fileName, Tests, total Runs, average time to failure
 with sorting priority first given to total Failures followed by the average time to failure.
 ###### Types of Problems discovered by Fuzzer
-
-
+- to have async operations like commiting and resetting needed the help of Promises
+- keeping the random probabilty low, could trigger a commit which has no changes, and the script would reset a commit which never existed, thus removing an actual commit from top of the stack(unconstructive), so had to make sure to handle such a case.
+- to consider cases of a fuzzing operation that would not compile iTrust, these cases would not trigger a test on iTrust and would therefore be useless
 
 ###### Some ways fuzzing operations could be extended in the future
 - Fuzzing operations can be optimized w.r.t time by coming up with some predefined random operations that can be performed on similar files.
