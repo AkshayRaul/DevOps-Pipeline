@@ -4,7 +4,7 @@ var Random = require('random-js'),
   ;
 var simpleGit = require('simple-git')('../iTrust2/iTrust2-v4');
 const execSync = require('child_process').execSync;
-
+fuzzed=false
 myController=[
   "APIPatientController.java",
   "APIFoodDiaryController.java",
@@ -48,6 +48,7 @@ var fuzzer =
       console.log("&"+prob)
       // mutate '&&' to '||'
       if (prob) {
+        fuzzed=true
         for (var i = 0; i < array.length-1; i++) {
           if (array[i] === '&' && array[i + 1] === '&'){
               array[i] = '|';
@@ -72,6 +73,7 @@ var fuzzer =
       var prob=fuzzer.random.bool(0.7)
       console.log(">"+prob)
       if (prob) {
+        fuzzed=true
         var re = /<.*>/g
         lines.map((line)=>{
            if(!line.match(re)){
@@ -100,6 +102,7 @@ var fuzzer =
       console.log("123"+prob)
       // mutate 0 to 1 & vice-versa
       if (prob) {
+        fuzzed=true
         for (var i = 1; i < array.length; i++) {
           if (array[i] === '0') {
             // if (fuzzer.random.bool(.5)) {
@@ -124,6 +127,7 @@ var fuzzer =
 
       // mutate content of "strings" in code
       if(fuzzer.random.bool(0.5)) {
+        fuzzed=true
         for(var i = 1; i < array.length; i++) {
           if (array[i] === '"') {
             let j = i + 1;
@@ -147,14 +151,18 @@ var fuzzer =
   }
 };
 
-async function callfuzz(){
-  var arr = [1,2,3,4,5,6]
-  for(const i of arr){
+function callfuzz(){
+  
+  for(var i=1;i<=100;i++){
+      fuzzed=false
        //console.log(fuzzer.random.integer(0, myController.length));
-       var controllerPath = "/Project/ansible-srv/iTrust2/iTrust2-v4/iTrust2/src/main/java/edu/ncsu/csc/itrust2/controllers/api/"+myController[0];    //fuzzer.random.integer(0, myController.length+1)];
-       console.log("running mutation "+i +" on file"+myController[0]);
-       mutationTesting(controllerPath, 1);
-      execSync('sh ./commit.sh').toString();
+      var controllerPath = "/Project/ansible-srv/iTrust2/iTrust2-v4/iTrust2/src/main/java/edu/ncsu/csc/itrust2/controllers/api/"+myController[0];    //fuzzer.random.integer(0, myController.length+1)];
+      console.log("running mutation "+i +" on file"+myController[0]);
+      mutationTesting(controllerPath, 1);
+      console.log("Fuzz: "+fuzzed)
+
+      if(fuzzed)
+        execSync('sh ./commit.sh').toString();
    }
 }
 
