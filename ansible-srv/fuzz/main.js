@@ -177,12 +177,16 @@ function callfuzz() {
 }
 
 function mutationTesting(path) {
-  var markDownA = fs.readFileSync(path, 'utf-8');
-  var newString = fuzzer.mutateEquals.string(markDownA);
-  newString = fuzzer.mutateNumbers.string(newString);
-  newString = fuzzer.mutateStrings.string(newString);
-  newString = fuzzer.mutatecomparison.string(newString);
-  fs.writeFileSync(path, newString, 'utf-8');
+  var fileString = fs.readFileSync(path, 'utf-8');
+  var modifiedFileString = "";
+
+  modifiedFileString = fuzzer.mutateEquals.string(fileString);
+  modifiedFileString = fuzzer.mutateAndOr.string(modifiedFileString);
+  modifiedFileString = fuzzer.mutateComparison.string(modifiedFileString);
+  modifiedFileString = fuzzer.mutateNumbers.string(modifiedFileString);
+  modifiedFileString = fuzzer.mutateStrings.string(modifiedFileString);
+
+  fs.writeFileSync(path, modifiedFileString, 'utf-8');
 }
 
 if (process.env.NODE_ENV != "test") {
