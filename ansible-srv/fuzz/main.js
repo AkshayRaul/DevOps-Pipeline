@@ -143,19 +143,42 @@ var fuzzer =
 async function callfuzz(){
   var arr = [1,2,3,4,5,6]
   for(const i of arr){
+<<<<<<< HEAD
        var controllerPath = "../iTrust2/iTrust2-v4/iTrust2/src/main/java/edu/ncsu/csc/itrust2/controllers/api/"+myController[0]//fuzzer.random.integer(0, myController.length)];
        //console.log("running mutation 1 on file"+controllerPath);
        mutationTesting(controllerPath, 1);
        var result = await commit(i);
        console.log(result)
+=======
+       console.log(fuzzer.random.integer(0, myController.length));
+       var controllerPath = "../iTrust2/iTrust2-v4/iTrust2/src/main/java/edu/ncsu/csc/itrust2/controllers/api/"+myController[0];    //fuzzer.random.integer(0, myController.length+1)];
+       //console.log("running mutation 1 on file"+controllerPath);
+       mutationTesting(controllerPath, 1);
+       var result = await add(i);
+       var commit_result = await commit(i);
+>>>>>>> ce4949dac278be7d19a0526924763d4d6747580e
    }
 }
+
 if (process.env.NODE_ENV != "test") {
   fuzzer.seed(0);
   callfuzz();  
- }
+}
+function add(i){
+  return new Promise(resolve => {
+    setTimeout(()=>{
+      simpleGit.add('./*')
+      .commit('commiting mutation '+ i, ()=>{
+           console.log('commiting mutation' + i)
+           resolve("added changes")
+       })
+     },30000)
+   })
+}
+
 function commit(i){
      return new Promise(resolve => {
+<<<<<<< HEAD
         simpleGit.add('./*')
         .commit('commiting mutation '+ i, ()=>{
            console.log('commiting mutation' + i)
@@ -163,6 +186,12 @@ function commit(i){
              simpleGit.revert('HEAD~1', ()=>{console.log("reverted"); resolve('resolved')})
            }, 120000)
          })   
+=======
+         setTimeout(()=>{
+            simpleGit.reset(['--hard', 'HEAD~1'], ()=>{console.log("resolved"); resolve('resolved')
+            })
+         },30000);
+>>>>>>> ce4949dac278be7d19a0526924763d4d6747580e
       })
 }
 
