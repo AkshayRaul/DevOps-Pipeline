@@ -25,3 +25,7 @@
     template:
       src: templates/pom-data.xml
       dest: ./iTrust2/iTrust2-v4/iTrust2/
+  - name: copy findbugs-include.xml
+    template:
+      src: templates/findbugs-include.xml
+      dest: ./iTrust2/iTrust2-v4/iTrust2/
