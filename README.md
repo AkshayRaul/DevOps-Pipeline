@@ -41,7 +41,7 @@ We performed four fuzzing operations:
 3. Converting 0 to 1 or 1 to 0
 4. Converting && to || or || to &&
 
-We choose the API directory in Controllers for our Fuzzer. These files include, but are not limited to:
+We choose the `API` directory in `Controllers` of iTrust for our Fuzzer. These files include, but are not limited to:
 1. APIPatientController.java
 2. APIFoodDiaryController.java
 3. APIAppointmentRequestController.java
