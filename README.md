@@ -78,7 +78,34 @@ with sorting priority first given to total Failures followed by the average time
 
 
 ###### Approach for Analysis
+We performed the following analysis for checkbox.io:
+1. Cyclematic Complexity - The number of if statements/loops + 1 in each function.
+2. Max Conditions - The maximum number of conditions (&& or ||) of an if statement per function.
+3. Parameter Count - The number of parameters for each function.
+4. Long Methods - The number of methods that contain a long method given a threshold.
 
+We used the `Routes` directory in `site` of Checkbox.io as well as `marqdown.js` for your analysis testing. `Routes` include, but are not limited to:
+1. admin.js
+2. live.js
+3. upload.js
+
+For each file, we enforced the following thesholds for each source metric above using a variable called `status`. If at least one of these thresholds doesn't hold in a function, then `status` is changed to false, implying a failed build. The following thresholds are described as:
+1. If the number of long methods detected in each function is greater than or equal to 1 (MAX_LONG_METHODS)
+2. If the number of parameters in a function is greater than 3 (MAX_PARAMETER_COUNT)
+3. If the maximum number of conditions in an if statement per function is greater than 2 (MAX_CONDITIONS)
+4. If the Cyclomatic Complexity is greater than 10 (MAX_CC)
+
+To run the analysis of checkbox.io, perform the following: 
+```
+1. Place analysis.js and simple.js in templates of anisble-srv and place it in test in checkbox.io/server-side/site
+2. cd checkbox.io/server-side/site/test
+3. node analysis.js
+```
+`node analysis.js` will print a report that contains each function's name, starting line, cyclomatic complexity, maximum conditions, parameter count, and how many long methods it detected. An example of each function will look something like this below:
+
+**INSERT PHOTO HERE**
+
+Then run `npm test` to run `simple.js`. In `simple.js`, two tests will be checked. The first is checking the status of a MongoDB server to make sure the server runs and stops correctly. The second test checks if all metrics performed in analysis.js returns a status of true. If the status returns true, the test/build passes. Otherwise, it fails.
 
 ###### How do these checks help Software Developers?
 Fuzzing technique helps software developers to come across loopholes that would have been ignored many times. Trying to randomly fuzz the code helps to come across many exceptions which help to make the software better. Fuzzing is a very cost effective technique and one can find an invalid input,a corrupted database and various vulnerabilities in the system.
