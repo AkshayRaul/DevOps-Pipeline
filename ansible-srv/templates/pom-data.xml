@@ -431,7 +431,7 @@
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>findbugs-maven-plugin</artifactId>
-				<version>3.0.3</version>
+				<version>5.0.0</version>
 				<configuration>
 					<includeFilterFile>findbugs-include.xml</includeFilterFile>
 					<failOnError>false</failOnError>
@@ -507,7 +507,7 @@
 						<plugin>
 							<groupId>org.codehaus.mojo</groupId>
 							<artifactId>findbugs-maven-plugin</artifactId>
-							<version>3.0.3</version>
+							<version>5.0.0</version>
 							<configuration>
 								<includeFilterFile>findbugs-include.xml</includeFilterFile>
 								<failOnError>false</failOnError>

@@ -6,6 +6,7 @@
 <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.63">
 <script>
 
+
 pipeline {
   agent any
      environment {
@@ -20,7 +21,7 @@ pipeline {
   stages {    
     stage('Cloning Git') {
       steps {
-        git 'https://github.com/ashwinrisbood/checkbox.io'
+        git([url:'root@134.209.115.128:/Project/ansible-srv/checkbox.io',branch:'master',credentialsId:'mykey'])
       }
     }
     
@@ -41,6 +42,7 @@ pipeline {
       }
  }
 }
+
 </script>
 <sandbox>true</sandbox>
 </definition>

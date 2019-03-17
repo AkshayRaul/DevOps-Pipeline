@@ -23,7 +23,19 @@ pipeline{
                 classPattern: 'target/classes',
                 sourcePattern: 'src/main/java',
                 exclusionPattern: 'src/test*',
-                changeBuildStatus: true, maximumBranchCoverage: '100', maximumLineCoverage: '90', minimumBranchCoverage: '60', minimumLineCoverage: '70'
+                changeBuildStatus: true,
+		        maximumBranchCoverage:'60',
+		        minimumBranchCoverage: '50', 
+		        maximumClassCoverage: '80',
+		        minimumClassCoverage: '70', 
+		        minimumComplexityCoverage: '50',
+		        maximumComplexityCoverage: '70', 
+		        minimumInstructionCoverage: '60', 
+		        maximumInstructionCoverage: '70', 
+		        minimumLineCoverage: '70', 
+		        maximumLineCoverage: '80', 
+		        minimumMethodCoverage: '60',
+		        maximumMethodCoverage: '80'
               ] )
         }       
         }
@@ -31,14 +43,11 @@ pipeline{
     stage('Static Code Analysis'){
       steps{
         dir('iTrust2'){
-          sh 'mvn findbugs:findbugs'
-          step( [ $class: 'FindBugsPublisher',
-                  canRunOnFailed: true,
-                  pattern: '**/target/findbugsXml.xml',
-                  canComputeNew: false, 
-                  healthy: '50', 
-                  unHealthy: '50'
-              ] )
+            sh 'mvn findbugs:findbugs'
+            recordIssues tools: [
+                spotBugs(pattern: 'target/findbugsXml.xml'),
+                taskScanner(highTags:'FIXME', normalTags:'TODO', includePattern: '**/src/main/java/*.java', excludePattern: 'target/**/*')
+                ]           
         }
       }
     }

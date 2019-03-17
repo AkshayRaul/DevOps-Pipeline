@@ -1,4 +1,4 @@
 #!/bin/bash
-crumb=$(curl -u jenkins:Jenkins@6 http://192.168.20.20:8080/crumbIssuer/api/json | jq -r '.crumb')
+crumb=$(curl -u jenkins:Jenkins@6 http://142.93.250.109:8080/crumbIssuer/api/json | jq -r '.crumb')
 
-curl -X POST -u jenkins:Jenkins@6 -H "Content-Type: application/xml" -H "Jenkins-Crumb":$crumb  http://192.168.20.20:8080/job/checkbox_build/build
+curl -X POST -u jenkins:Jenkins@6 -H "Content-Type: application/xml" -H "Jenkins-Crumb":$crumb  http://142.93.250.109:8080/job/checkbox_build/build

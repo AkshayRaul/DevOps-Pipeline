@@ -1,7 +1,8 @@
 var Random = require('random-js'),
   fs = require('fs'),
-  stackTrace = require('stacktrace-parser')
-  ;
+  stackTrace = require('stacktrace-parser');
+const hash = require('md5-file')
+
 var simpleGit = require('simple-git')('../iTrust2/iTrust2-v4');
 const execSync = require('child_process').execSync;
 fuzzed = false
@@ -38,7 +39,7 @@ var fuzzer =
     string: function (val) {
 
       var array = val.split('');
-      var prob=fuzzer.random.bool(0.7)
+      var prob=fuzzer.random.bool(0.25)
       console.log("=" + prob)
       // mutate '==' to '!='
       if (prob) {
@@ -60,7 +61,7 @@ var fuzzer =
     string: function (val) {
 
       var array = val.split('');
-      var prob=fuzzer.random.bool(0.7)
+      var prob=fuzzer.random.bool(0.25)
       console.log("&" + prob)
       // mutate '&&' to '||'
       if (prob) {
@@ -87,7 +88,7 @@ var fuzzer =
     // mutate "<" to ">"
     string: function (val) {
       lines = val.split('\n');
-      var prob=fuzzer.random.bool(0.7)
+      var prob=fuzzer.random.bool(0.15)
       console.log(">"+prob)
       if (prob) {
         fuzzed=true
@@ -105,8 +106,8 @@ var fuzzer =
           }
           return line;
         });
-        return array.join('\n');
       }
+      return val;
     }
   },
 
@@ -115,7 +116,7 @@ var fuzzer =
     string: function (val) {
 
       var array = val.split('');
-      var prob=fuzzer.random.bool(0.7)
+      var prob=fuzzer.random.bool(0.1)
       console.log("123" + prob)
       // mutate 0 to 1 & vice-versa
       if (prob) {
@@ -138,7 +139,7 @@ var fuzzer =
     string: function (val) {
 
       var array = val.split('');
-      var prob=fuzzer.random.bool(0.7)
+      var prob=fuzzer.random.bool(0.1)
       console.log("Strings" + prob)
       // mutate content of "strings" in code
       if (prob) {
@@ -166,21 +167,30 @@ var fuzzer =
 function callfuzz() {
   for (var i = 1; i <= 100; i++) {
     fuzzed = false
-    //console.log(fuzzer.random.integer(0, myController.length));
-    var controllerPath = "/Project/ansible-srv/iTrust2/iTrust2-v4/iTrust2/src/main/java/edu/ncsu/csc/itrust2/controllers/api/" + myController[fuzzer.random.integer(0, myController.length)];
-    console.log("running mutation " + i + " on file" + myController[0]);
+    fileIndex=fuzzer.random.integer(0, myController.length-1);
+    console.log(fileIndex);
+    var controllerPath = "/Project/ansible-srv/iTrust2/iTrust2-v4/iTrust2/src/main/java/edu/ncsu/csc/itrust2/controllers/api/" + myController[fileIndex];
+    console.log("running mutation " + i + " on file" + controllerPath);
+    preFuzzHash=hash.sync(controllerPath);
     mutationTesting(controllerPath);
     console.log("Fuzz: " + fuzzed)
+    postFuzzHash=hash.sync(controllerPath);
+    if(preFuzzHash==postFuzzHash)
+	console.log("TRUE")
+    else console.log("FALSE")
 
-    if (fuzzed)
+    if (preFuzzHash!=postFuzzHash)
+      execSync('sh ./commitFuzzed.sh').toString();
+    else
       execSync('sh ./commit.sh').toString();
+
   }
 }
 
 function mutationTesting(path) {
   var fileString = fs.readFileSync(path, 'utf-8');
   var modifiedFileString = "";
-
+  //console.log(fileString);
   modifiedFileString = fuzzer.mutateEquals.string(fileString);
   modifiedFileString = fuzzer.mutateAndOr.string(modifiedFileString);
   modifiedFileString = fuzzer.mutateComparison.string(modifiedFileString);

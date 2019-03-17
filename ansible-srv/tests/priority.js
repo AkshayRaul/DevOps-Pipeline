@@ -4,7 +4,7 @@ var HashMap = require('hashmap');
 
 if (process.env.NODE_ENV != "test") {
     var map = new HashMap();
-    for (var j = 25; j <= 50; j++) {
+    for (var j = 100; j <= 200; j++) {
         var testReport = '../logs/' + j;
 
 
@@ -20,12 +20,22 @@ if (process.env.NODE_ENV != "test") {
     
     for (key in keys) {
         var stat=map.get(keys[key])
-        stat.timeElapsed=stat.timeElapsed/25;
+        stat.timeElapsed=stat.timeElapsed/100;
         map.set(keys[key],stat);
   
     }
     sortedLog = sortProperties(map);
-    console.log(sortedLog);
+    var result="";
+    console.log(sortedLog)    
+    for( test in sortedLog){
+    	result+="Test Name: "+sortedLog[test][0]+", Average Test Duration: "+sortedLog[test][1]+", Failure count: "+sortedLog[test][2]+"\n"
+    }
+    fs.writeFile("./testAnalysisOutput.txt",result,function(err){
+	if(err){
+	   return   console.log(err)
+	}
+	console.log("Saved to file testAnalysisOutput.txt")
+    }) 
 
 }
 function setMap(data,map){
@@ -45,10 +55,8 @@ function setMap(data,map){
         var errorName = /ERROR] Tests run: .*/g;
         var errorFunc = data.match(errorName) + '';
         var error_split = errorFunc.split('ERROR]');
-        	//console.log(error_split)
         for (var i = 1; i < info_split.length - 1; i++) {
             var tuple = info_split[i];
-            //console.log(tuple)
             var tupleArray = tuple.split(/(\s+)/);
             var runs = tupleArray[6]
             runs = runs.replace(/,\s*$/, "");
@@ -100,13 +108,14 @@ function setMap(data,map){
                 totalRuns=parseInt(map.get(function_name).runs)+parseInt(runs)
                 map.set(function_name, {
                     "testFailures": parseInt(testfailed),
-                    "timeElapsed": parseFloat(timeElapsed)/parseFloat(totalRuns),
+                    "timeElapsed": parseFloat(timeElapsed),
+
                     "runs":parseInt(totalRuns)
                 })
             } else {
                 map.set(function_name, {
                     "testFailures": parseInt(failure),
-                    "timeElapsed": parseFloat(time_elapsed)/parseFloat(runs),
+                    "timeElapsed": parseFloat(time_elapsed),
                     "runs":parseInt(runs)
                 })
             }

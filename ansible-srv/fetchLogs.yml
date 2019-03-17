@@ -5,4 +5,4 @@
       src: /var/lib/jenkins/jobs/iTrust_build/builds/{{item}}/log
       dest: /Project/ansible-srv/logs/{{item}}
       flat: yes    
-    with_sequence: start=25 end=50 stride=1
+    with_sequence: start=100 end=200 stride=1
