@@ -16,11 +16,11 @@
 1  git clone https://github.ncsu.edu/araul/Project_DevOps.git
 2. cd jenkins-srv
 3. baker bake
-4. cd ansible-srv
+4. cd ../ansible-srv
 5. baker bake
 6. baker ssh
 7. cd /ansible-srv
-7. ansible-playbook -setupGit.yml 
+7. ansible-playbook initialSetup.yml 
 8. ansible-playbook -i inventory main.yml
 ```
 
