@@ -94,10 +94,12 @@ We used the `Routes` directory in `site` of Checkbox.io as well as `marqdown.js`
 ```
 
 For each file, we enforced the following thesholds for each source metric above using a variable called `status`. If at least one of these thresholds doesn't hold in a function, then `status` is changed to false, implying a failed build. The following thresholds are described as:
+```
 1. If the number of long methods detected in each function is greater than or equal to 1 (MAX_LONG_METHODS)
 2. If the number of parameters in a function is greater than 3 (MAX_PARAMETER_COUNT)
 3. If the maximum number of conditions in an if statement per function is greater than 2 (MAX_CONDITIONS)
 4. If the Cyclomatic Complexity is greater than 10 (MAX_CC)
+```
 
 To run the analysis of checkbox.io, perform the following: 
 ```
@@ -106,8 +108,11 @@ To run the analysis of checkbox.io, perform the following:
 3. node analysis.js
 ```
 `node analysis.js` will print a report that contains each function's name, starting line, cyclomatic complexity, maximum conditions, parameter count, and how many long methods it detected. An example of each function will look something like this below:
-
-**INSERT PHOTO HERE**
+```
+commonSubmit(): 188
+============
+SimpleCyclomaticComplexity: 2   MaxConditions: 0        Parameters: 3   LongMethods: 0
+```
 
 Then run `npm test` to run `simple.js`. In `simple.js`, two tests will be checked. The first is checking the status of a MongoDB server to make sure the server runs and stops correctly. The second test checks if all metrics performed in analysis.js returns a status of true. If the status returns true, the test/build passes. Otherwise, it fails.
 
