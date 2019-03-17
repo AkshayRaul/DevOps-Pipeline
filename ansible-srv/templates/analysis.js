@@ -2,6 +2,10 @@ var esprima = require("esprima");
 var options = {tokens:true, tolerant: true, loc: true, range: true };
 var fs = require("fs");
 const MAX_METHOD_LINE = 50;
+const MAX_LONG_METHODS = 1;
+const MAX_PARAMETER_COUNT = 3;
+const MAX_CONDITIONS = 2;
+const MAX_CC = 10;
 var status=true;
 var path = require('path');
 function main()
@@ -149,8 +153,8 @@ function complexity(filePath)
 			builder.SimpleCyclomaticComplexity++;
 			builders[builder.FunctionName] = builder;
 
-			if (builder.LongMethod >= 1 || builder.ParameterCount > 3 || builder.MaxConditions > 2 ||
-				  builder.SimpleCyclomaticComplexity > 5)
+			if (builder.LongMethod >= MAX_LONG_METHODS || builder.ParameterCount > MAX_PARAMETER_COUNT ||
+				  builder.MaxConditions > MAX_CONDITIONS || builder.SimpleCyclomaticComplexity > MAX_CC)
 			{
 				status=false;
 			}
