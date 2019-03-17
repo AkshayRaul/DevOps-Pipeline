@@ -6,6 +6,7 @@
 <properties/>
 <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.63">
 <script>
+
 pipeline{
   agent any
   stages{
@@ -21,28 +22,30 @@ pipeline{
           step( [ $class: 'JacocoPublisher',
                 classPattern: 'target/classes',
                 sourcePattern: 'src/main/java',
-                exclusionPattern: 'src/test*'
+                exclusionPattern: 'src/test*',
+                changeBuildStatus: true, maximumBranchCoverage: '100', maximumLineCoverage: '90', minimumBranchCoverage: '60', minimumLineCoverage: '70'
               ] )
         }       
         }
     }
-    stage('Test Build'){
+    stage('Static Code Analysis'){
       steps{
         dir('iTrust2'){
-          sh 'mvn clean test checkstyle:checkstyle findbugs:findbugs'
-          step([$class: 'CheckStylePublisher',
-                  canRunOnFailed: true,
-                  pattern: '**/target/checkstyle-result.xml',
-                  useStableBuildAsReference: true
-                ])
+          sh 'mvn findbugs:findbugs'
           step( [ $class: 'FindBugsPublisher',
                   canRunOnFailed: true,
                   pattern: '**/target/findbugsXml.xml',
-                  useStableBuildAsReference: true,
                   canComputeNew: false, 
                   healthy: '50', 
                   unHealthy: '50'
               ] )
+        }
+      }
+    }
+    stage('Test build'){
+      steps{
+        dir('iTrust2'){
+            sh 'mvn clean test'
         }
       }
     }

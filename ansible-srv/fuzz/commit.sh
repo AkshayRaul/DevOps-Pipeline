@@ -6,8 +6,8 @@ git commit -m "Fuzzed"
 
 echo "************committed***********"
 
-sleep 30
+sleep 60
 
 git reset --hard HEAD~1
 
-sleep 10
+sleep 90

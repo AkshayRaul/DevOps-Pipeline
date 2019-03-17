@@ -4,7 +4,7 @@ var HashMap = require('hashmap');
 
 if (process.env.NODE_ENV != "test") {
     var map = new HashMap();
-    for (var j = 1; j <= 100; j++) {
+    for (var j = 25; j <= 50; j++) {
         var testReport = '../logs/' + j;
 
 
@@ -20,7 +20,7 @@ if (process.env.NODE_ENV != "test") {
     
     for (key in keys) {
         var stat=map.get(keys[key])
-        stat.timeElapsed=stat.timeElapsed/stat.runs;
+        stat.timeElapsed=stat.timeElapsed/25;
         map.set(keys[key],stat);
   
     }
@@ -100,13 +100,13 @@ function setMap(data,map){
                 totalRuns=parseInt(map.get(function_name).runs)+parseInt(runs)
                 map.set(function_name, {
                     "testFailures": parseInt(testfailed),
-                    "timeElapsed": parseFloat(timeElapsed),
+                    "timeElapsed": parseFloat(timeElapsed)/parseFloat(totalRuns),
                     "runs":parseInt(totalRuns)
                 })
             } else {
                 map.set(function_name, {
                     "testFailures": parseInt(failure),
-                    "timeElapsed": parseFloat(time_elapsed),
+                    "timeElapsed": parseFloat(time_elapsed)/parseFloat(runs),
                     "runs":parseInt(runs)
                 })
             }
