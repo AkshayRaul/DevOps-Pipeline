@@ -8,7 +8,7 @@
 #### Contributions
     Ashwin Risbood - Wrote a nodeJs script to add-commit-reset 100 fuzz operations each triggering a build in Jenkins, added fuzzing operators, and worked on checkbox.io analysis extension.
     Shwetha Kalyanaraman - Parsing from the 100 log files and sorting as per total failures and time elapsed for each file to generate a report
-    Akshay Raul- Integrated Jacoco for code coverage and analyzed Itrust using static analysis tool- FindBugs
+    Akshay Raul- Worked on setup of ansible, git commit-reset of files,Integrated Jacoco for code coverage and analyzed Itrust using static analysis tool- FindBugs
     Cameron Nelson -  Added fuzzing operators and worked on checkbox.io analysis extension. 
 
 #### Build Instructions:
