@@ -61,9 +61,12 @@ This will run the fuzzer and contains the scripts to build 100 jobs by committin
 4. node priority.js
 ```
 The test.yml file fetches 100 log files from the remote server to the host and stores it in a folder called logs.
+
 Running priority.js will parse through the 100 log files and uses regex to extract important information about the file such as the status of build which could be successful or failure,number of runs, average time to failure, total number of failures.
+
 The output after running that file is a sorted list having the format fileName, Tests, total Runs, average time to failure
 with sorting priority first given to total Failures followed by the average time to failure.
+
 ###### Types of Problems discovered by Fuzzer
 - to have async operations like commiting and resetting needed the help of Promises
 - keeping the random probabilty low, could trigger a commit which has no changes, and the script would reset a commit which never existed, thus removing an actual commit from top of the stack(unconstructive), so had to make sure to handle such a case.
