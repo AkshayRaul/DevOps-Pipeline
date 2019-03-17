@@ -1,19 +1,35 @@
 var esprima = require("esprima");
 var options = {tokens:true, tolerant: true, loc: true, range: true };
 var fs = require("fs");
-const MAX_METHOD_LINE = 50;
-
+const MAX_METHOD_LINE = 100;
+const MAX_PARAMETERS=4;
+const MAX_CONDITIONS=5;
+const CYCLOMATIC_COMPLEXITY=5;
+var status=true;
+var path = require('path');
 function main()
 {
 	var args = process.argv.slice(2);
-
-	if( args.length == 0 )
-	{
-		args = ["../checkbox.io/server-side/site/server.js"];
+	var filePath = [
+		__dirname + "/../routes/admin.js",
+		__dirname +"/../routes/create.js",
+		__dirname +"/../routes/csv.js",
+		__dirname +"/../routes/designer.js",
+		__dirname +"/../routes/live.js",
+		__dirname +"/../routes/study.js",
+		__dirname +"/../routes/studyModel.js",
+		__dirname +"/../routes/upload.js",
+		__dirname +"/../marqdown.js"
+	];
+	console.log("==================CONDITIONS================");
+	console.log("MAX LINES IN A METHOD "+MAX_METHOD_LINE);	
+	console.log("MAX PARAMETERS "+MAX_PARAMETERS);	
+	console.log("MAX CONDITIONS "+MAX_CONDITIONS);	
+	console.log("SIMPLE CYCLOMATIC COMPLEXITY "+CYCLOMATIC_COMPLEXITY);	
+	console.log("===========================================");
+	for (var i = 0; i < filePath.length; i++) {
+		complexity(filePath[i]);
 	}
-	var filePath = args[0];
-	
-	complexity(filePath);
 
 	// Report
 	for( var node in builders )
@@ -21,7 +37,6 @@ function main()
 		var builder = builders[node];
 		builder.report();
 	}
-
 }
 
 var builders = {};
@@ -32,11 +47,9 @@ function FunctionBuilder()
 	this.loc = 0;
 	this.FunctionName = "";
 	// The number of parameters for functions
-	this.ParameterCount = 0,
+	this.ParameterCount  = 0,
 	// Number of if statements/loops + 1
 	this.SimpleCyclomaticComplexity = 0;
-	// The max depth of scopes (nested ifs, loops, etc)
-	this.MaxNestingDepth = 0;
 	// // The max number of conditions if one decision statement.
   this.MaxConditions = 0;
   // The number of times a method exceeds 50 lines long.
@@ -49,14 +62,13 @@ function FunctionBuilder()
 		   	"{0}(): {1}\n" +
 		   	"============\n" +
 			   "SimpleCyclomaticComplexity: {2}\t" +
-				"MaxNestingDepth: {3}\t" +
-				"MaxConditions: {4}\t" +
-                "Parameters: {5}\t" +
-                "LongMethods: {6}\n\n"
+				 "MaxConditions: {3}\t" +
+         "Parameters: {4}\t" +
+         "LongMethods: {5}\n\n"
 			)
 			.format(this.FunctionName, this.StartLine,
-				     this.SimpleCyclomaticComplexity, this.MaxNestingDepth,
-			        this.MaxConditions, this.ParameterCount, this.LongMethod)
+						 this.SimpleCyclomaticComplexity, this.MaxConditions,
+						 this.ParameterCount, this.LongMethod)
 		);
 	}
 };
@@ -65,19 +77,13 @@ function FunctionBuilder()
 function FileBuilder()
 {
 	this.FileName = "";
-	// Number of strings in a file.
-	this.Strings = 0;
-	// Number of imports in a file.
-	this.ImportCount = 0;
 
 	this.report = function()
 	{
 		console.log (
 			( "{0}\n" +
-			  "~~~~~~~~~~~~\n"+
-			  "ImportCount {1}\t" +
-			  "Strings {2}\n"
-			).format( this.FileName, this.ImportCount, this.Strings ));
+			  "~~~~~~~~~~~~\n"
+			).format( this.FileName));
 	}
 }
 
@@ -106,8 +112,6 @@ function complexity(filePath)
 	var buf = fs.readFileSync(filePath, "utf8");
 	var ast = esprima.parse(buf, options);
 
-	var i = 0;
-
 	// A file level-builder:
 	var fileBuilder = new FileBuilder();
 	fileBuilder.FileName = filePath;
@@ -122,15 +126,16 @@ function complexity(filePath)
 			var builder = new FunctionBuilder();
 
 			builder.FunctionName = functionName(node);
-  			builder.StartLine    = node.loc.start.line;
-                        builder.ParameterCount = node.params.length;
-                        builder.loc = node.loc.end.line - node.loc.start.line;
-                       if(builder.loc>MAX_METHOD_LINE){
-                            builder.LongMethod++;
-                       }
-                       console.log(builder.loc);
-                       console.log(node.loc.end.line);
-                       console.log(node.loc.start.line);
+			builder.StartLine    = node.loc.start.line;
+			builder.ParameterCount = node.params.length;
+			builder.loc = node.loc.end.line - node.loc.start.line;
+			var mConditions = 0;
+			var operatorCount = 0;
+			
+			if (builder.loc > MAX_METHOD_LINE) {
+				builder.LongMethod++;
+			}
+
 			traverseWithParents(node, function (child) 
 			{
 				if (isDecision(child))
@@ -138,58 +143,44 @@ function complexity(filePath)
 					builder.SimpleCyclomaticComplexity++;
 				}
 
-				traverseWithParents(child, function (grandchild) 
-			  {
-					console.log(grandchild);
-					if (grandchild.operator === '&&')
-					{
-						builder.MaxConditions++;
-					}
-				});
+				if (child.type == "IfStatement") {
+					traverseWithParents(child, function (grandchild) {
+						if(isCondition(grandchild)) {
+							operatorCount++;
+						}
+						mConditions = Math.max(mConditions, operatorCount);
+					});
+					builder.MaxConditions = mConditions;
+				}
+				operatorCount = 0;
 			});
-
 			builder.SimpleCyclomaticComplexity++;
 			builders[builder.FunctionName] = builder;
-		}
 
-		if (node.type === "Literal" && typeof(node.value) == 'string')
-		{
-			fileBuilder.Strings++;
-		}
-
-		if (node.type === 'CallExpression' && node.callee.name == 'require')
-		{
-			fileBuilder.ImportCount++;
-        }
-
-	});
-}
-
-// Helper function for counting children of node.
-function childrenLength(node)
-{
-	var key, child;
-	var count = 0;
-	for (key in node) 
-	{
-		if (node.hasOwnProperty(key)) 
-		{
-			child = node[key];
-			if (typeof child === 'object' && child !== null && key != 'parent') 
+			if (builder.LongMethod >= 1 || builder.ParameterCount > MAX_PARAMETERS || builder.MaxConditions > MAX_CONDITIONS ||
+				  builder.SimpleCyclomaticComplexity > CYCLOMATIC_COMPLEXITY)
 			{
-				count++;
+				status=false;
 			}
 		}
-	}	
-	return count;
+	});
 }
-
 
 // Helper function for checking if a node is a "decision type node"
 function isDecision(node)
 {
 	if( node.type == 'IfStatement' || node.type == 'ForStatement' || node.type == 'WhileStatement' ||
 		 node.type == 'ForInStatement' || node.type == 'DoWhileStatement')
+	{
+		return true;
+	}
+	return false;
+}
+
+// Helper function for checking the maximum number of conditions in an if statement
+function isCondition(node)
+{
+	if( node.operator == '&&' || node.operator == '||')
 	{
 		return true;
 	}
@@ -219,6 +210,13 @@ if (!String.prototype.format) {
   };
 }
 
-main();
+function analyse(){
+	main();
+	return status
+}
+
+analyse()
 
 exports.main = main;
+ 
+module.exports = {analyse: analyse}
