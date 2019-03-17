@@ -79,15 +79,19 @@ with sorting priority first given to total Failures followed by the average time
 
 ###### Approach for Analysis
 We performed the following analysis for checkbox.io:
+```
 1. Cyclematic Complexity - The number of if statements/loops + 1 in each function.
 2. Max Conditions - The maximum number of conditions (&& or ||) of an if statement per function.
 3. Parameter Count - The number of parameters for each function.
 4. Long Methods - The number of methods that contain a long method given a threshold.
+```
 
 We used the `Routes` directory in `site` of Checkbox.io as well as `marqdown.js` for your analysis testing. `Routes` include, but are not limited to:
+```
 1. admin.js
 2. live.js
 3. upload.js
+```
 
 For each file, we enforced the following thesholds for each source metric above using a variable called `status`. If at least one of these thresholds doesn't hold in a function, then `status` is changed to false, implying a failed build. The following thresholds are described as:
 1. If the number of long methods detected in each function is greater than or equal to 1 (MAX_LONG_METHODS)
