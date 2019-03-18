@@ -53,7 +53,7 @@ We performed four fuzzing operations:
 3. Converting 0 to 1 or 1 to 0
 4. Converting && to || or || to &&
 
-We choose the `API` directory in `Controllers` of iTrust for our Fuzzer. These files include, but are not limited to:
+We choose the `API` directory of `Controllers` in iTrust for our Fuzzer. These files include, but are not limited to:
 1. APIPatientController.java
 2. APIFoodDiaryController.java
 3. APIAppointmentRequestController.java
@@ -178,7 +178,25 @@ APIUserTest (small snippet)
 There are many string operations that could violate and fail the build as any changes to the above string such as changing ROLE_ADMIN to some other string would violate.
 
 ##### Approach for Analysis
-We performed the following analysis for checkbox.io:
+For iTrust, we used SpotBugs to look for bugs in every java file in `edu.ncsu.csc.itrust2`. The report for SpotBugs can be located in each build in `SpotBugs Warnings` and will generate an overview of each bug's severity with details similar to the pictures shown below:
+
+![Overview and History](https://i.imgur.com/dtPaSjQ.png)
+
+![Details](https://i.imgur.com/yGwPl8P.png)
+
+Based on the images above, we found that files in `models.persistent` contained the most bugs out of all the other directories as well as containing the most high severity, regardless if files in `controllers.api` have been fuzzed or not. If files in `controllers.api` however have been fuzzed and SpotBugs detects these new changes, then `controllers.api` will contain the most bugs where most of the bug dectection will be located in the fuzzed file. We also noticed that the number of bugs it detected was fairly low with only 23 bugs detected. This is reasonable since iTrust has been in development for many years and the constant changes made to iTrust improves the analysis of the project.
+
+For code coverage, we used Jacoco and implemented the following minimum testing constraints:
+* minimumBranchCoverage: '50'
+* minimumClassCoverage: '70'
+* minimumComplexityCoverage: '50'
+* minimumInstructionCoverage: '60'
+* minimumLineCoverage: '70'
+* minimumMethodCoverage: '60'
+
+If any file's coverage is less than the minimum thresholds, then the build fails as well as if any test cases fails.
+
+For Checkbox.io, we performed the following analysis metric:
 ```
 1. Cyclematic Complexity - The number of if statements/loops + 1 in each function.
 2. Max Conditions - The maximum number of conditions (&& or ||) of an if statement per function.
@@ -219,5 +237,7 @@ Then run `npm test` to run `simple.js`. In `simple.js`, two tests will be checke
 ##### How do these checks help Software Developers?
 Fuzzing technique helps software developers to come across loopholes that would have been ignored many times. Trying to randomly fuzz the code helps to come across many exceptions which help to make the software better. Fuzzing is a very cost effective technique and one can find an invalid input,a corrupted database and various vulnerabilities in the system.
 
- ##### ScreenCast:
- [Click here](https://goo.gl/hKqmh4) to watch the demo
+Static analysis tools like FindBugs, PMD, etc. help software developers determine how rich a software's quality is by detecting all errors, failures, code smells, etc. in the software. These tools also report all found issues to not only fix the issues, but to also generate higher code quality for developers.
+
+##### ScreenCast:
+[Click here](https://goo.gl/hKqmh4) to watch the demo
