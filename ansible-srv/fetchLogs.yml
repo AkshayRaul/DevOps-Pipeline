@@ -1,8 +1,0 @@
-- hosts: all
-  tasks:
-  - name: Fetch 100 log files
-    fetch:
-      src: /var/lib/jenkins/jobs/iTrust_build/builds/{{item}}/log
-      dest: /Project/ansible-srv/logs/{{item}}
-      flat: yes    
-    with_sequence: start=100 end=200 stride=1

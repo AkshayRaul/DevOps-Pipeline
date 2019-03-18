@@ -1,10 +1,12 @@
 var fs = require('fs'),
     child = require('child_process');
 var HashMap = require('hashmap');
+var request = require("request");
+
 
 if (process.env.NODE_ENV != "test") {
     var map = new HashMap();
-    for (var j = 100; j <= 200; j++) {
+    for (var j = 151; j <= 251; j++) {
         var testReport = '../logs/' + j;
 
 
