@@ -1,4 +1,0 @@
-#!/bin/sh
-echo "Current location: $GIT_DIR"
-GIT_WORK_TREE=../checkboxBarewww/ git checkout -f
-echo "Pushed to Bare!"

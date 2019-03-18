@@ -37,18 +37,6 @@
       name: jenkins
       state: started
 
-#### ADD WAIT CONDITION HERE 
-  - name: Download Jenkins CLI
-    become: yes
-    get_url:
-      url: http://{{jenkins_url}}:{{jenkins_http_port}}/jnlpJars/jenkins-cli.jar
-      dest: /opt/
-      mode: 0440
-      owner: "{{jenkins_process_user}}"
-      group: "{{jenkins_process_user}}"
-      timeout: 10
-    register: result
-    
   - name: read admin pwd
     become: yes
     shell: cat /var/lib/jenkins/secrets/initialAdminPassword
@@ -70,7 +58,7 @@
       instance.setAuthorizationStrategy(strategy)
       instance.save()
      args:
-      user_pwd: "{{ admin_user_pass }}"
+      user_pwd: "{{ jenkins_password }}"
      user: admin
      password: "{{ adminpwd.stdout }}"
 
@@ -95,5 +83,3 @@
   
   - include_tasks: settings.yml
 
-
-  

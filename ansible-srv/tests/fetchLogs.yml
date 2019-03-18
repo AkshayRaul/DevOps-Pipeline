@@ -1,0 +1,20 @@
+- hosts: all
+  tasks:
+  - name: Get list of jobs
+    uri: 
+      url: "http://142.93.250.109:8080/job/iTrust_build/lastBuild/buildNumber"
+      force_basic_auth: yes
+      return_content: yes
+      user: jenkins
+      password: "{{jenkins_password}}"
+      method: GET
+    register: lastBuildNumber
+  - debug:
+      var: "{{ lastBuildNumber.json | int }}"
+ 
+  - name: Fetch 100 log files
+    fetch:
+      src: /var/lib/jenkins/jobs/iTrust_build/builds/{{item}}/log
+      dest: /Project/ansible-srv/logs/{{item}}
+      flat: yes    
+    with_sequence: start={{ lastBuildNumber.json | int }}  end="{{ (lastBuildNumber.json | int) -100}}" stride=-1

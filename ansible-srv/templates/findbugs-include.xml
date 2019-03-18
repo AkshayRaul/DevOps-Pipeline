@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FindBugsFilter>
+    <Match>
+        <Bug pattern="HE_EQUALS_USE_HASHCODE,SE_BAD_FIELD"/>
+    </Match>
+</FindBugsFilter>

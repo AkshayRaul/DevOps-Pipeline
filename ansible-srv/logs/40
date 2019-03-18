@@ -1,0 +1,434 @@
+Started by user [8mha:////4J+8DujTtqZTCVv/c2v7gdZYpcUdUMao3N0D050NsU5FAAAAmR+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAz2EgZe/dLi1CL9rNS87My8YgDGtiJjwgAAAA==[0mjenkins
+Replayed [8mha:////4PkapGrgWJJAbnJQiOzuMT8Yj+U/D46Fpgk9yFiow6feAAAAoR+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzmEgZR/az8JP3MkKLS4pL4pNLMnBR9Y0t9AHYZof7KAAAA[0m#39
+Running in Durability level: MAX_SURVIVABILITY
+[8mha:////4E2/vqR1KfjyMHkqzGgU3l9HOnNu19hze25oWYFuJXMsAAAAoh+LCAAAAAAAAP9tjTEOwjAQBM8BClpKHuFItIiK1krDC0x8GCfWnbEdkooX8TX+gCESFVvtrLSa5wtWKcKBo5UdUu8otU4GP9jS5Mixv3geZcdn2TIl9igbHBs2eJyx4YwwR1SwULBGaj0nRzbDRnX6rmuvydanHMu2V1A5c4MHCFXMWcf8hSnC9jqYxPTz/BXAFEIGsfuclm8zQVqFvQAAAA==[0m[Pipeline] Start of Pipeline
+[8mha:////4BG5k2U34qCeqQfYs7NIc4FEAuaLyN6FQczqQwHxw63sAAAApR+LCAAAAAAAAP9tjTEOwjAUQ3+KOrAycohUghExsUZZOEFIQkgb/d8mKe3EibgadyBQiQlLlmxL1nu+oE4RjhQdby12HpP2vA+jK4lPFLtroIm3dOGaMFGwXNpJkrGnpUrKFhaxClYC1hZ1oOTRZdiIVt1VExS65pxj2Q4CKm8GeAAThZxVzN8yR9jeRpMIf5y/AJj7DGxXvP/86jduZBmjwAAAAA==[0m[Pipeline] node
+Running on [8mha:////4BdPl4bK886cqX8mcA5JiC6xBR5SgJynVmOTCjVDwZRPAAAAnh+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAz2EgZh/eT83ILSktQifY3cxGIgrakPAHib2iPIAAAA[0mJenkins in /var/lib/jenkins/workspace/iTrust_build@2
+[8mha:////4GiilE9n/qU3dJ2wMHx5C04GzlW8DbJm0NEn6KnGGZfWAAAApR+LCAAAAAAAAP9tjTEOwjAUQ3+KOrAycoh0gA0xsUZZOEFIQkgb/d8mKe3EibgadyBQiQlLlmxL1nu+oE4RjhQdby12HpP2vA+jK4lPFLtroIm3dOGaMFGwXNpJkrGnpUrKFhaxClYC1hZ1oOTRZdiIVt1VExS65pxj2Q4CKm8GeAAThZxVzN8yR9jeRpMIf5y/AJj7DGxXvP/86jfoP95RwAAAAA==[0m[Pipeline] {
+[8mha:////4E5LSUzaxdNzN1WOyvS9Hy1XkSH5wKSYXlMo8mFk7FbYAAAApR+LCAAAAAAAAP9tjTEOwjAUQ3+KOrAycoh0gQkxsUZZOEFIQkgb/d8mKe3EibgadyBQiQlLlmxL1nu+oE4RjhQdby12HpP2vA+jK4lPFLtroIm3dOGaMFGwXNpJkrGnpUrKFhaxClYC1hZ1oOTRZdiIVt1VExS65pxj2Q4CKm8GeAAThZxVzN8yR9jeRpMIf5y/AJj7DGxXvP/86jc09154wAAAAA==[0m[Pipeline] stage
+[8mha:////4Ew+ECyfu3Skzl3ABE/B6w9j9Rf/7o9t77FSD++H61ByAAAApR+LCAAAAAAAAP9tjTEOwjAUQ3+KOrAycoh0ggUxsUZZOEFIQkgb/d8mKe3EibgadyBQiQlLlmxL1nu+oE4RjhQdby12HpP2vA+jK4lPFLtroIm3dOGaMFGwXNpJkrGnpUrKFhaxClYC1hZ1oOTRZdiIVt1VExS65pxj2Q4CKm8GeAAThZxVzN8yR9jeRpMIf5y/AJj7DGxXvP/86jek7ggRwAAAAA==[0m[Pipeline] { (Clone repository)
+[8mha:////4AXxyirj6eNG05RYTg/KABrhSzX7aDdvH55Cel8h1JQGAAAAoh+LCAAAAAAAAP9tjTEOAiEURD9rLGwtPQTbaWGsbAmNJ0AWEZb8zwLrbuWJvJp3kLiJlZNMMm+a93rDOic4UbLcG+wdZu14DKOti0+U+lugiXu6ck2YKRguzSSpM+cFJRUDS1gDKwEbgzpQdmgLbIVXD9UGhba9lFS/o4DGdQM8gYlqLiqVL8wJdvexy4Q/z18BzLEA29ce4gfg7KmOvAAAAA==[0m[Pipeline] git
+using credential mykey
+ > git rev-parse --is-inside-work-tree # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url root@134.209.115.128:/ansible-srv/iTrust2/iTrust2-v4 # timeout=10
+Fetching upstream changes from root@134.209.115.128:/ansible-srv/iTrust2/iTrust2-v4
+ > git --version # timeout=10
+using GIT_SSH to set credentials Jenkins Master SSH Key
+ > git fetch --tags --progress root@134.209.115.128:/ansible-srv/iTrust2/iTrust2-v4 +refs/heads/*:refs/remotes/origin/*
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+ > git rev-parse refs/remotes/origin/origin/master^{commit} # timeout=10
+Checking out Revision 826f5d6e3dd97cc49a3d237683cd0504f49b0db3 (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 826f5d6e3dd97cc49a3d237683cd0504f49b0db3
+ > git branch -a -v --no-abbrev # timeout=10
+ > git branch -D master # timeout=10
+ > git checkout -b master 826f5d6e3dd97cc49a3d237683cd0504f49b0db3
+Commit message: "commiting +4"
+ > git rev-list --no-walk 826f5d6e3dd97cc49a3d237683cd0504f49b0db3 # timeout=10
+[8mha:////4PY+ptQxoidqOxa3Jg8kGJGioGAUFUwhtAQFaDf6uzTjAAAAoh+LCAAAAAAAAP9tjTEOAiEURD9rLGwtPQTbGRNjZUtoPAGyiLDkfxZYdytP5NW8g8RNrJxkknnTvNcb1jnBiZLl3mDvMGvHYxhtXXyi1N8CTdzTlWvCTMFwaSZJnTkvKKkYWMIaWAnYGNSBskNbYCu8eqg2KLTtpaT6HQU0rhvgCUxUc1GpfGFOsLuPXSb8ef4KYI6xADvU7j9Dg2gqvAAAAA==[0m[Pipeline] }
+[8mha:////4G9ro/1E62IZJiZzCyR3001pD6GnD/gaXAsxUbZHnHjEAAAAoh+LCAAAAAAAAP9tjTEOAiEURD9rLGwtPQRbWRhjZUtoPAGyiLDkfxZYdytP5NW8g8RNrJxkknnTvNcb1jnBiZLl3mDvMGvHYxhtXXyi1N8CTdzTlWvCTMFwaSZJnTkvKKkYWMIaWAnYGNSBskNbYCu8eqg2KLTtpaT6HQU0rhvgCUxUc1GpfGFOsLuPXSb8ef4KYI6xADvU7j9J+wGOvAAAAA==[0m[Pipeline] // stage
+[8mha:////4OgkWwVyMxAbZtPVnapTc6WEyOK2rQI+F31yGsVwLaKUAAAAph+LCAAAAAAAAP9tjTEOwjAQBM9BKWgpeYQDEh2iorXc8AITG+PEugv2haTiRXyNPxCIRMVWOyut5vmCMic4UPKycdgGzHWQXez91ORAqb1EGmRDZ1kTZopOajdosu44oyZ2MEcUsFCwdFhHygE9w0o15m6qaNBXJ07TtldQBHuDBwg1mdkk/sKYYH3tbSb8ef4KYOwYxI6h2G4+x/INtuQqUcEAAAA=[0m[Pipeline] stage
+[8mha:////4N9ogIDYbT5XTCY3UbIh2oEgYsAPHMShzlfWanFnZxkEAAAApR+LCAAAAAAAAP9tjTEOwjAUQ3+DOrAycoiUzoiJNerCCUITQtLo/zZJSSdOxNW4Ay2VmPBg2Zas93pDGQOcKBjuNHYWY2t570czJ54pdDdPmTu68pYwkte80bkhpc9rbShpWFUw2AjYamw9RYsmwU44+ZCVl2iqSwrzdhTArBrgCYWYyUmG9C1TgP19VJHwx/kLgKlPwOrDYvXyLD8BobDcwgAAAA==[0m[Pipeline] { (Build project)
+[8mha:////4MCwCkO8TlHYgblFFDV5SvTmNWEwBQDTi9nDZv8BVMpNAAAAph+LCAAAAAAAAP9tjTEOwjAUQ3+LOrAycohUZUVMrFEWThCaEJJG/7dJSjpxIq7GHWipxIQHy7ZkvdcbqhjgRMEwp7GzGFvLej+aObFMobt5yszRlbWEkbxmQmdBSp/XKihpWFWUsOGw1dh6ihZNgh138iFrL9HUlxTm7cihtGqAJxR8JicZ0rdMAfb3UUXCH+cvAKY+Qdk0ix2WZ/UBbwyqm8IAAAA=[0m[Pipeline] dir
+Running in /var/lib/jenkins/workspace/iTrust_build@2/iTrust2
+[8mha:////4ADzBoTuh/hlz90bAJdJKv6WHD6wHLw82i0d/QVeItw3AAAAph+LCAAAAAAAAP9tjTEOwjAUQ3+LOrAycohUwIiYukZZOEFoQkgb/V9+UtqJE3E17kBLJSY8WLYl673eUESGE7ETjcXWY6y96ELvpiQG4vYaaBANXURNGClYoeygyNhqqYqShUVZDisJa4t1oOjRJdjIRj90GTS68px42o4Scm/u8IRMTuSkOX3LyLC99SYS/jh/ATB2CfLdfrbD/Cw+y7kUycIAAAA=[0m[Pipeline] {
+[8mha:////4OE33x+tVqSr5Y5/ZMHnRskG0rZjRGkPLuGNa35/6EMVAAAApB+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOIiBB2iSmu54QUmNsaJdWdsh6TiRXyNPxCIRMUWq51t5vmCZYpw5GixNdQ5So3D4Hs7LRw4dhfPA7Z8xoYpsTcozSBZm3pGydnAnKKEhYCVocZzcmQzrEWr7qryimx1ynH6DgJKp2/wgEJM5qxi/sIYYXPtdWL6ef4KYAwZyu3uU/vwBgq0rvS+AAAA[0m[Pipeline] sh
++ mvn -f pom-data.xml process-test-classes
+[INFO] Scanning for projects...
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building iTrust2 4.0.0
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ iTrust2 ---
+[WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] Copying 45 resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.7.0:compile (default-compile) @ iTrust2 ---
+[INFO] Changes detected - recompiling the module!
+[WARNING] File encoding has not been set, using platform encoding UTF-8, i.e. build is platform dependent!
+[INFO] Compiling 110 source files to /var/lib/jenkins/workspace/iTrust_build@2/iTrust2/target/classes
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ iTrust2 ---
+[WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] Copying 21 resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.7.0:testCompile (default-testCompile) @ iTrust2 ---
+[INFO] Changes detected - recompiling the module!
+[WARNING] File encoding has not been set, using platform encoding UTF-8, i.e. build is platform dependent!
+[INFO] Compiling 64 source files to /var/lib/jenkins/workspace/iTrust_build@2/iTrust2/target/test-classes
+[INFO] 
+[INFO] --- exec-maven-plugin:1.4.0:java (GenerateTestData) @ iTrust2 ---
+22:06:06.738 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] INFO  org.hibernate.Version - HHH000412: Hibernate Core {5.0.11.Final}
+22:06:06.748 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+22:06:06.752 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] INFO  org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+22:06:07.676 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+22:06:07.860 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] WARN  org.hibernate.orm.connections - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+Loading class `com.mysql.jdbc.Driver'. This is deprecated. The new driver class is `com.mysql.cj.jdbc.Driver'. The driver is automatically registered via the SPI and manual loading of the driver class is generally unnecessary.
+22:06:07.875 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] INFO  org.hibernate.orm.connections - HHH10001005: using driver [com.mysql.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/iTrust2?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=EST&allowPublicKeyRetrieval=true]
+22:06:07.875 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] INFO  org.hibernate.orm.connections - HHH10001001: Connection properties: {user=root, password=****}
+22:06:07.875 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] INFO  org.hibernate.orm.connections - HHH10001003: Autocommit mode: false
+22:06:07.883 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] INFO  o.h.e.j.c.i.DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 100 (min=1)
+22:06:08.461 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+22:06:09.505 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] INFO  o.h.tool.hbm2ddl.SchemaExport - HHH000227: Running hbm2ddl schema export
+alter table AppointmentRequests drop foreign key FKlpa5tri2ufo8t7bt7nusa1pss
+alter table AppointmentRequests drop foreign key FKo65c0ooyqou8d1x56y37u1nau
+alter table BasicHealthMetrics drop foreign key FKd9uamofafbqloq2v2j2o4f0pg
+alter table BasicHealthMetrics drop foreign key FKj6od5nqw6nvjgmpuilsfj3ad
+alter table Diagnoses drop foreign key FKthsk14tdxoeeadlpvkot8fdhb
+alter table Diagnoses drop foreign key FKjm5cnpdmv6x9iajrypt72lguy
+alter table GeneralCheckups drop foreign key FKtgti6uflcm2q9uvfx4obmpwv4
+alter table GeneralCheckups drop foreign key FKqtpf2nfiuf47019rc8gnaeb6v
+alter table GeneralCheckups drop foreign key FKplofss0lwup9mbnu0abrtalxx
+alter table GeneralCheckups drop foreign key FK9tghbxo0xq6bba8p1rp7rbecg
+alter table GeneralCheckups drop foreign key FK5fa5nrrfo22p8q5xiptgh83x5
+alter table GeneralOphthalmology drop foreign key FKtcx79uvv1o4wrp9xqdk3hcap2
+alter table GeneralOphthalmology drop foreign key FK6svu0my7r662s5sn2d7cgf1jq
+alter table GeneralOphthalmology drop foreign key FKfeh4gtxe0s4kr52i7u5i8tkum
+alter table GeneralOphthalmology drop foreign key FKc5kn71vr8tbt5ty5cc7pfrbgf
+alter table GeneralOphthalmology drop foreign key FKr2whnupl6f7k12gx78f5lhdx9
+alter table LabProcedures drop foreign key FKn8ctd2oj7knwaxxfakrmwybj6
+alter table LabProcedures drop foreign key FKq97sa9kb1vkse9jbn0s38drei
+alter table LabProcedures drop foreign key FKd9netwr78cspphyqtctsdy9cl
+alter table LabProcedures drop foreign key FKf1qdex4yna7yac0e29xylgqt7
+alter table LoginAttempts drop foreign key FK6me6sh9op6gntvqnqqqiev95q
+alter table LoginBans drop foreign key FKpmi5daj2jt8w5gq9maxjpro1f
+alter table LoginLockouts drop foreign key FKhndsii960xs59bv7a7x5669ii
+alter table OphthalmologySurgery drop foreign key FK2ab5y8krlqw4407jo9je2rodh
+alter table OphthalmologySurgery drop foreign key FK64ijwgpf2cbt4t6vcwyj0vy77
+alter table OphthalmologySurgery drop foreign key FK43k7w4nn8hxf36s3xonve9l5v
+alter table OphthalmologySurgery drop foreign key FKg3nwmi2eh9lxpys9gom75nsvx
+alter table OphthalmologySurgery drop foreign key FK526jd5m6bguykj27g8jbl2idt
+alter table PasswordResetTokens drop foreign key FKdtqvlc6is6k5ibp1xc1nshrc8
+alter table Patients drop foreign key FKe0d1x2xac4nte49udxrwdiew5
+alter table Patients drop foreign key FK8s22h2pw102ce5ytcmqmhegp3
+alter table Patients drop foreign key FK3aemk5yjohgj9y6j4lq57g4o5
+alter table PERSONAL_REPRESENTATIVES drop foreign key FK4xcw5y8obck13wkbeja8cxy6d
+alter table PERSONAL_REPRESENTATIVES drop foreign key FKthu0xxghbfmojk34tnmg17qxd
+alter table Personnel drop foreign key FKa9l63705rm5c4tf50y9h9x8rp
+alter table Prescriptions drop foreign key FKrr7q2rw34mv2h8p24dwo2sw39
+alter table Prescriptions drop foreign key FK11c0dywqeqm53244c088xriq0
+alter table Prescriptions drop foreign key FKkhctha3d1ti34dbaplmn8tsyk
+drop table if exists AppointmentRequests
+drop table if exists BasicHealthMetrics
+drop table if exists Diagnoses
+drop table if exists Drugs
+drop table if exists FoodDiaryEntry
+drop table if exists GeneralCheckups
+drop table if exists GeneralOphthalmology
+drop table if exists hibernate_sequence
+drop table if exists Hospitals
+drop table if exists ICDCodes
+drop table if exists LabProcedures
+drop table if exists LogEntries
+drop table if exists LoginAttempts
+drop table if exists LoginBans
+drop table if exists LoginLockouts
+drop table if exists LOINCCodes
+drop table if exists OphthalmologySurgery
+drop table if exists PasswordResetTokens
+drop table if exists Patients
+drop table if exists PERSONAL_REPRESENTATIVES
+drop table if exists Personnel
+drop table if exists Prescriptions
+drop table if exists Users
+22:06:09.949 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] INFO  o.h.tool.hbm2ddl.SchemaExport - HHH000230: Schema export complete
+22:06:09.949 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] INFO  o.h.tool.hbm2ddl.SchemaExport - HHH000227: Running hbm2ddl schema export
+alter table AppointmentRequests drop foreign key FKlpa5tri2ufo8t7bt7nusa1pss
+22:06:09.993 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - HHH000389: Unsuccessful: alter table AppointmentRequests drop foreign key FKlpa5tri2ufo8t7bt7nusa1pss
+22:06:09.993 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - Table 'iTrust2.AppointmentRequests' doesn't exist
+alter table AppointmentRequests drop foreign key FKo65c0ooyqou8d1x56y37u1nau
+22:06:09.998 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - HHH000389: Unsuccessful: alter table AppointmentRequests drop foreign key FKo65c0ooyqou8d1x56y37u1nau
+22:06:09.998 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - Table 'iTrust2.AppointmentRequests' doesn't exist
+alter table BasicHealthMetrics drop foreign key FKd9uamofafbqloq2v2j2o4f0pg
+22:06:09.999 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - HHH000389: Unsuccessful: alter table BasicHealthMetrics drop foreign key FKd9uamofafbqloq2v2j2o4f0pg
+22:06:09.999 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - Table 'iTrust2.BasicHealthMetrics' doesn't exist
+alter table BasicHealthMetrics drop foreign key FKj6od5nqw6nvjgmpuilsfj3ad
+22:06:10.000 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - HHH000389: Unsuccessful: alter table BasicHealthMetrics drop foreign key FKj6od5nqw6nvjgmpuilsfj3ad
+22:06:10.000 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - Table 'iTrust2.BasicHealthMetrics' doesn't exist
+alter table Diagnoses drop foreign key FKthsk14tdxoeeadlpvkot8fdhb
+22:06:10.000 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - HHH000389: Unsuccessful: alter table Diagnoses drop foreign key FKthsk14tdxoeeadlpvkot8fdhb
+22:06:10.000 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - Table 'iTrust2.Diagnoses' doesn't exist
+alter table Diagnoses drop foreign key FKjm5cnpdmv6x9iajrypt72lguy
+22:06:10.001 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - HHH000389: Unsuccessful: alter table Diagnoses drop foreign key FKjm5cnpdmv6x9iajrypt72lguy
+22:06:10.001 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - Table 'iTrust2.Diagnoses' doesn't exist
+alter table GeneralCheckups drop foreign key FKtgti6uflcm2q9uvfx4obmpwv4
+22:06:10.001 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - HHH000389: Unsuccessful: alter table GeneralCheckups drop foreign key FKtgti6uflcm2q9uvfx4obmpwv4
+22:06:10.001 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - Table 'iTrust2.GeneralCheckups' doesn't exist
+alter table GeneralCheckups drop foreign key FKqtpf2nfiuf47019rc8gnaeb6v
+22:06:10.002 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - HHH000389: Unsuccessful: alter table GeneralCheckups drop foreign key FKqtpf2nfiuf47019rc8gnaeb6v
+22:06:10.002 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - Table 'iTrust2.GeneralCheckups' doesn't exist
+alter table GeneralCheckups drop foreign key FKplofss0lwup9mbnu0abrtalxx
+22:06:10.005 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - HHH000389: Unsuccessful: alter table GeneralCheckups drop foreign key FKplofss0lwup9mbnu0abrtalxx
+22:06:10.006 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - Table 'iTrust2.GeneralCheckups' doesn't exist
+alter table GeneralCheckups drop foreign key FK9tghbxo0xq6bba8p1rp7rbecg
+22:06:10.006 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - HHH000389: Unsuccessful: alter table GeneralCheckups drop foreign key FK9tghbxo0xq6bba8p1rp7rbecg
+22:06:10.006 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - Table 'iTrust2.GeneralCheckups' doesn't exist
+alter table GeneralCheckups drop foreign key FK5fa5nrrfo22p8q5xiptgh83x5
+22:06:10.007 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - HHH000389: Unsuccessful: alter table GeneralCheckups drop foreign key FK5fa5nrrfo22p8q5xiptgh83x5
+22:06:10.008 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - Table 'iTrust2.GeneralCheckups' doesn't exist
+alter table GeneralOphthalmology drop foreign key FKtcx79uvv1o4wrp9xqdk3hcap2
+22:06:10.008 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - HHH000389: Unsuccessful: alter table GeneralOphthalmology drop foreign key FKtcx79uvv1o4wrp9xqdk3hcap2
+22:06:10.008 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - Table 'iTrust2.GeneralOphthalmology' doesn't exist
+alter table GeneralOphthalmology drop foreign key FK6svu0my7r662s5sn2d7cgf1jq
+22:06:10.010 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - HHH000389: Unsuccessful: alter table GeneralOphthalmology drop foreign key FK6svu0my7r662s5sn2d7cgf1jq
+22:06:10.011 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - Table 'iTrust2.GeneralOphthalmology' doesn't exist
+alter table GeneralOphthalmology drop foreign key FKfeh4gtxe0s4kr52i7u5i8tkum
+22:06:10.011 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - HHH000389: Unsuccessful: alter table GeneralOphthalmology drop foreign key FKfeh4gtxe0s4kr52i7u5i8tkum
+22:06:10.011 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - Table 'iTrust2.GeneralOphthalmology' doesn't exist
+alter table GeneralOphthalmology drop foreign key FKc5kn71vr8tbt5ty5cc7pfrbgf
+22:06:10.014 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - HHH000389: Unsuccessful: alter table GeneralOphthalmology drop foreign key FKc5kn71vr8tbt5ty5cc7pfrbgf
+22:06:10.014 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - Table 'iTrust2.GeneralOphthalmology' doesn't exist
+alter table GeneralOphthalmology drop foreign key FKr2whnupl6f7k12gx78f5lhdx9
+22:06:10.016 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - HHH000389: Unsuccessful: alter table GeneralOphthalmology drop foreign key FKr2whnupl6f7k12gx78f5lhdx9
+22:06:10.016 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - Table 'iTrust2.GeneralOphthalmology' doesn't exist
+alter table LabProcedures drop foreign key FKn8ctd2oj7knwaxxfakrmwybj6
+22:06:10.018 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - HHH000389: Unsuccessful: alter table LabProcedures drop foreign key FKn8ctd2oj7knwaxxfakrmwybj6
+22:06:10.018 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - Table 'iTrust2.LabProcedures' doesn't exist
+alter table LabProcedures drop foreign key FKq97sa9kb1vkse9jbn0s38drei
+22:06:10.022 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - HHH000389: Unsuccessful: alter table LabProcedures drop foreign key FKq97sa9kb1vkse9jbn0s38drei
+22:06:10.022 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - Table 'iTrust2.LabProcedures' doesn't exist
+alter table LabProcedures drop foreign key FKd9netwr78cspphyqtctsdy9cl
+22:06:10.023 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - HHH000389: Unsuccessful: alter table LabProcedures drop foreign key FKd9netwr78cspphyqtctsdy9cl
+22:06:10.023 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - Table 'iTrust2.LabProcedures' doesn't exist
+alter table LabProcedures drop foreign key FKf1qdex4yna7yac0e29xylgqt7
+22:06:10.024 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - HHH000389: Unsuccessful: alter table LabProcedures drop foreign key FKf1qdex4yna7yac0e29xylgqt7
+22:06:10.024 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - Table 'iTrust2.LabProcedures' doesn't exist
+alter table LoginAttempts drop foreign key FK6me6sh9op6gntvqnqqqiev95q
+22:06:10.024 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - HHH000389: Unsuccessful: alter table LoginAttempts drop foreign key FK6me6sh9op6gntvqnqqqiev95q
+22:06:10.024 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - Table 'iTrust2.LoginAttempts' doesn't exist
+alter table LoginBans drop foreign key FKpmi5daj2jt8w5gq9maxjpro1f
+22:06:10.025 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - HHH000389: Unsuccessful: alter table LoginBans drop foreign key FKpmi5daj2jt8w5gq9maxjpro1f
+22:06:10.025 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - Table 'iTrust2.LoginBans' doesn't exist
+alter table LoginLockouts drop foreign key FKhndsii960xs59bv7a7x5669ii
+22:06:10.025 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - HHH000389: Unsuccessful: alter table LoginLockouts drop foreign key FKhndsii960xs59bv7a7x5669ii
+22:06:10.025 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - Table 'iTrust2.LoginLockouts' doesn't exist
+alter table OphthalmologySurgery drop foreign key FK2ab5y8krlqw4407jo9je2rodh
+22:06:10.025 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - HHH000389: Unsuccessful: alter table OphthalmologySurgery drop foreign key FK2ab5y8krlqw4407jo9je2rodh
+22:06:10.025 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - Table 'iTrust2.OphthalmologySurgery' doesn't exist
+alter table OphthalmologySurgery drop foreign key FK64ijwgpf2cbt4t6vcwyj0vy77
+22:06:10.026 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - HHH000389: Unsuccessful: alter table OphthalmologySurgery drop foreign key FK64ijwgpf2cbt4t6vcwyj0vy77
+22:06:10.026 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - Table 'iTrust2.OphthalmologySurgery' doesn't exist
+alter table OphthalmologySurgery drop foreign key FK43k7w4nn8hxf36s3xonve9l5v
+22:06:10.027 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - HHH000389: Unsuccessful: alter table OphthalmologySurgery drop foreign key FK43k7w4nn8hxf36s3xonve9l5v
+22:06:10.030 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - Table 'iTrust2.OphthalmologySurgery' doesn't exist
+alter table OphthalmologySurgery drop foreign key FKg3nwmi2eh9lxpys9gom75nsvx
+22:06:10.031 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - HHH000389: Unsuccessful: alter table OphthalmologySurgery drop foreign key FKg3nwmi2eh9lxpys9gom75nsvx
+22:06:10.031 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - Table 'iTrust2.OphthalmologySurgery' doesn't exist
+alter table OphthalmologySurgery drop foreign key FK526jd5m6bguykj27g8jbl2idt
+22:06:10.031 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - HHH000389: Unsuccessful: alter table OphthalmologySurgery drop foreign key FK526jd5m6bguykj27g8jbl2idt
+22:06:10.031 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - Table 'iTrust2.OphthalmologySurgery' doesn't exist
+alter table PasswordResetTokens drop foreign key FKdtqvlc6is6k5ibp1xc1nshrc8
+22:06:10.031 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - HHH000389: Unsuccessful: alter table PasswordResetTokens drop foreign key FKdtqvlc6is6k5ibp1xc1nshrc8
+22:06:10.032 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - Table 'iTrust2.PasswordResetTokens' doesn't exist
+alter table Patients drop foreign key FKe0d1x2xac4nte49udxrwdiew5
+22:06:10.032 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - HHH000389: Unsuccessful: alter table Patients drop foreign key FKe0d1x2xac4nte49udxrwdiew5
+22:06:10.032 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - Table 'iTrust2.Patients' doesn't exist
+alter table Patients drop foreign key FK8s22h2pw102ce5ytcmqmhegp3
+22:06:10.033 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - HHH000389: Unsuccessful: alter table Patients drop foreign key FK8s22h2pw102ce5ytcmqmhegp3
+22:06:10.033 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - Table 'iTrust2.Patients' doesn't exist
+alter table Patients drop foreign key FK3aemk5yjohgj9y6j4lq57g4o5
+22:06:10.033 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - HHH000389: Unsuccessful: alter table Patients drop foreign key FK3aemk5yjohgj9y6j4lq57g4o5
+22:06:10.033 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - Table 'iTrust2.Patients' doesn't exist
+alter table PERSONAL_REPRESENTATIVES drop foreign key FK4xcw5y8obck13wkbeja8cxy6d
+22:06:10.033 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - HHH000389: Unsuccessful: alter table PERSONAL_REPRESENTATIVES drop foreign key FK4xcw5y8obck13wkbeja8cxy6d
+22:06:10.033 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - Table 'iTrust2.PERSONAL_REPRESENTATIVES' doesn't exist
+alter table PERSONAL_REPRESENTATIVES drop foreign key FKthu0xxghbfmojk34tnmg17qxd
+22:06:10.036 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - HHH000389: Unsuccessful: alter table PERSONAL_REPRESENTATIVES drop foreign key FKthu0xxghbfmojk34tnmg17qxd
+22:06:10.036 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - Table 'iTrust2.PERSONAL_REPRESENTATIVES' doesn't exist
+alter table Personnel drop foreign key FKa9l63705rm5c4tf50y9h9x8rp
+22:06:10.038 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - HHH000389: Unsuccessful: alter table Personnel drop foreign key FKa9l63705rm5c4tf50y9h9x8rp
+22:06:10.038 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - Table 'iTrust2.Personnel' doesn't exist
+alter table Prescriptions drop foreign key FKrr7q2rw34mv2h8p24dwo2sw39
+22:06:10.038 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - HHH000389: Unsuccessful: alter table Prescriptions drop foreign key FKrr7q2rw34mv2h8p24dwo2sw39
+22:06:10.038 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - Table 'iTrust2.Prescriptions' doesn't exist
+alter table Prescriptions drop foreign key FK11c0dywqeqm53244c088xriq0
+22:06:10.039 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - HHH000389: Unsuccessful: alter table Prescriptions drop foreign key FK11c0dywqeqm53244c088xriq0
+22:06:10.039 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - Table 'iTrust2.Prescriptions' doesn't exist
+alter table Prescriptions drop foreign key FKkhctha3d1ti34dbaplmn8tsyk
+22:06:10.041 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - HHH000389: Unsuccessful: alter table Prescriptions drop foreign key FKkhctha3d1ti34dbaplmn8tsyk
+22:06:10.042 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] ERROR o.h.tool.hbm2ddl.SchemaExport - Table 'iTrust2.Prescriptions' doesn't exist
+drop table if exists AppointmentRequests
+drop table if exists BasicHealthMetrics
+drop table if exists Diagnoses
+drop table if exists Drugs
+drop table if exists FoodDiaryEntry
+drop table if exists GeneralCheckups
+drop table if exists GeneralOphthalmology
+drop table if exists hibernate_sequence
+drop table if exists Hospitals
+drop table if exists ICDCodes
+drop table if exists LabProcedures
+drop table if exists LogEntries
+drop table if exists LoginAttempts
+drop table if exists LoginBans
+drop table if exists LoginLockouts
+drop table if exists LOINCCodes
+drop table if exists OphthalmologySurgery
+drop table if exists PasswordResetTokens
+drop table if exists Patients
+drop table if exists PERSONAL_REPRESENTATIVES
+drop table if exists Personnel
+drop table if exists Prescriptions
+drop table if exists Users
+create table AppointmentRequests (id bigint not null, comments varchar(255), date datetime, status varchar(255), type varchar(255), hcp_id varchar(100), patient_id varchar(100), primary key (id))
+create table BasicHealthMetrics (id bigint not null, diastolic integer, hdl integer, headCircumference float, height float, houseSmokingStatus integer, ldl integer, patientSmokingStatus integer, systolic integer, tri integer, weight float, hcp_id varchar(100), patient_id varchar(100), primary key (id))
+create table Diagnoses (id bigint not null, note varchar(255), code_id bigint, visit_id bigint not null, primary key (id))
+create table Drugs (id bigint not null, code varchar(255), description varchar(255), name varchar(255), primary key (id))
+create table FoodDiaryEntry (id bigint not null, calories integer, carbs integer, date datetime, fat integer, fiber integer, food varchar(255), mealType varchar(255), patient varchar(255), protein integer, servings integer, sodium integer, sugars integer, primary key (id))
+create table GeneralCheckups (id bigint not null, date datetime, notes varchar(255), type varchar(255), appointment_id bigint, basichealthmetrics_id bigint, hcp_id varchar(100), hospital_id varchar(100), patient_id varchar(100), primary key (id))
+create table GeneralOphthalmology (id bigint not null, date datetime, notes varchar(255), type varchar(255), axisOD integer, axisOS integer, cylinderOD double precision, cylinderOS double precision, sphereOD double precision, sphereOS double precision, visualAcuityOD integer, visualAcuityOS integer, diagnosis varchar(255), appointment_id bigint, basichealthmetrics_id bigint, hcp_id varchar(100), hospital_id varchar(100), patient_id varchar(100), primary key (id))
+create table hibernate_sequence (next_val bigint)
+insert into hibernate_sequence values ( 1 )
+insert into hibernate_sequence values ( 1 )
+insert into hibernate_sequence values ( 1 )
+insert into hibernate_sequence values ( 1 )
+insert into hibernate_sequence values ( 1 )
+insert into hibernate_sequence values ( 1 )
+insert into hibernate_sequence values ( 1 )
+insert into hibernate_sequence values ( 1 )
+insert into hibernate_sequence values ( 1 )
+insert into hibernate_sequence values ( 1 )
+insert into hibernate_sequence values ( 1 )
+insert into hibernate_sequence values ( 1 )
+insert into hibernate_sequence values ( 1 )
+insert into hibernate_sequence values ( 1 )
+insert into hibernate_sequence values ( 1 )
+insert into hibernate_sequence values ( 1 )
+insert into hibernate_sequence values ( 1 )
+create table Hospitals (name varchar(255) not null, address varchar(255), state varchar(255), zip varchar(255), primary key (name))
+create table ICDCodes (id bigint not null, code varchar(255), description varchar(255), primary key (id))
+create table LabProcedures (id bigint not null, comments varchar(255), priority varchar(255), status varchar(255), labtech varchar(100), LOINC_code bigint, patient varchar(100), visit bigint not null, primary key (id))
+create table LogEntries (id bigint not null, logCode integer, message varchar(255), primaryUser varchar(255), secondaryUser varchar(255), time datetime, primary key (id))
+create table LoginAttempts (id bigint not null, ip varchar(255), time datetime, user_id varchar(100), primary key (id))
+create table LoginBans (id bigint not null, ip varchar(255), time datetime, user_id varchar(100), primary key (id))
+create table LoginLockouts (id bigint not null, ip varchar(255), time datetime, user_id varchar(100), primary key (id))
+create table LOINCCodes (id bigint not null, code varchar(255), commonName varchar(255), component varchar(255), property varchar(255), primary key (id))
+create table OphthalmologySurgery (id bigint not null, date datetime, notes varchar(255), type varchar(255), axisOD integer, axisOS integer, cylinderOD double precision, cylinderOS double precision, sphereOD double precision, sphereOS double precision, visualAcuityOD integer, visualAcuityOS integer, surgeryType integer, appointment_id bigint, basichealthmetrics_id bigint, hcp_id varchar(100), hospital_id varchar(100), patient_id varchar(100), primary key (id))
+create table PasswordResetTokens (id bigint not null, creationTime bigint not null, tempPassword varchar(255), user_id varchar(100), primary key (id))
+create table Patients (address1 varchar(255), address2 varchar(255), bloodType varchar(255), causeOfDeath varchar(255), city varchar(255), dateOfBirth datetime, dateOfDeath datetime, email varchar(255), ethnicity varchar(255), firstName varchar(255), gender varchar(255), id bigint, lastName varchar(255), phone varchar(255), preferredName varchar(255), state varchar(255), zip varchar(255), self_id varchar(100) not null, father_id varchar(100), mother_id varchar(100), primary key (self_id))
+create table PERSONAL_REPRESENTATIVES (patient_id varchar(100) not null, representative_id varchar(100) not null, primary key (patient_id, representative_id))
+create table Personnel (id bigint not null, address1 varchar(255), address2 varchar(255), city varchar(255), email varchar(255), enabled bit not null, firstName varchar(255), lastName varchar(255), phone varchar(255), specialty varchar(255), state varchar(255), zip varchar(255), self_id varchar(100), primary key (id))
+create table Prescriptions (id bigint not null, dosage integer not null, endDate datetime, renewals integer not null, startDate datetime, drug_id bigint, patient_id varchar(100), prescriptions_id bigint, primary key (id))
+create table Users (username varchar(255) not null, enabled integer, password varchar(255), role varchar(255), primary key (username))
+alter table AppointmentRequests add constraint FKlpa5tri2ufo8t7bt7nusa1pss foreign key (hcp_id) references Users (username)
+alter table AppointmentRequests add constraint FKo65c0ooyqou8d1x56y37u1nau foreign key (patient_id) references Users (username)
+alter table BasicHealthMetrics add constraint FKd9uamofafbqloq2v2j2o4f0pg foreign key (hcp_id) references Users (username)
+alter table BasicHealthMetrics add constraint FKj6od5nqw6nvjgmpuilsfj3ad foreign key (patient_id) references Users (username)
+alter table Diagnoses add constraint FKthsk14tdxoeeadlpvkot8fdhb foreign key (code_id) references ICDCodes (id)
+alter table Diagnoses add constraint FKjm5cnpdmv6x9iajrypt72lguy foreign key (visit_id) references GeneralCheckups (id)
+alter table GeneralCheckups add constraint FKtgti6uflcm2q9uvfx4obmpwv4 foreign key (appointment_id) references AppointmentRequests (id)
+alter table GeneralCheckups add constraint FKqtpf2nfiuf47019rc8gnaeb6v foreign key (basichealthmetrics_id) references BasicHealthMetrics (id)
+alter table GeneralCheckups add constraint FKplofss0lwup9mbnu0abrtalxx foreign key (hcp_id) references Users (username)
+alter table GeneralCheckups add constraint FK9tghbxo0xq6bba8p1rp7rbecg foreign key (hospital_id) references Hospitals (name)
+alter table GeneralCheckups add constraint FK5fa5nrrfo22p8q5xiptgh83x5 foreign key (patient_id) references Users (username)
+alter table GeneralOphthalmology add constraint FKtcx79uvv1o4wrp9xqdk3hcap2 foreign key (appointment_id) references AppointmentRequests (id)
+alter table GeneralOphthalmology add constraint FK6svu0my7r662s5sn2d7cgf1jq foreign key (basichealthmetrics_id) references BasicHealthMetrics (id)
+alter table GeneralOphthalmology add constraint FKfeh4gtxe0s4kr52i7u5i8tkum foreign key (hcp_id) references Users (username)
+alter table GeneralOphthalmology add constraint FKc5kn71vr8tbt5ty5cc7pfrbgf foreign key (hospital_id) references Hospitals (name)
+alter table GeneralOphthalmology add constraint FKr2whnupl6f7k12gx78f5lhdx9 foreign key (patient_id) references Users (username)
+alter table LabProcedures add constraint FKn8ctd2oj7knwaxxfakrmwybj6 foreign key (labtech) references Users (username)
+alter table LabProcedures add constraint FKq97sa9kb1vkse9jbn0s38drei foreign key (LOINC_code) references LOINCCodes (id)
+alter table LabProcedures add constraint FKd9netwr78cspphyqtctsdy9cl foreign key (patient) references Users (username)
+alter table LabProcedures add constraint FKf1qdex4yna7yac0e29xylgqt7 foreign key (visit) references GeneralCheckups (id)
+alter table LoginAttempts add constraint FK6me6sh9op6gntvqnqqqiev95q foreign key (user_id) references Users (username)
+alter table LoginBans add constraint FKpmi5daj2jt8w5gq9maxjpro1f foreign key (user_id) references Users (username)
+alter table LoginLockouts add constraint FKhndsii960xs59bv7a7x5669ii foreign key (user_id) references Users (username)
+alter table OphthalmologySurgery add constraint FK2ab5y8krlqw4407jo9je2rodh foreign key (appointment_id) references AppointmentRequests (id)
+alter table OphthalmologySurgery add constraint FK64ijwgpf2cbt4t6vcwyj0vy77 foreign key (basichealthmetrics_id) references BasicHealthMetrics (id)
+alter table OphthalmologySurgery add constraint FK43k7w4nn8hxf36s3xonve9l5v foreign key (hcp_id) references Users (username)
+alter table OphthalmologySurgery add constraint FKg3nwmi2eh9lxpys9gom75nsvx foreign key (hospital_id) references Hospitals (name)
+alter table OphthalmologySurgery add constraint FK526jd5m6bguykj27g8jbl2idt foreign key (patient_id) references Users (username)
+alter table PasswordResetTokens add constraint FKdtqvlc6is6k5ibp1xc1nshrc8 foreign key (user_id) references Users (username)
+alter table Patients add constraint FKe0d1x2xac4nte49udxrwdiew5 foreign key (self_id) references Users (username)
+alter table Patients add constraint FK8s22h2pw102ce5ytcmqmhegp3 foreign key (father_id) references Users (username)
+alter table Patients add constraint FK3aemk5yjohgj9y6j4lq57g4o5 foreign key (mother_id) references Users (username)
+alter table PERSONAL_REPRESENTATIVES add constraint FK4xcw5y8obck13wkbeja8cxy6d foreign key (representative_id) references Patients (self_id)
+alter table PERSONAL_REPRESENTATIVES add constraint FKthu0xxghbfmojk34tnmg17qxd foreign key (patient_id) references Patients (self_id)
+alter table Personnel add constraint FKa9l63705rm5c4tf50y9h9x8rp foreign key (self_id) references Users (username)
+alter table Prescriptions add constraint FKrr7q2rw34mv2h8p24dwo2sw39 foreign key (drug_id) references Drugs (id)
+alter table Prescriptions add constraint FK11c0dywqeqm53244c088xriq0 foreign key (patient_id) references Users (username)
+alter table Prescriptions add constraint FKkhctha3d1ti34dbaplmn8tsyk foreign key (prescriptions_id) references GeneralCheckups (id)
+22:06:10.914 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] INFO  o.h.tool.hbm2ddl.SchemaExport - HHH000230: Schema export complete
+22:06:11.043 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] WARN  org.hibernate.orm.connections - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+22:06:11.043 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] INFO  org.hibernate.orm.connections - HHH10001005: using driver [com.mysql.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/iTrust2?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=EST&allowPublicKeyRetrieval=true]
+22:06:11.043 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] INFO  org.hibernate.orm.connections - HHH10001001: Connection properties: {user=root, password=****}
+22:06:11.043 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] INFO  org.hibernate.orm.connections - HHH10001003: Autocommit mode: false
+22:06:11.043 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] INFO  o.h.e.j.c.i.DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 100 (min=1)
+22:06:11.062 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+22:06:11.398 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] WARN  org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): edu.ncsu.csc.itrust2.models.persistent.Patient
+22:06:11.398 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] WARN  org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): edu.ncsu.csc.itrust2.models.persistent.Patient
+22:06:11.555 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 5.4.1.Final
+22:06:12.898 [edu.ncsu.csc.itrust2.utils.HibernateDataGenerator.main()] INFO  o.h.tool.hbm2ddl.SchemaUpdate - HHH000228: Running hbm2ddl schema update
+[8mha:////4GnOszgTR1nghhiP0Ksjg2bEYloIg/aRNwCC3fn5//IHAAAApB+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOIihKgQVVrLDS8wsTFOrDtjOyQVL+Jr/IFAJCq2WO1sM88XLFOEI0eLraHOUWocBt/baeHAsbt4HrDlMzZMib1BaQbJ2tQzSs4G5hQlLASsDDWekyObYS1adVeVV2SrU47TdxBQOn2DBxRiMmcV8xfGCJtrrxPTz/NXAGPIUG53n9qHN0uFte2+AAAA[0m[Pipeline] jacoco
+[JaCoCo plugin] Collecting JaCoCo coverage data...
+[JaCoCo plugin] **/**.exec;target/classes;src/main/java; locations are configured
+[JaCoCo plugin] Number of found exec files for pattern **/**.exec: 1
+[JaCoCo plugin] Saving matched execfiles:  /var/lib/jenkins/workspace/iTrust_build@2/iTrust2/target/coverage-reports/jacoco-ut.exec
+[JaCoCo plugin] Saving matched class directories for class-pattern: target/classes: 
+[JaCoCo plugin]  - /var/lib/jenkins/workspace/iTrust_build@2/iTrust2/target/classes 107 files
+[JaCoCo plugin] Saving matched source directories for source-pattern: src/main/java: 
+[JaCoCo plugin] Source Inclusions: **/*.java
+[JaCoCo plugin] Source Exclusions: 
+[JaCoCo plugin] - /var/lib/jenkins/workspace/iTrust_build@2/iTrust2/src/main/java 110 files
+[JaCoCo plugin] Loading inclusions files..
+[JaCoCo plugin] inclusions: []
+[JaCoCo plugin] exclusions: [src/test*]
+[JaCoCo plugin] Thresholds: JacocoHealthReportThresholds [minClass=0, maxClass=0, minMethod=0, maxMethod=0, minLine=0, maxLine=0, minBranch=0, maxBranch=0, minInstruction=0, maxInstruction=0, minComplexity=0, maxComplexity=0]
+[JaCoCo plugin] Publishing the results..
+[JaCoCo plugin] Loading packages..
+[JaCoCo plugin] Done.
+[JaCoCo plugin] Overall coverage: class: 97, method: 87, line: 78, branch: 62, instruction: 76
+[8mha:////4Fa7BEm16rykGfj4xhDUSwpcvkWGZKJ70vXEAbjNwi3IAAAApR+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOIihESDqNJabniBiY1xYt0Z2yGpeBFf4w8EIlGxxWpnm3m+YJkiHDlabA11jlLjMPjeTgsHjt3F84Atn7FhSuwNSjNI1qaeUXI2MKcoYSFgZajxnBzZDGvRqruqvCJbnXKcvoOA0ukbPKAQkzmrmL8wRthce52Yfp6/AhhDyFBu95/avQEeFbpZvgAAAA==[0m[Pipeline] }
+[8mha:////4Oyjribu9zz/7Vk7qlnOxHdnXXs75oJThTivS0Q3b0EgAAAApB+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOIiaCgQVVrLDS8wsTFOrDtjOyQVL+Jr/IFAJCq2WO1sM88XLFOEI0eLraHOUWocBt/baeHAsbt4HrDlMzZMib1BaQbJ2tQzSs4G5hQlLASsDDWekyObYS1adVeVV2SrU47TdxBQOn2DBxRiMmcV8xfGCJtrrxPTz/NXAGMIGcrt/lO7Ny324eW+AAAA[0m[Pipeline] // dir
+[8mha:////4JJMVvCpZAn31av6ahP3MiYa6xcj4aXXwIoKVOEUF4aeAAAApB+LCAAAAAAAAP9tjbEOwiAURV9rHFwd/QiabibGyZWw+AXYIkLJexSodPKL/DX/QbSJk3e4uecu5/mCdQxwpKCZVTgYjJ1h3k26LJYpDFdHmVm6sI4wklNMqCyoV6cFBSUFS6oaVhw2CjtH0aBOsOVW3mXjJOrmnEL5Dhxq04/wgIoXc5IhfWEOsLtNfST8ef4KYPY+Qd3uP9W+AUIVvo2+AAAA[0m[Pipeline] }
+[8mha:////4KBZTJFVvzTPmKbiATZsEnIfOffxYH7/46qu5115Vx68AAAAox+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOICJUJUaS03vMDExjix7oztkFS8iK/xBwKRqNhitbPNPF+wTBGOHC22hjpHqXEYfG+nhQPH7uJ5wJbP2DAl9galGSRrU88oORuYU5SwELAy1HhOjmyGtWjVXVVeka1OOU7fQUDp9A0eUIjJnFXMXxgjbK69Tkw/z18BjCFkKHf7T23fcfblMb4AAAA=[0m[Pipeline] // stage
+[8mha:////4CvGp+cXI1MfBjGW/REJ4Jn0E9JPSe4U6OLB9KdJsXHsAAAAph+LCAAAAAAAAP9tjTEOwjAQBM9BKWgpeYSDEB2iorXc8AITG+PEugv2haTiRXyNPxCIRMVWOyut5vmCMic4UPKycdgGzHWQXez91ORAqb1EGmRDZ1kTZopOajdosu44oyZ2MEcUsFCwdFhHygE9w0o15m6qaNBXJ07TtldQBHuDBwg1mdkk/sKYYH3tbSb8ef4KYOwYxI6h2G4+x/INK/7CYMEAAAA=[0m[Pipeline] stage
+[8mha:////4Nr7RvCKgPh7fV+HGXDuXyQhdpr7MEdmEFMPO31h1QljAAAAph+LCAAAAAAAAP9tjTEOwjAUQ3+LOrAycogUWBFT1ygLJwhNCGmj/8tPSjtxIq7GHWipxIQHy7ZkvdcbishwInaisdh6jLUXXejdlMRA3F4DDaKhi6gJIwUrlB0UGVstVVGysCjLYSVhbbEOFD26BBvZ6Icug0ZXnhNP21FC7s0dnpDJiZw0p28ZGba33kTCH+cvAMYuQX7Yzbafn8UHbGnGmsIAAAA=[0m[Pipeline] { (Test Build)
+[8mha:////4MBxZr2G8R2ac+dTAot5inZSJZdsBL9LSOAGIN+C1RVcAAAAph+LCAAAAAAAAP9tjTEOwjAUQ3+DOrAycohUdEVMrFEXThCaEJJG/7dJSjpxIq7GHWipxIQHy7ZkvdcbyhjgRMFwp7GzGFvLez+aOfFMobt5ytzRlbeEkbzmjc4NKX1ea0NJw6qCwUbAVmPrKVo0CXbCyYesvERTXVKYt6MAZtUATyjETE4ypG+ZAuzvo4qEP85fAEx9AlYfFquXZ/kBAsTc3cIAAAA=[0m[Pipeline] dir
+Running in /var/lib/jenkins/workspace/iTrust_build@2/iTrust2
+[8mha:////4CtxLM5ZEhPiS8iaEqVP4ZxKS3//Fc67zFPteaRw0tEhAAAAph+LCAAAAAAAAP9tjTEOwjAUQ3+LOrAycohUKiNiYo2ycILQhJA0+r9NUtKJE3E17kBLJSY8WLYl673eUMUAJwqGOY2dxdha1vvRzIllCt3NU2aOrqwljOQ1EzoLUvq8VkFJw6qihA2HrcbWU7RoEuy4kw9Ze4mmvqQwb0cOpVUDPKHgMznJkL5lCrC/jyoS/jh/ATD1CcqmWeywPKsPpnFij8IAAAA=[0m[Pipeline] {
+[8mha:////4B6umDedG3vOINZuIBkNgucRtMeUSE3gGwFHtpqiRw5KAAAApB+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOIiAR2iSmu54QUmNsaJdWdsh6TiRXyNPxCIRMUWq51t5vmCZYpw5GixNdQ5So3D4Hs7LRw4dhfPA7Z8xoYpsTcozSBZm3pGydnAnKKEhYCVocZzcmQzrEWr7qryimx1ynH6DgJKp2/wgEJM5qxi/sIYYXPtdWL6ef4KYAwZyu3uU/vwBrANZ3i+AAAA[0m[Pipeline] sh
++ mvn clean checkstyle:checkstyle findbugs:findbugs
+[INFO] Scanning for projects...
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building iTrust2 4.0.0
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ iTrust2 ---
+[INFO] Deleting /var/lib/jenkins/workspace/iTrust_build@2/iTrust2/target
+[INFO] 
+[INFO] --- maven-checkstyle-plugin:3.0.0:checkstyle (default-cli) @ iTrust2 ---
+[WARNING] Unable to locate Source XRef to link to - DISABLED
+[INFO] 
+[INFO] --- findbugs-maven-plugin:3.0.5:findbugs (default-cli) @ iTrust2 ---
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 11.865 s
+[INFO] Finished at: 2019-03-13T22:06:30+00:00
+[INFO] Final Memory: 34M/81M
+[INFO] ------------------------------------------------------------------------
+[8mha:////4FzOJDW7l1E42tTggsj1dGSEs70LuSn0mKC6bSyD+dYSAAAApB+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOIigagQVVrLDS8wsTFOrDtjOyQVL+Jr/IFAJCq2WO1sM88XLFOEI0eLraHOUWocBt/baeHAsbt4HrDlMzZMib1BaQbJ2tQzSs4G5hQlLASsDDWekyObYS1adVeVV2SrU47TdxBQOn2DBxRiMmcV8xfGCJtrrxPTz/NXAGPIUG53n9qHN/E8fGG+AAAA[0m[Pipeline] checkstyle
+[CHECKSTYLE] Collecting checkstyle analysis files...
+[CHECKSTYLE] Searching for all files in /var/lib/jenkins/workspace/iTrust_build@2/iTrust2 that match the pattern **/target/checkstyle-result.xml
+[CHECKSTYLE] Parsing 1 file in /var/lib/jenkins/workspace/iTrust_build@2/iTrust2
+[CHECKSTYLE] Successfully parsed file /var/lib/jenkins/workspace/iTrust_build@2/iTrust2/target/checkstyle-result.xml with 0 unique warnings and 0 duplicates.
+Skipping warnings blame since pipelines do not have an SCM link.%n
+[CHECKSTYLE] Computing warning deltas based on reference build #6
+[8mha:////4CNhxqjG15rLr8jurp9T9Yiwuccn6DCknwfiM/yr9hvGAAAApR+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOIigUSDqNJabniBiY1xYt0Z2yGpeBFf4w8EIlGxxWpnm3m+YJkiHDlabA11jlLjMPjeTgsHjt3F84Atn7FhSuwNSjNI1qaeUXI2MKcoYSFgZajxnBzZDGvRqruqvCJbnXKcvoOA0ukbPKAQkzmrmL8wRthce52Yfp6/AhhDhnK7+9Q+vAEyb1FKvgAAAA==[0m[Pipeline] findbugs
+[FINDBUGS] Collecting findbugs analysis files...
+[FINDBUGS] Searching for all files in /var/lib/jenkins/workspace/iTrust_build@2/iTrust2 that match the pattern **/target/findbugsXml.xml
+[FINDBUGS] No files found. Configuration error?
+Skipping warnings blame since pipelines do not have an SCM link.%n
+[FINDBUGS] Computing warning deltas based on reference build #6
+[8mha:////4MG+8zYFRgS1bgom5+Qrwg3+Zc+uutAeJMXINWBtLe6WAAAApR+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOIiQUGBqNJabniBiY1xYt0Z2yGpeBFf4w8EIlGxxWpnm3m+YJkiHDlabA11jlLjMPjeTgsHjt3F84Atn7FhSuwNSjNI1qaeUXI2MKcoYSFgZajxnBzZDGvRqruqvCJbnXKcvoOA0ukbPKAQkzmrmL8wRthce52Yfp6/AhhDyFBu95/avQHljyOIvgAAAA==[0m[Pipeline] }
+[8mha:////4GVUXDrxCx27V/G539sVjYBRDresmu0j7ZdRJuJjnq/MAAAApB+LCAAAAAAAAP9tjbEOwiAURV9rHFwd/QiadDIxTq6ExS/AFhFK3qNApZNf5K/5D6JNnLzDzT13Oc8XrGOAIwXNrMLBYOwM827SZbFMYbg6yszShXWEkZxiQmVBvTotKCgpWFLVsOKwUdg5igZ1gi238i4bJ1E35xTKd+BQm36EB1S8mJMM6QtzgN1t6iPhz/NXALP3Cep2/6n2DaYNcg6+AAAA[0m[Pipeline] // dir
+[8mha:////4ObmCSySscpF6v9Q0Df/ekLceHV7emy9OIfDAVqhloWbAAAApB+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOIi6BCiSmu54QUmNsaJdWdsh6TiRXyNPxCIRMUWq51t5vmCZYpw5GixNdQ5So3D4Hs7LRw4dhfPA7Z8xoYpsTcozSBZm3pGydnAnKKEhYCVocZzcmQzrEWr7qryimx1ynH6DgJKp2/wgEJM5qxi/sIYYXPtdWL6ef4KYAwhQ7nbf2r7BrmPJ1y+AAAA[0m[Pipeline] }
+[8mha:////4Fl+x2SnUQwgVtWIQJxsOteNHULQcEEi+jtfd9WNtRsKAAAApB+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOISQYmo0lppeIGJjXFi3RnbIal4EV/jD1hEomKL1c4283rDOgY4cTDYaxosxc6id6PJCycOw9XxhD1fsGOK7DS2empZ6WbBlpOGJUUJKwEbTZ3jaMkk2IpePmTlJJnqnEL+jgJKq+7whEJkc5IhfWEOsLuNKjL9PH8FMHufoDzUufb1B1PlWKq+AAAA[0m[Pipeline] // stage
+[8mha:////4IOWGk33W5VeLDNrcWLZ7dNty3SvyufBGx2ZOgJy78KxAAAAox+LCAAAAAAAAP9tjTEOwjAQBDdBFLSUPMIRgg5R0VppeIFJjHFi3QX7QlLxIr7GH4iIRMVWO9PM641lijhydKqx1HpKlVdd6N301MCxvQYeVMMXVTElDlaVdii5tqcZSxaLeVmOhcbKUhU4eXKCtW7MwxTBkCvOEid30Mh9fccTmZ7KYqJ8YYzY3Po6Mf06fwMYu06Q77aCbP8BPqPtor0AAAA=[0m[Pipeline] }
+[8mha:////4Pwyd5PRJ4YSiHPmhw3jZgEm4J8JxkHpdKFddk9xepNqAAAAoh+LCAAAAAAAAP9tjbEOgjAURS8YB1dHP6IkMhon14bFL6hQa6F5D9uHMPlF/pr/IJHEyTvdc5bzemOdIo4cnWotdZ5S7VUfBjc/NXLsroFH1fJF1UyJg1WVHStu7GnBisViWZZjpbGxVAdOnpxgq1vzMEUw5IqzxNkdNHLf3PFEpueymChfmCJ2t6FJTL/O3wCmvhfk5V6QlR9NTCl7vQAAAA==[0m[Pipeline] // node
+[8mha:////4NC4+5J5Tx0vRiu9pRqa8uCKHJEU51N/uHze+a5q+H2XAAAAoh+LCAAAAAAAAP9tjbEOgjAURS8YB1dHP6IkMhon14bFL6hQa6F5D9uHMPlF/pr/IJHEyTvdc5bzemOdIo4cnWotdZ5S7VUfBjc/NXLsroFH1fJF1UyJg1WVHStu7GnBisViWZZjpbGxVAdOnpxgq1vzMEUw5IqzxNkdNHLf3PFEpueymChfmCJ2t6FJTL/O3wCmvhfkZSnI9h9rVU4xvQAAAA==[0m[Pipeline] End of Pipeline
+Finished: SUCCESS

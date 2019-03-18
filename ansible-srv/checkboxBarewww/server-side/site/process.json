@@ -1,7 +1,0 @@
-{
-    "apps" : [{
-      "name"        : "checkout.io-tester",
-      "script"      : "./server.js",
-      "args"        : "start 3002"
-    }]
-}

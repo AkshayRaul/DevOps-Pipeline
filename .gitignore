@@ -1,4 +1,4 @@
 node_modules
 *.retry
-www-production
-iTrustBarewww
+inventory
+.vscode

@@ -6,25 +6,66 @@
 <properties/>
 <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.63">
 <script>
+
+
+
 pipeline{
   agent any
   stages{
     stage('Clone repository'){
      steps {
-        git([url:'vagrant@192.168.20.10:/ansible-srv/iTrustBareGit',branch:'master',credentialsId:'mykey'])
+        git([url:'root@134.209.115.128:/Project/ansible-srv/iTrust2/iTrust2-v4',branch:'master',credentialsId:'mykey'])
       }
     }
     stage ('Build project') {
       steps{
         dir('iTrust2'){
-        sh 'mvn -f pom-data.xml process-test-classes'
-        sh 'mvn clean test checkstyle:checkstyle'
+          sh 'mvn -f pom-data.xml process-test-classes'
+          step( [ $class: 'JacocoPublisher',
+                classPattern: 'target/classes',
+                sourcePattern: 'src/main/java',
+                exclusionPattern: 'src/test*',
+                changeBuildStatus: true,
+                maximumBranchCoverage:'60',
+                minimumBranchCoverage: '50', 
+                maximumClassCoverage: '80',
+                minimumClassCoverage: '70', 
+                minimumComplexityCoverage: '50',
+                maximumComplexityCoverage: '70', 
+                minimumInstructionCoverage: '60', 
+                maximumInstructionCoverage: '70', 
+                minimumLineCoverage: '70', 
+                maximumLineCoverage: '80', 
+                minimumMethodCoverage: '60',
+                maximumMethodCoverage: '80'
+              ] )
+        }       
         }
-        
+    }
+    stage('Static Code Analysis'){
+      steps{
+        dir('iTrust2'){
+            sh 'mvn findbugs:findbugs'
+            recordIssues tools: [
+                spotBugs(pattern: 'target/findbugsXml.xml'),
+                taskScanner(highTags:'FIXME', normalTags:'TODO', includePattern: '**/src/main/java/*.java', excludePattern: 'target/**/*')
+                ]           
+        }
+      }
+    }
+    stage('Test build'){
+      steps{
+        dir('iTrust2'){
+            sh 'mvn clean test'
+        }
+      }
     }
   }
-  }
+  
 }
+
+
+
 </script>
 <sandbox>true</sandbox>
 </definition>
