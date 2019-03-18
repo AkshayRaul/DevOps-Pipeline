@@ -208,4 +208,4 @@ Then run `npm test` to run `simple.js`. In `simple.js`, two tests will be checke
 Fuzzing technique helps software developers to come across loopholes that would have been ignored many times. Trying to randomly fuzz the code helps to come across many exceptions which help to make the software better. Fuzzing is a very cost effective technique and one can find an invalid input,a corrupted database and various vulnerabilities in the system.
 
  ##### ScreenCast:
- [Click here](https://drive.google.com/open?id=1Ivo299PbIZxvdac14e63yZQAuKM0ZWli) to watch the demo
+ [Click here](https://goo.gl/hKqmh4) to watch the demo
