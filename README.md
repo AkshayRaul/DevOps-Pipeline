@@ -11,6 +11,7 @@
     Akshay Raul- Worked on setup of ansible, git commit-reset of files,Integrated Jacoco for code coverage and analyzed Itrust using static analysis tool- FindBugs
     Cameron Nelson -  Added fuzzing operators and worked on checkbox.io analysis extension. 
 
+
 #### Build Instructions:
 ```
 1  git clone https://github.ncsu.edu/araul/Project_DevOps.git
@@ -24,6 +25,12 @@
 8. ansible-playbook -i inventory main.yml
 ```
 
+#### Setup Instructions
+
+Once the repository is clone, the sub modules of `iTrust` and `checkbox.io` are also cloned. To set these repositories with configuration files so that these projects are ready to be built, run the following playbook
+```
+$ ansible-playbook initialSetup.yml
+```
 ##### Main.yml does the following tasks using the following roles :- 
  - Installs MySQL and MongoDB servers (installs_dbs)
  - Installs Jenkins, creates a user, and installs Jenkins plugins (install_jenkins)
@@ -32,9 +39,14 @@
  - Fetches the logs of 100 builds in host
  - Test Prioritization on those 100 log files to generate a report
  
-#### Report:
+### Report:
 
-###### Analysis of Fuzzer and Test Prioritization
+##### Fetch Log
+In `tests` folder, `fetchLogs.yml` is a playbook that fetches last 100 build logs from jenkins server. To fetch the logs after the commits have been built, simply:
+```
+$ ansible-playbook -i inventory fetchLogs.yml
+```
+##### Analysis of Fuzzer and Test Prioritization
 We performed four fuzzing operations:
 1. Converting from '<' to '>' or '<' to '>'
 2. Adding random strings
@@ -107,12 +119,12 @@ Test Name: PasswordChangeTest, Average Test Duration: 2.347000000000001, Failure
 Test Name: PatientTest, Average Test Duration: 5.737859999999999, Failure count: 0
 ```
 
-###### Problems while working in this milestone
+##### Problems while working in this milestone
 - to have async operations like commiting and resetting needed the help of Promises
 - keeping the random probabilty low, could trigger a commit which has no changes, and the script would reset a commit which never existed, thus removing an actual commit from top of the stack(unconstructive), so had to make sure to handle such a case.
 - to consider cases of a fuzzing operation that would not compile iTrust, these cases would not trigger a test on iTrust and would therefore be useless
 
-###### Problems discovered by Fuzzer
+##### Problems discovered by Fuzzer
 - Randomly changing strings might compile but some strings have significance such as the case in File APIUserTest. 
   private static final String ROLE_ADMIN   = "ROLE_ADMIN"; Changing ROLE_ADMIN would fail test cases.
 - Changing == to != in cases where the condition checks for null fails the case as the next steps in the loop would not execute as expected causing the tests to fail. Example: 
@@ -122,12 +134,12 @@ if ( patient == null ) {
                     HttpStatus.NOT_FOUND );
         }
   ```
-###### Some ways fuzzing operations could be extended in the future
+##### Some ways fuzzing operations could be extended in the future
 - Fuzzing operations can be optimized w.r.t time by coming up with some predefined random operations that can be performed on similar files.
 - Fuzzing operations to convert primitive data type to non-primitive data type
 - There could be external libraries in the future which on fuzzing would give detailed analysis on the vulnerability such as the root cause, ways to solve such vulnerabilities etc
 
-###### Reasons the tests were ranked the highest
+##### Reasons the tests were ranked the highest
 APIPatientController (small snippet)
 ```java
 
@@ -165,7 +177,7 @@ APIUserTest (small snippet)
 ```
 There are many string operations that could violate and fail the build as any changes to the above string such as changing ROLE_ADMIN to some other string would violate.
 
-###### Approach for Analysis
+##### Approach for Analysis
 We performed the following analysis for checkbox.io:
 ```
 1. Cyclematic Complexity - The number of if statements/loops + 1 in each function.
@@ -204,8 +216,8 @@ SimpleCyclomaticComplexity: 2   MaxConditions: 0        Parameters: 3   LongMeth
 
 Then run `npm test` to run `simple.js`. In `simple.js`, two tests will be checked. The first is checking the status of a MongoDB server to make sure the server runs and stops correctly. The second test checks if all metrics performed in analysis.js returns a status of true. If the status returns true, the test/build passes. Otherwise, it fails.
 
-###### How do these checks help Software Developers?
+##### How do these checks help Software Developers?
 Fuzzing technique helps software developers to come across loopholes that would have been ignored many times. Trying to randomly fuzz the code helps to come across many exceptions which help to make the software better. Fuzzing is a very cost effective technique and one can find an invalid input,a corrupted database and various vulnerabilities in the system.
 
  ##### ScreenCast:
- [Click here](https://drive.google.com/open?id=1Ivo299PbIZxvdac14e63yZQAuKM0ZWli) to watch the demo
+ [Click here](https://goo.gl/hKqmh4) to watch the demo
