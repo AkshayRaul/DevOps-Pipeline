@@ -1,4 +1,17 @@
 ---
+  - name: Install nodejs
+    become: yes
+    get_url:
+      url: https://deb.nodesource.com/setup_8.x
+      dest: /root/
+  - name: Install Node PPA
+    become: yes
+    command: bash /root/setup_8.x
+  - name: Aptitude update
+    apt:
+      name: nodejs
+      update_cache: yes
+
   - name: Mysql | Set root password
     become: yes
     debconf:
