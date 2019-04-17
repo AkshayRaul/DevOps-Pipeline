@@ -66,10 +66,6 @@
   - name: install mongodb
     sudo: yes
     apt: name=mongodb state=latest update_cache=yes
-
-  - name: install nginx
-    become: true
-    apt: name=nginx state=latest update_cache=yes
     
   - name: Install a list of packages
     become: true
