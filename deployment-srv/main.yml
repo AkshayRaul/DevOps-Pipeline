@@ -9,4 +9,4 @@
 
   roles:
   - install_dbs
-  - install_tomcat
+  - install_servers
