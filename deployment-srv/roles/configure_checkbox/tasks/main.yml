@@ -1,0 +1,5 @@
+---
+  # - name: checkbox clone
+  #   repo: 'https://github.com/ashwinrisbood/checkbox.io.git'
+  #   dest: /var/www/html/
+  # - name: 

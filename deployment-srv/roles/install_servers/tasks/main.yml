@@ -1,4 +1,9 @@
 ---
+
+  - name: Install nginx
+    become: yes
+    apt: name=nginx state=installed
+
   - name: Install openjdk
     become: yes
     apt: name={{item}} state=installed
