@@ -8,5 +8,4 @@
     MONGO_PASSWORD: mongoadmin
 
   roles:
-  - install_dbs
-  - install_servers
+  - install_redis
