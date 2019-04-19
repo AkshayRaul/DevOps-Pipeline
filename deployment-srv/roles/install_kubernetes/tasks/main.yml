@@ -1,0 +1,76 @@
+---
+  - name: Run the equivalent of "apt-get update" as a separate step
+    apt:
+    update_cache: yes
+    become: yes
+
+  - name: Install required packages for k8
+    apt:
+      pkg: '{{item}}'
+      state: present
+      update_cache: yes
+    become: yes
+    with_items:
+      - apt-transport-https
+      - docker.io
+      - git
+      - python-pip
+
+
+  - name: Start and enable docker
+    systemd: state=started name=docker
+    become: yes
+
+  - name: Enable docker
+    systemd: enabled=yes name=docker
+    become: yes
+
+  - name: Install docker-py using pip
+    pip:
+      name: docker-py
+      state: present
+    become: yes
+
+  - name: get key for Kubernetes
+    apt_key:
+      url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+      state: present
+    become: yes
+
+  - name: Create sources.list.d file for Kubernetes
+    copy:
+      content: "deb http://apt.kubernetes.io/ kubernetes-xenial main"
+      dest: /etc/apt/sources.list.d/kubernetes.list
+      force: yes
+    become: yes
+
+  - name: Install Kubernetes applications
+    apt:
+      pkg: '{{item}}'
+      state: present
+      update_cache: yes
+    become: yes
+    with_items:
+      - kubelet
+      - kubeadm
+      - kubectl
+      - kubernetes-cni
+
+  - name: just force systemd to reread configs (2.4 and above)
+    systemd:
+      daemon_reload: yes
+
+  - name: just force systemd to reread configs (2.4 and above)
+    systemd:
+      name: kubelet
+      state: restarted
+
+  - name: Init k8 Master and pipe the output to a text file - output.txt
+    command: kubeadm init --pod-network-cidr=10.244.0.0/16 --apiserver-advertise-address $(hostname -i) > /root/k8-clusterConfig/output.txt
+    become: yes
+
+  - name : Apply flannel
+    command: kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/a70459be0084506e4ec919aa1c114638878db11b/Documentation/kube-flannel.yml
+
+  - name: Taint master node
+    command: kubectl taint nodes --all node-role.kubernetes.io/master-

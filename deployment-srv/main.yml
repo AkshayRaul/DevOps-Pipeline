@@ -6,8 +6,8 @@
     MONGO_PORT: 3002
     MONGO_USER: mongoadmin
     MONGO_PASSWORD: mongoadmin
+    KUBECONFIG: /etc/kubernetes/admin.conf
 
   roles:
   - install_dbs
   - install_servers
-  - configure_checkbox

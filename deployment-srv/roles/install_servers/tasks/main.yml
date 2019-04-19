@@ -4,6 +4,26 @@
     become: yes
     apt: name=nginx state=installed
 
+  - name: Copy nginx.conf from repo /etc/nginx
+    template: src="templates/nginx.conf" dest=/etc/nginx/nginx.conf
+    become: yes
+
+  - name: Modify the server root in the default file
+    replace:
+      path: "{{checkbox_path}}/local-conf/default"
+      regexp: "root (.)+;"
+      replace: "root {{checkbox_path}}/public_html/;"
+
+  - name: Copy default file from repo to nginx folder
+    template: src="templates/local-conf/default" dest=/etc/nginx/sites-available/default
+    become: yes
+
+  - name: Restart nginx
+    service:
+      name: nginx
+      state: restarted
+    become: yes
+
   - name: Install openjdk
     become: yes
     apt: name={{item}} state=installed
@@ -23,8 +43,13 @@
       src: /root/apache-tomcat-8.5.39.tar.gz
       dest: /root
       remote_src: yes 
+
+  - name: Extract contents from tomcat
+    become: :yes
+    command: mv /root/apache-tomcat-8.5.39 /root/apache-tomcat
+    
   - name: change directory and execute command
-    command: chdir=/root/apache-tomcat-8.5.39 ./bin/startup.sh
+    command: chdir=/root/apache-tomcat ./bin/startup.sh
 
 
 
