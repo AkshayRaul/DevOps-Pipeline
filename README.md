@@ -35,12 +35,18 @@ $ ansible-playbook initialSetup.yml
 
 #### Feature Flag:
 We used the feature of redis-cli to set two keys: 
+
 1: Url name
+
 2: Status of the URL to enable or disable
-The ansible script starts by installing redis,starts redis server,
+
+The ansible script starts by installing redis,starts redis server, starts the node file to redirect accordingly.
+
 Every link of Itrust goes through a proxy server which will check from redis key-value pair.
+
 After checking it will redirect accordingly if the url is disabled or not.
 Suppose urlKey:'/iTrust/patient' has status set to be enabled
+
 Then redirecting to '/iTrust/patient' will respond as feature disabled.
 
 
