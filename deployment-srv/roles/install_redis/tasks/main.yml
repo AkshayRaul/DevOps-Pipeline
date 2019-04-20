@@ -7,14 +7,35 @@
       dest: /root/
  
   - name: Extract contents from tomcat
-    become: :yes
+    become: yes
     unarchive:
       src: /root/redis-stable.tar.gz
       dest: /root
       remote_src: yes 
 
-  - name: change directory and execute command
-    command: chdir=/root/redis-stable/src redis-server 
+  - name: Put redis service file to run
+    become: yes
+    template: src=templates/redis.service dest=/etc/systemd/system/ owner=root mode=0600
 
-  - name: type command make 
-    
+  - name: start redis server
+    become: yes
+    systemd:
+      name: redis
+      state: started
+
+  - name: command make inside redis
+    command: chdir=/root/redis-stable/ make
+
+  - name: Move directory of redis to remote
+    copy: src=templates/express-redis dest=/root/
+
+  - name: Do npm install
+    npm:
+      path: /root/express-redis
+      state: present      
+
+  - name: Run index.js 
+    become: yes
+    systemd:
+      name: redis-proxy
+      state: started

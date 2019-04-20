@@ -10,7 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.4",
-    "http-proxy": "^1.17.0"
+    "http-proxy": "^1.17.0",
+    "redis": "^2.8.0"
   }
 }
 

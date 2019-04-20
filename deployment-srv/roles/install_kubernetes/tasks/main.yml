@@ -1,7 +1,7 @@
 ---
   - name: Run the equivalent of "apt-get update" as a separate step
     apt:
-    update_cache: yes
+      update_cache: yes
     become: yes
 
   - name: Install required packages for k8
@@ -64,9 +64,11 @@
     systemd:
       name: kubelet
       state: restarted
+  #- name: Kubeadm reset
+  #  command: kubeadm reset
 
   - name: Init k8 Master and pipe the output to a text file - output.txt
-    command: kubeadm init --pod-network-cidr=10.244.0.0/16 --apiserver-advertise-address $(hostname -i) > /root/k8-clusterConfig/output.txt
+    command: kubeadm init --pod-network-cidr=10.244.0.0/16 
     become: yes
 
   - name : Apply flannel
@@ -74,3 +76,21 @@
 
   - name: Taint master node
     command: kubectl taint nodes --all node-role.kubernetes.io/master-
+  
+  - name : Apply metallb
+    command: kubectl apply -f https://raw.githubusercontent.com/google/metallb/v0.7.3/manifests/metallb.yaml
+  
+  - name: Copy metallb config file
+    copy: src=templates/metal.yaml dest=/root/metal.yaml
+    become: yes
+ 
+  - name: Copy blue-green deployment file
+    copy: src=templates/bluegreen.yaml dest=/root/bluegreen.yaml
+    become: yes
+  
+  - name: Apply metallb
+    command:  kubectl apply -f /root/metal.yaml
+
+  - name: Apply bluegreen 
+    command:  kubectl apply -f /root/bluegreen.yaml
+

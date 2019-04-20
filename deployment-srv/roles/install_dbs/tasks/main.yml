@@ -5,9 +5,11 @@
     get_url:
       url: https://deb.nodesource.com/setup_8.x 
       dest: /root/
+
   - name: Install Node PPA
     become: yes
-    command: bash /root/setup_8.x
+    command: sh /root/setup_8.x
+ 
   - name: Aptitude update
     apt:
       name: nodejs

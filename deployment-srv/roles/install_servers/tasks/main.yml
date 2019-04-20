@@ -8,14 +8,8 @@
     template: src="templates/nginx.conf" dest=/etc/nginx/nginx.conf
     become: yes
 
-  - name: Modify the server root in the default file
-    replace:
-      path: "{{checkbox_path}}/local-conf/default"
-      regexp: "root (.)+;"
-      replace: "root {{checkbox_path}}/public_html/;"
-
   - name: Copy default file from repo to nginx folder
-    template: src="templates/local-conf/default" dest=/etc/nginx/sites-available/default
+    template: src="templates/default" dest=/etc/nginx/sites-available/default
     become: yes
 
   - name: Restart nginx
@@ -34,7 +28,7 @@
   - name: download tar file from url
     become: yes
     get_url:
-      url: http://ftp.naz.com/apache/tomcat/tomcat-8/v8.5.39/bin/apache-tomcat-8.5.39.tar.gz
+      url: https://www-us.apache.org/dist/tomcat/tomcat-8/v8.5.40/bin/apache-tomcat-8.5.40-fulldocs.tar.gz
       dest: /root/
  
   - name: Extract contents from tomcat

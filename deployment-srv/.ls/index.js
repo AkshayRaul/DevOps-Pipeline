@@ -11,20 +11,22 @@ app.use(function (req, res, next) {
   console.log(req.originalUrl);
   var url="/iTrust2/patient/index"
   var status_url=""
-  client.get("urlKey", function(err,value){ console.log(value)
+  client.get("urlKey", function(err,value){ 
    url=value;
-   client.get("status", function(err,value){ console.log(value)
-     status_url=value
-  });
-  if(req.originalUrl==url && status_url==true){
-   
+   client.get("status", function(err,value){ 
+     if(err)
+	console.log(err)
+     console.log(value)
+     if(req.originalUrl==url && value=="true"){
         console.log("NOT ALLOWED");
-        res.send("NOT ALLOWED");
-  }
+        res.send("Feature under construction");
+     }
+     else  next();
+
+  });
 
   });
  
-  next()
 })
 
 
