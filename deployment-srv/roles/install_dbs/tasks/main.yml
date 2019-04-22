@@ -93,3 +93,13 @@
     become: true
     npm:
       path: /opt/checkbox.io/server-side/site
+ 
+  - name: copy sql files for Itrust requirement
+    become: true
+    template: src=templates/users.sql dest=/root/ owner=root mode=0600
+
+  - name: Import the dbs
+    become: true
+    shell: mysql iTrust2 < /root/users.sql
+   
+ 

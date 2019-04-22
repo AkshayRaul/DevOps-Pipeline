@@ -64,8 +64,9 @@
     systemd:
       name: kubelet
       state: restarted
-  #- name: Kubeadm reset
-  #  command: kubeadm reset
+  - name: Kubeadm reset
+    shell: "kubeadm reset --force"
+    ignore_errors: True
 
   - name: Init k8 Master and pipe the output to a text file - output.txt
     command: kubeadm init --pod-network-cidr=10.244.0.0/16 

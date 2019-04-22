@@ -1,0 +1,2 @@
+redis_location: /root/redis-stable
+redis_proxy: /root/express-redis

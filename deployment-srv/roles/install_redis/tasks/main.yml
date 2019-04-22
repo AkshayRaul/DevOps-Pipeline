@@ -24,14 +24,18 @@
       state: started
 
   - name: command make inside redis
-    command: chdir=/root/redis-stable/ make
+    command: chdir="{{redis_location}}" make
 
   - name: Move directory of redis to remote
-    copy: src=templates/express-redis dest=/root/
+    copy: src=templates/express-redis dest="{{redis_proxy}}"
+
+  - name: Put redis service file to run
+    become: yes
+    template: src=templates/redis-proxy.service dest=/etc/systemd/system/ owner=root mode=0600
 
   - name: Do npm install
     npm:
-      path: /root/express-redis
+      path: "{{redis_proxy}}"
       state: present      
 
   - name: Run index.js 
