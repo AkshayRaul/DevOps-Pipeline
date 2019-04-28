@@ -9,7 +9,9 @@
     KUBECONFIG: /etc/kubernetes/admin.conf
 
   roles:
-  #- install_dbs
+   - install_dbs
    - install_redis
-  #- install_servers
- # - install_kubernetes
+   - install_servers
+   - install_kubernetes
+   - install_datadog
+

@@ -69,9 +69,9 @@ class DigitalOceanProvider {
 		{
 			"name": dropletName,
 			"region": region,
-			"size": "512mb",
+			"size": "2gb",
 			"image": imageName,
-			"ssh_keys": ["8e:3a:be:93:8c:86:ba:55:1c:37:dc:4d:ed:fc:9c:56"],
+			"ssh_keys": ["32:46:bb:f8:50:55:5f:8f:e6:ea:3c:15:97:e0:1d:91"],
 			"backups": false,
 			"ipv6": false,
 			"user_data": null,
@@ -117,7 +117,7 @@ class DigitalOceanProvider {
 
 		if( !response ) return;
 
-		console.log(response.body.droplet.networks.v4);
+		return response.body.droplet;
 
 	}
 
@@ -132,7 +132,7 @@ class DigitalOceanProvider {
 
 		if( !response ) return;
 
-		console.log(response.statusCode);
+		onsole.log(response.statusCode);
 		console.log(response.body);
 
 		if(response.statusCode == 204)
@@ -151,25 +151,29 @@ async function provision() {
 	await client.listImages();
 
 	//credentials
-	var name = "araul";
+	var name = "deployment-srv";
 	var region = "nyc1"; // Fill one in from #1
-	var image = "ubuntu-16-04-x64-do"; // Fill one in from #2
+	var image = "ubuntu-16-04-x64"; // Fill one in from #2
 	var dropletId = await client.createDroplet(name, region, image);
-	var dropletInfo = await client.dropletInfo(parseInt(dropletId));
-	var ip_address= "asdasd"; //dropletInfo.networks.v4[0].ip_address;
+        console.log("IP Stored in file")
+	setTimeout(setIp,20000,client,dropletId)
+}
+async function setIp(client,dropletId){
 	
-	// create inventory file 
-	var inventoryString=`[web] 
+	var dropletInfo = await client.dropletInfo(parseInt(dropletId));
+	var ip_address= dropletInfo.networks.v4[0].ip_address;
+
+        // create inventory file 
+        var inventoryString=`[web] 
 deployment-srv ansible_host=${ip_address} ansible_ssh_user=root ansible_python_interpreter=/usr/bin/python3 ansible_ssh_private_key_file=/keys/do_rsa1 
 [web:vars]
 ansible_python_interpreter=/usr/bin/python3`
 
         fs.writeFile('../deployment-srv/inventory', inventoryString, function (err) {
-  		if (err) throw err;
-		console.log('Saved!');
-	});
+                if (err) throw err;
+                console.log('Saved!');
+        });
 
-	
 }
 
 

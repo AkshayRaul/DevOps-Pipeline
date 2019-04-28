@@ -95,3 +95,23 @@
   - name: Apply bluegreen 
     command:  kubectl apply -f /root/bluegreen.yaml
 
+  - name: Clone dockerhub-webhook reciever repo
+    git:
+      repo: https://github.com/ashwinrisbood/dockerhub-webhook.git
+      dest: /var/www/dockerhub-webhook
+      force: yes
+      
+  - name: Install npm packages 
+    npm: path=/var/www/dockerhub-webhook
+
+  - name: "Install forever (to run Node.js app)."
+    npm: name=forever global=yes state=present
+ 
+  - name: "Check list of Node.js apps running."
+    command: forever list
+    register: forever_list
+    changed_when: false
+
+  - name: "Start example Node.js app."
+    command: forever start /var/www/dockerhub-webhook/index.js
+    when: "forever_list.stdout.find('/var/www/index.js') == -1"

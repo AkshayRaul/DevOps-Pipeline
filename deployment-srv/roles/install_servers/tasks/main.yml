@@ -28,19 +28,24 @@
   - name: download tar file from url
     become: yes
     get_url:
-      url: https://www-us.apache.org/dist/tomcat/tomcat-8/v8.5.40/bin/apache-tomcat-8.5.40-fulldocs.tar.gz
+      url: http://apache.osuosl.org/tomcat/tomcat-8/v{{tomcat8_version}}/bin/apache-tomcat-{{tomcat8_version}}.tar.gz
       dest: /root/
  
   - name: Extract contents from tomcat
     become: :yes
     unarchive:
-      src: /root/apache-tomcat-8.5.39.tar.gz
+      src: /root/apache-tomcat-{{tomcat8_version}}.tar.gz
       dest: /root
       remote_src: yes 
+  - name: Ansible check directory exists example.
+    stat:
+      path: /root/apache-tomcat-{{tomcat8_version}}
+    register: tomcat_exists
 
   - name: Extract contents from tomcat
     become: :yes
-    command: mv /root/apache-tomcat-8.5.39 /root/apache-tomcat
+    command: mv /root/apache-tomcat-{{tomcat8_version}} /root/apache-tomcat 
+    when: not tomcat_exists.stat.exists
     
   - name: change directory and execute command
     command: chdir=/root/apache-tomcat ./bin/startup.sh
