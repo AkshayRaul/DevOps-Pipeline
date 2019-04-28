@@ -33,7 +33,7 @@ $ ansible-playbook initialSetup.yml
 #### Architecture Diagram
 ![Architecture Diagram](https://github.ncsu.edu/araul/Project_DevOps/blob/master/devops.png)
 
-#### Deployment Components
+### Deployment Components
 #### Deployment:
 
 #### Feature Flag:
@@ -53,13 +53,15 @@ Suppose urlKey:'/iTrust/patient' has status set to be enabled
 Then redirecting to '/iTrust/patient' will respond as feature disabled.
 
 
-#### Infrastructure Component:
-Marqdown microservice: https://github.ncsu.edu/arisboo/marqdown <br />
-Dockerhub image repository for marqdown: ashwinrisbood/marqdown <br />
-Webhook reciever: https://github.com/ashwinrisbood/dockerhub-webhook
-#### Special Milestone:
+#### Infrastructure Components:
+Marqdown microservice: https://github.ncsu.edu/arisboo/marqdown 
 
-### 1. Blue Green Deployment
+Dockerhub image repository for marqdown: ashwinrisbood/marqdown 
+
+Webhook reciever: https://github.com/ashwinrisbood/dockerhub-webhook
+### Special Milestone:
+
+#### 1. Blue Green Deployment
 
 We implemented a blue green style deployment for our marqdown kubernetes cluster.
 
@@ -68,7 +70,7 @@ To achieve blue-green:
 - Implementing a load balancer using metallb for our bare metal kubernetes. (https://github.com/danderson/metallb)
 - creating a simple webhook reciever using expressJs, to update the kubernetes cluster on a change in the base image on dockerhub. 
 
-### 2. Datadog Monitoring and Log Processing
+#### 2. Datadog Monitoring and Log Processing
 
 Datadog collects Tomcat and JVM metrics exposed by JMX via the JMXFetch plugin. This plugin is built into Datadog’s Java integrations, including the Tomcat integration. To begin collecting this data, you will need to install the Datadog Agent on your host. The Agent is open source software that forwards metrics, events, and logs from your hosts to Datadog
 
