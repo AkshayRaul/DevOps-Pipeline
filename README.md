@@ -70,6 +70,30 @@ To achieve blue-green:
 
 ### 2. Datadog Monitoring and Log Processing
 
+Datadog collects Tomcat and JVM metrics exposed by JMX via the JMXFetch plugin. This plugin is built into Datadog’s Java integrations, including the Tomcat integration. To begin collecting this data, you will need to install the Datadog Agent on your host. The Agent is open source software that forwards metrics, events, and logs from your hosts to Datadog
+
+Documentation: https://www.datadoghq.com/blog/analyzing-tomcat-logs-and-metrics-with-datadog/
+
+The agent is installed via Ansible using the following commands:
+- Agent:
+```bash
+DD_API_KEY=<YOUR_API_KEY> bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
+```
+- Make changes to collect logs:
+```yaml
+## Log Section (Available for Agent >=6.0)
+logs:
+  - type: file
+    path: /opt/tomcat/logs/localhost_access_log*.txt
+    source: tomcat
+    service:tomcat
+  - type: file
+    path: /opt/tomcat/logs/catalina*.log
+    source: tomcat
+    service: tomcat
+```
+Similarly, other metrics can be monitored by adding/modifying the metrics in the `conf.yaml` file inside `tomcat.d` directory of `Datadog-agent` found in `/etc/datadog-agent`
+
 
 
 
