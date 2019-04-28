@@ -6,7 +6,7 @@
       Akshay Raul - araul
       Shwetha Kalyanaraman -skalyan
 #### Contributions
-    Ashwin Risbood - 
+    Ashwin Risbood - Setting up nginx for checkbox.io, extracting marqdown microservice and its respective dockerfile, setting up Kubernetes' blue-green deployments, metallb loadbalancer and a simple reciever for Dockerhub webhook.
     Shwetha Kalyanaraman - Setting up proxy server for feature flags in iTrust and wrote ansible scripts to configure redis.
     Akshay Raul- Setup Jenkins prod pipeline, wrote ansible scripts to configure kubernetes and servers(tomcat & nginx). Setup tomcat and nginx. Setup and configured Datadog agent for monitory & log processing
     Cameron Nelson - Assisted in setup of git hooks for iTrust and Checkbox.io in setting up nginx server for checkbox.io. Worked on configuring file transfers from iTrust jenkins server to iTrust deployment server (i.e. war file and SQL sample users). Lead the finalization of final screencast. 
@@ -30,7 +30,10 @@ Once the repository is clone, the sub modules of `iTrust` and `checkbox.io` are 
 ```
 $ ansible-playbook initialSetup.yml
 ```
-#### Deployment Components
+#### Architecture Diagram
+![Architecture Diagram](https://github.ncsu.edu/araul/Project_DevOps/blob/master/devops.png)
+
+### Deployment Components
 #### Deployment:
 
 #### Feature Flag:
@@ -50,12 +53,48 @@ Suppose urlKey:'/iTrust/patient' has status set to be enabled
 Then redirecting to '/iTrust/patient' will respond as feature disabled.
 
 
-#### Infrastructure Component:
-marqdown microservice: https://github.ncsu.edu/arisboo/marqdown
-#### Special Milestone:
+#### Infrastructure Components:
+Marqdown microservice: https://github.ncsu.edu/arisboo/marqdown 
 
-### 1. Blue Green Deployment
-### 2. Datadog Monitoring and Log Processing
+Dockerhub image repository for marqdown: ashwinrisbood/marqdown 
+
+Webhook reciever: https://github.com/ashwinrisbood/dockerhub-webhook
+### Special Milestone:
+
+#### 1. Blue Green Deployment
+
+We implemented a blue green style deployment for our marqdown kubernetes cluster.
+
+To achieve blue-green:
+- Two different deployments were created on kubernetes, each using a different base image from dockerhub.
+- Implementing a load balancer using metallb for our bare metal kubernetes. (https://github.com/danderson/metallb)
+- creating a simple webhook reciever using expressJs, to update the kubernetes cluster on a change in the base image on dockerhub. 
+
+#### 2. Datadog Monitoring and Log Processing
+
+Datadog collects Tomcat and JVM metrics exposed by JMX via the JMXFetch plugin. This plugin is built into Datadog’s Java integrations, including the Tomcat integration. To begin collecting this data, you will need to install the Datadog Agent on your host. The Agent is open source software that forwards metrics, events, and logs from your hosts to Datadog
+
+Documentation: https://www.datadoghq.com/blog/analyzing-tomcat-logs-and-metrics-with-datadog/
+
+The agent is installed via Ansible using the following commands:
+- Agent:
+```bash
+DD_API_KEY=<YOUR_API_KEY> bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
+```
+- Make changes to collect logs:
+```yaml
+## Log Section (Available for Agent >=6.0)
+logs:
+  - type: file
+    path: /opt/tomcat/logs/localhost_access_log*.txt
+    source: tomcat
+    service:tomcat
+  - type: file
+    path: /opt/tomcat/logs/catalina*.log
+    source: tomcat
+    service: tomcat
+```
+Similarly, other metrics can be monitored by adding/modifying the metrics in the `conf.yaml` file inside `tomcat.d` directory of `Datadog-agent` found in `/etc/datadog-agent`
 
 
 
