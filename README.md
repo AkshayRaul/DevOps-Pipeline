@@ -30,6 +30,9 @@ Once the repository is clone, the sub modules of `iTrust` and `checkbox.io` are 
 ```
 $ ansible-playbook initialSetup.yml
 ```
+#### Architecture Diagram
+![Architecture Diagram](https://github.ncsu.edu/araul/Project_DevOps/blob/master/devops.png)
+
 #### Deployment Components
 #### Deployment:
 
