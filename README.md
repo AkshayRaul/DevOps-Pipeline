@@ -6,7 +6,7 @@
       Akshay Raul - araul
       Shwetha Kalyanaraman -skalyan
 #### Contributions
-    Ashwin Risbood - 
+    Ashwin Risbood - Setting up nginx for checkbox.io, extracting marqdown microservice and its respective dockerfile, setting up Kubernetes' blue-green deployments, metallb loadbalancer and a simple reciever for Dockerhub webhook.
     Shwetha Kalyanaraman - Setting up proxy server for feature flags in iTrust and wrote ansible scripts to configure redis.
     Akshay Raul- Setup Jenkins prod pipeline, wrote ansible scripts to configure kubernetes and servers(tomcat & nginx). Setup tomcat and nginx. Setup and configured Datadog agent for monitory & log processing
     Cameron Nelson - Assisted in setup of git hooks for iTrust and Checkbox.io in setting up nginx server for checkbox.io. Worked on configuring file transfers from iTrust jenkins server to iTrust deployment server (i.e. war file and SQL sample users). Lead the finalization of final screencast. 
@@ -51,10 +51,20 @@ Then redirecting to '/iTrust/patient' will respond as feature disabled.
 
 
 #### Infrastructure Component:
-marqdown microservice: https://github.ncsu.edu/arisboo/marqdown
+Marqdown microservice: https://github.ncsu.edu/arisboo/marqdown
+Dockerhub images repository for marqdown: ashwinrisbood/marqdown
+Webhook reciever: https://github.com/ashwinrisbood/dockerhub-webhook
 #### Special Milestone:
 
 ### 1. Blue Green Deployment
+
+We implemented a blue green style deployment for our marqdown kubernetes cluster.
+
+To achieve blue-green:
+- Two different deployments were created on kubernetes, each using a different base image from dockerhub.
+- Implementing a load balancer using metallb for our bare metal kubernetes. (https://github.com/danderson/metallb)
+- creating a simple webhook reciever using expressJs, to update the kubernetes cluster on a change in the base image on dockerhub. 
+
 ### 2. Datadog Monitoring and Log Processing
 
 
