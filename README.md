@@ -51,8 +51,8 @@ Then redirecting to '/iTrust/patient' will respond as feature disabled.
 
 
 #### Infrastructure Component:
-Marqdown microservice: https://github.ncsu.edu/arisboo/marqdown
-Dockerhub images repository for marqdown: ashwinrisbood/marqdown
+Marqdown microservice: https://github.ncsu.edu/arisboo/marqdown <br />
+Dockerhub image repository for marqdown: ashwinrisbood/marqdown <br />
 Webhook reciever: https://github.com/ashwinrisbood/dockerhub-webhook
 #### Special Milestone:
 
