@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blue
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: blue
+  template:
+    metadata:
+      labels:
+        app: blue
+    spec:
+      containers:
+      - name: marqdown
+        image: ashwinrisbood/marqdown:blue
+        ports:
+          - containerPort: 3300
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: green
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: green
+  template:
+    metadata:
+      labels:
+        app: green
+    spec:
+      containers:
+      - name: marqdown
+        image: ashwinrisbood/marqdown:green
+        ports:
+          - containerPort: 3300
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bluegreen
+spec:
+  ports:
+  - name: standard
+    port: 3300
+    protocol: TCP
+    targetPort: 3300
+  selector:
+    app: blue
+  type: LoadBalancer

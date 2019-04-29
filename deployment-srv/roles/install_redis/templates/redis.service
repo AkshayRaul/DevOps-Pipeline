@@ -1,0 +1,12 @@
+
+[Unit]
+Description=Redis
+
+[Service]
+ExecStart=/root/redis-stable/src/redis-server /root/redis-stable/redis.conf
+
+[Install]
+WantedBy=multi-user.target
+
+
+

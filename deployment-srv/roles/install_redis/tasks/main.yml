@@ -1,0 +1,45 @@
+---
+
+  - name: Install redis by downloading tar file from url
+    become: yes
+    get_url:
+      url: http://download.redis.io/redis-stable.tar.gz
+      dest: /root/
+ 
+  - name: Extract contents from tomcat
+    become: yes
+    unarchive:
+      src: /root/redis-stable.tar.gz
+      dest: /root
+      remote_src: yes 
+
+  - name: Put redis service file to run
+    become: yes
+    template: src=templates/redis.service dest=/etc/systemd/system/ owner=root mode=0600
+
+  - name: start redis server
+    become: yes
+    systemd:
+      name: redis
+      state: started
+
+  - name: command make inside redis
+    command: chdir="{{redis_location}}" make
+
+  - name: Move directory of redis to remote
+    copy: src=templates/express-redis dest="{{redis_proxy}}"
+
+  - name: Put redis service file to run
+    become: yes
+    template: src=templates/redis-proxy.service dest=/etc/systemd/system/ owner=root mode=0600
+
+  - name: Do npm install
+    npm:
+      path: "{{redis_proxy}}"
+      state: present      
+
+  - name: Run index.js 
+    become: yes
+    systemd:
+      name: redis-proxy
+      state: started

@@ -1,12 +1,15 @@
 ---
+  
   - name: Install nodejs
     become: yes
     get_url:
-      url: https://deb.nodesource.com/setup_8.x
+      url: https://deb.nodesource.com/setup_8.x 
       dest: /root/
+
   - name: Install Node PPA
     become: yes
-    command: bash /root/setup_8.x
+    command: sh /root/setup_8.x
+ 
   - name: Aptitude update
     apt:
       name: nodejs
@@ -66,10 +69,6 @@
   - name: install mongodb
     sudo: yes
     apt: name=mongodb state=latest update_cache=yes
-
-  - name: install nginx
-    become: true
-    apt: name=nginx state=latest update_cache=yes
     
   - name: Install a list of packages
     become: true
@@ -90,7 +89,21 @@
       password: "{{ mongo_admin_password }}"
       roles: userAdminAnyDatabase,dbAdminAnyDatabase,readWriteAnyDatabase
       state: present
+
   - name: run npm install
     become: true
     npm:
       path: /opt/checkbox.io/server-side/site
+ 
+  - name: copy sql files for Itrust requirement
+    become: true
+    template: src=templates/users.sql dest=/root/ owner=root mode=0600
+
+  - name: Create DB iTrust2
+    command: mysql -u root -e "create database if not exists iTrust2"
+
+  - name: Import the dbs
+    become: true
+    shell: mysql iTrust2 < /root/users.sql
+   
+ 

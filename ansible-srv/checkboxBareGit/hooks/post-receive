@@ -1,0 +1,4 @@
+#!/bin/sh
+echo "Current location: $GIT_DIR"
+
+curl --user jenkins:118940ce172236cdef5dec69b98a8d5542 http://138.197.3.64:8080/job/checkbox_build/build

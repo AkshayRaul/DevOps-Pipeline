@@ -1,0 +1,32 @@
+---
+  - name: Download Datadog agent
+    shell: DD_API_KEY="{{DDTOKEN}}" bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
+  
+  - name: Move conf.yaml.example to conf.yaml
+    become: yes
+    copy: src=templates/datadog.yaml dest=/etc/datadog-agent/datadog.yaml
+
+  - name: move tomcat conf file
+    become: yes
+    copy: src=templates/conf.yaml dest=/etc/datadog-agent/conf.d/tomcat.d/conf.yaml
+
+  - name: add log4.properties file to tomcat
+    copy: src=templates/log4j.properties dest={{tomcat8_location}}/lib/log4j.properties
+
+  - name: add catalina_opts jmx remote to tomcat
+    copy: src=templates/setenv.sh dest={{tomcat8_location}}/bin/setenv.sh mode=755
+  
+
+  - name:
+    lineinfile: 
+      dest: /etc/datadog-agent/datadog.yaml 
+      regexp: '^(.*)logs_enabled:(.*)$' 
+      line: 'logs_enabled: true'
+      backrefs: yes
+  
+  - name: Start DD agent
+    service:
+      state: started
+      name: datadog-agent
+    become: yes
+      

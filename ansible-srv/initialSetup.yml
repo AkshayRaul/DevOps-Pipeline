@@ -29,3 +29,13 @@
     template:
       src: templates/findbugs-include.xml
       dest: ./iTrust2/iTrust2-v4/iTrust2/
+
+  - name: copy itrust JenkinsFile
+    template:
+      src: templates/iTrustJenkinsFile
+      dest: ./iTrust2/iTrust2-v4/
+
+  - name: copy checkbox JenkinsFile
+    template:
+      src: templates/checkboxJenkinsFile
+      dest: ./checkbox.io/

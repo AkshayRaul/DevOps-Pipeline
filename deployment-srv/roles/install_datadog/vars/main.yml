@@ -1,0 +1,2 @@
+DDTOKEN: <your Datadog API Key here> 
+tomcat8_location: /root/apache-tomcat
