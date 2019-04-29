@@ -1,0 +1,39 @@
+properties([pipelineTriggers([githubPush()])])
+
+node {
+    	
+withEnv(['MONGO_PORT=3002', 'MONGO_IP=127.0.0.1', 'MONGO_USER={{mongo_user}}', 'MONGO_PASSWORD={{mongo_pass}}', 'MAIL_SMPT=smtp.gmail.com', 'MAIL_USER=araul']) {
+        stage ('Checkout'){
+            git branch: 'master', url: 'https://github.com/ashwinrisbood/checkbox.io.git'
+        }
+        stage('Install dependencies') {	
+        	
+                dir("server-side/site/") {	
+                    sh 'npm install'	
+    	
+            }
+        }
+        stage('build') {	
+    	
+                dir("server-side/site/") {	
+                    sh 'npm test'	
+                }	
+    	
+        }
+        stage('deploy to production') {	
+    	
+                dir("../"){	
+                  sh "tar -pczf checkbox.tar.gz ./checkbox_build --exclude './checkbox_build/server-side/site/node_modules'"	
+                  sh "scp -i ../.ssh/do_rsa1 checkbox.tar.gz root@{{prod_ip}}:/var/www/html"   	
+                  sh "ssh  root@{{prod_ip}} -i ../.ssh/do_rsa1 'tar -xvzf /var/www/html/checkbox.tar.gz'"	
+                }	
+    
+        }   
+        stage('start the server in production') {
+                dir("../"){	
+                    sh "ssh  root@{{prod_ip}} -i ../.ssh/do_rsa1 'cd /var/www/html/checkbox_build/server-side/site && npm install'"	
+                    //sh "ssh  root@{{prod_ip}} -i ../.ssh/do_rsa1 'cd /var/www/html/checkbox_build/server-side/site && npm start'"	
+                }	
+        }
+    }
+} 

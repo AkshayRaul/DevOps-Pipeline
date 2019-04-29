@@ -7,4 +7,6 @@ jenkins_password: "Jenkins@6"
 jenkins_plugins:
   - pipeline
   - maven-plugin
-
+prod_ip: 138.197.100.201
+mongo_user: mongoadmin
+mongo_password: mongoadmin
