@@ -14,14 +14,14 @@
 #### Instructions to Setup:
 ```
 1  git clone https://github.ncsu.edu/araul/Project_DevOps.git
-2. cd jenkins-srv
-3. baker bake
-4. cd ../ansible-srv
-5. baker bake
-6. baker ssh
-7. cd /ansible-srv
-7. ansible-playbook initialSetup.yml 
-8. ansible-playbook -i inventory main.yml
+2. cd Project-DevOps
+3. cd ansible-srv
+4. ansible-playbook initialSetup.yml 
+7. ansible-playbook -i inventory main.yml
+8. cd ./digitalOceanVM
+9. node main.js
+10. cd ../deployment-srv
+11. ansible-playbook -i inventory main.yml
 ```
 
 #### Setup Instructions
@@ -34,31 +34,60 @@ $ ansible-playbook initialSetup.yml
 ![Architecture Diagram](https://github.ncsu.edu/araul/Project_DevOps/blob/master/devops.png)
 
 ### Deployment Components
-#### Deployment:
+
+#### Get DigitalOcean VM IP:
+In the `digitalOceanVM` directory, run `node main.js` to provision a VM in DigitalOcean. Once provisioned it gets the IP address of the newly created VM and outputs it to the inventory file of `deployment-srv`. 
+
+```js
+async function setIp(client,dropletId){
+
+        var dropletInfo = await client.dropletInfo(parseInt(dropletId));
+        var ip_address= dropletInfo.networks.v4[0].ip_address;
+
+        // create inventory file 
+        var inventoryString=`[web]
+      deployment-srv ansible_host=${ip_address} ansible_ssh_user=root ansible_python_interpreter=/usr/bin/python3       ansible_ssh_private_key_file=/keys/do_rsa1
+      [web:vars]
+      ansible_python_interpreter=/usr/bin/python3`
+
+        fs.writeFile('../deployment-srv/inventory', inventoryString, function (err) {
+                if (err) throw err;
+                console.log('Saved!');
+        });
+
+}
+```
+
+#### Deployment Git Hooks:
+In Jenkins srv, ansible installs `GitHub` plugin which is used as a listener to the incoming POST requests whenever a push takes place on the GitHub repository. 
+- To setup GitHub hooks, head over to your repository on `GitHub > Click Settings> Hooks`. Add the endpoint of the Jenkins Server as `http://JENKINS_URL/github-webhook` with the `JenkinsFile` location. 
+- The endpoint `github-webhook` is necessary for the plugin. In Jenkins, for the Jobs which want to be triggered ont the push, add the repository to the SCM with its credentials(if any) like this:
+![SCM](https://github.ncsu.edu/araul/Project_DevOps/blob/master/jenkins_github_webhooks.png)
+- Check `Github Polling SCM` 
+
 
 #### Feature Flag:
 We used the feature of redis-cli to set two keys: 
 
-1: Url name
-
-2: Status of the URL to enable or disable
+1. Feature name
+2. Status of the Feature to enable or disable
 
 The ansible script starts by installing redis,starts redis server, starts the node file to redirect accordingly.
 
-Every link of Itrust goes through a proxy server which will check from redis key-value pair.
+Every link of iTrust goes through a proxy server which will check from redis key-value pair.
 
 After checking it will redirect accordingly if the url is disabled or not.
-Suppose urlKey:'/iTrust/patient' has status set to be enabled
-
-Then redirecting to '/iTrust/patient' will respond as feature disabled.
+Suppose urlKey: `iTrust_logentries`, then it maps to `/v1/api/log_entries` and it's status set to be `True`
+Then if the logs will be disabled on the frontend. If the status is False, then the feature is enabledT
 
 
 #### Infrastructure Components:
 Marqdown microservice: https://github.ncsu.edu/arisboo/marqdown 
 
-Dockerhub image repository for marqdown: ashwinrisbood/marqdown 
+Dockerhub image repository for marqdown: ashwinrisbood/marqdown https://hub.docker.com/r/ashwinrisbood/marqdown
 
 Webhook reciever: https://github.com/ashwinrisbood/dockerhub-webhook
+
 ### Special Milestone:
 
 #### 1. Blue Green Deployment
@@ -72,7 +101,7 @@ To achieve blue-green:
 
 #### 2. Datadog Monitoring and Log Processing
 
-Datadog collects Tomcat and JVM metrics exposed by JMX via the JMXFetch plugin. This plugin is built into Datadog’s Java integrations, including the Tomcat integration. To begin collecting this data, you will need to install the Datadog Agent on your host. The Agent is open source software that forwards metrics, events, and logs from your hosts to Datadog
+Datadog collects Tomcat and JVM metrics exposed by JMX via the JMXFetch plugin. This plugin is built into Datadog’s Java integrations, including the Tomcat integration. To begin collecting this data, you will need to install the Datadog Agent on your host. The Agent is open source software that forwards metrics, events, and logs from your hosts to Datadog.[source: DataDog Documentation]
 
 Documentation: https://www.datadoghq.com/blog/analyzing-tomcat-logs-and-metrics-with-datadog/
 
@@ -95,6 +124,9 @@ logs:
     service: tomcat
 ```
 Similarly, other metrics can be monitored by adding/modifying the metrics in the `conf.yaml` file inside `tomcat.d` directory of `Datadog-agent` found in `/etc/datadog-agent`
+
+![DataDog Agent](https://github.ncsu.edu/araul/Project_DevOps/blob/master/datadog.png)
+
 
 
 
