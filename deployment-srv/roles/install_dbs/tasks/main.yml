@@ -89,6 +89,7 @@
       password: "{{ mongo_admin_password }}"
       roles: userAdminAnyDatabase,dbAdminAnyDatabase,readWriteAnyDatabase
       state: present
+
   - name: run npm install
     become: true
     npm:
@@ -97,6 +98,9 @@
   - name: copy sql files for Itrust requirement
     become: true
     template: src=templates/users.sql dest=/root/ owner=root mode=0600
+
+  - name: Create DB iTrust2
+    command: mysql -u root -e "create database if not exists iTrust2"
 
   - name: Import the dbs
     become: true

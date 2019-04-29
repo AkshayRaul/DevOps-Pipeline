@@ -42,10 +42,10 @@
       path: /root/apache-tomcat-{{tomcat8_version}}
     register: tomcat_exists
 
-  - name: Extract contents from tomcat
+  - name: Rename Tomcat directory
     become: :yes
     command: mv /root/apache-tomcat-{{tomcat8_version}} /root/apache-tomcat 
-    when: not tomcat_exists.stat.exists
+    when: tomcat_exists.stat.exists
     
   - name: change directory and execute command
     command: chdir=/root/apache-tomcat ./bin/startup.sh
