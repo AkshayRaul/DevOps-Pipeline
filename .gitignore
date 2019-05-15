@@ -1,4 +1,5 @@
 node_modules
 *.retry
 inventory
+package-lock.json
 .vscode
