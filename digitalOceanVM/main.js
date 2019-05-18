@@ -71,7 +71,7 @@ class DigitalOceanProvider {
 			"region": region,
 			"size": "2gb",
 			"image": imageName,
-			"ssh_keys": ["32:46:bb:f8:50:55:5f:8f:e6:ea:3c:15:97:e0:1d:91"],
+			"ssh_keys": ["<SSH-KEY HERE"],
 			"backups": false,
 			"ipv6": false,
 			"user_data": null,
