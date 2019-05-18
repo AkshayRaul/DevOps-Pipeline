@@ -6,9 +6,18 @@ var apiProxy = httpProxy.createProxyServer();
 var server =   'http://localhost:8080/'
 var client = redis.createClient(6379, '127.0.0.1', {})
 
+url_mappings={
+  "iTrust_logentries":"/iTrust2/api/v1/logentries/range",
+  "role":"/iTrust2/api/v1/role",
+  "patients":"iTrust2/api/v1/patients"
+  /**
+   * Add mappings from features to urls
+   */
+}
+
 app.use(function (req, res, next) {
   console.log(req.originalUrl);
-  var url="/iTrust2/patient/index"
+  var url=""
   var status_url=""
   client.get("urlKey", function(err,value){
     console.log(value)
@@ -18,8 +27,8 @@ app.use(function (req, res, next) {
      status_url=value
      if(req.originalUrl==url && status_url=="true"){
 
-        console.log("NOT ALLOWED");
-        res.send("NOT ALLOWED");
+        console.log("Feature to roll out soon");
+        res.send("Feature to roll out soon");
      }else{
         next()
      }
