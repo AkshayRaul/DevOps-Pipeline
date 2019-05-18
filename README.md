@@ -31,7 +31,7 @@ Once the repository is clone, the sub modules of `iTrust` and `checkbox.io` are 
 $ ansible-playbook initialSetup.yml
 ```
 #### Architecture Diagram
-![Architecture Diagram](https://github.ncsu.edu/araul/Project_DevOps/blob/master/assets/img/DevOpsM3.png)
+![Architecture Diagram](./assets/img/DevOpsM3.png)
 
 ### Deployment Components
 
@@ -62,7 +62,7 @@ async function setIp(client,dropletId){
 In Jenkins srv, ansible installs `GitHub` plugin which is used as a listener to the incoming POST requests whenever a push takes place on the GitHub repository. 
 - To setup GitHub hooks, head over to your repository on `GitHub > Click Settings> Hooks`. Add the endpoint of the Jenkins Server as `http://JENKINS_URL/github-webhook` with the `JenkinsFile` location. 
 - The endpoint `github-webhook` is necessary for the plugin. In Jenkins, for the Jobs which want to be triggered ont the push, add the repository to the SCM with its credentials(if any) like this:
-![SCM](https://github.ncsu.edu/araul/Project_DevOps/blob/master/assets/img/jenkins_github_webhooks.png)
+![SCM](./img/jenkins_github_webhooks.png)
 - Check `Github Polling SCM` 
 
 
@@ -125,7 +125,7 @@ logs:
 ```
 Similarly, other metrics can be monitored by adding/modifying the metrics in the `conf.yaml` file inside `tomcat.d` directory of `Datadog-agent` found in `/etc/datadog-agent`
 
-![DataDog Agent](https://github.ncsu.edu/araul/Project_DevOps/blob/master/assets/img/datadog.png)
+![DataDog Agent](./assets/img/datadog.png)
 
 
 
@@ -134,4 +134,4 @@ Similarly, other metrics can be monitored by adding/modifying the metrics in the
 ##### ScreenCast:
 [Click here](https://bit.ly/2GEQ0rs) to watch the demo
 
-[Click here](https://drive.google.com/file/d/16sVb1CAb3Wmi-H6AB8_wixUpakKkvgip/view?usp=sharing) to watch overall project throughout the semester
+[Click here](https://www.youtube.com/watch?v=l7p_iOtMug0) to watch overall project throughout the semester
