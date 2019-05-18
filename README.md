@@ -113,6 +113,7 @@ DD_API_KEY=<YOUR_API_KEY> bash -c "$(curl -L https://raw.githubusercontent.com/D
 - Make changes to collect logs:
 ```yaml
 ## Log Section (Available for Agent >=6.0)
+
 logs:
   - type: file
     path: /opt/tomcat/logs/localhost_access_log*.txt
