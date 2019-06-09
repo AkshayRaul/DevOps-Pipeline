@@ -1,8 +1,8 @@
 # Phases of Pipeline:
 
-### Configuration and Build: https://github.com/AkshayRaul/DevOps-Pipeline/tree/CM+Build
-### Test and Analysis: https://github.com/AkshayRaul/DevOps-Pipeline/tree/Test+Analysis
-### DEPLOYMENT, INFRASTRUCTURE, and something SPECIAL: https://github.com/AkshayRaul/DevOps-Pipeline/tree/Deployment+Infrastructure+Special
+#### Configuration and Build: https://github.com/AkshayRaul/DevOps-Pipeline/tree/CM+Build
+#### Test and Analysis: https://github.com/AkshayRaul/DevOps-Pipeline/tree/Test+Analysis
+#### DEPLOYMENT, INFRASTRUCTURE, and something SPECIAL: https://github.com/AkshayRaul/DevOps-Pipeline/tree/Deployment+Infrastructure+Special
 
 # DEPLOYMENT, INFRASTRUCTURE, and something SPECIAL
 ### Team 6: 
